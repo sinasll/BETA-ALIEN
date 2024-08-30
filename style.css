@@ -3,14 +3,15 @@ body, h1, h2, button, p {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Modern and clean font */
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Ensure body uses full height */
 html, body {
     height: 100%;
-    color: #fff; /* White text color */
-    background-color: #000; /* Black background color */
+    color: #fff;
+    background-color: #000;
+    overflow: hidden; /* Prevent scrollbars from showing */
 }
 
 /* Container styles */
@@ -22,16 +23,16 @@ html, body {
 
 /* Header styles */
 header {
-    background-color: #000; /* Black background for the header */
-    color: #fff; /* White text */
+    background-color: #000;
+    color: #fff;
     padding: 20px;
     text-align: center;
-    border-bottom: 1px solid #333; /* Subtle border for separation */
+    border-bottom: 1px solid #333;
 }
 
 /* Logo styles */
 .logo {
-    max-width: 150px; /* Adjust as needed */
+    max-width: 150px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -44,100 +45,84 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000; /* Maintain black background for the main content area */
     padding: 20px;
 }
 
 /* Content section styles */
 .content {
     text-align: center;
-    color: #fff; /* White text for content */
+    color: #fff;
     padding: 20px;
-    border-radius: 10px; /* Rounded corners for a modern look */
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* Soft white shadow for depth */
-    background-color: #111; /* Slightly lighter black background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+    background-color: #111;
     width: 100%;
-    max-width: 90%; /* Limit width to a percentage to fit mobile screens */
+    max-width: 500px;
     margin-bottom: 20px;
-    position: relative;
-    overflow: hidden; /* Ensures content doesn’t overflow */
 }
 
 /* Home section h2 styling */
 #home-section h2 {
     display: flex;
     align-items: center;
-    font-size: 24px; /* Adjusted for better readability on mobile */
-    font-weight: 600; /* Bold font weight for prominence */
+    font-size: 24px;
+    font-weight: 600;
 }
 
 #home-section i.fas.fa-bat {
-    margin-right: 10px; /* Space between icon and text */
-    font-size: 28px; /* Adjust icon size for better visibility */
+    margin-right: 10px;
+    font-size: 28px;
 }
 
 /* Score styling */
 #home-section p {
-    font-size: 20px; /* Adjusted for better readability on mobile */
-    font-weight: 600; /* Bold font weight for prominence */
+    font-size: 20px;
+    font-weight: 600;
     margin-top: 20px;
-    position: relative;
-    height: auto; /* Automatically adjusts height based on content */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333; /* Dark background for score box */
-    border-radius: 10px; /* Rounded corners for the score box */
-    width: 100%; /* Full width of the content box */
-    max-width: 400px; /* Limit max width for larger screens */
-    color: #fff; /* White text for score */
-    padding: 20px; /* Ensure padding inside the box */
-    box-sizing: border-box; /* Includes padding in width calculation */
 }
 
-/* Score value styling */
 #home-section #score {
-    font-size: 36px; /* Larger font size for score value */
-    font-family: 'Poppins', sans-serif; /* Modern and clean font */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Button styles */
 button {
-    background-color: #fff; /* White background for buttons */
-    color: #000; /* Black text for contrast */
+    background-color: #fff;
+    color: #000;
     border: none;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 600; /* Bold text for buttons */
+    font-weight: 600;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #f1f1f1; /* Light gray for hover effect */
-    transform: translateY(-2px); /* Slight lift effect on hover */
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
 }
 
 button:active {
-    background-color: #e0e0e0; /* Darker gray for active state */
-    transform: translateY(0); /* Remove lift effect when pressed */
+    background-color: #e0e0e0;
+    transform: translateY(0);
 }
 
 /* Invite link styles */
 .invite-link {
-    text-decoration: none; /* Remove underline from link */
+    text-decoration: none;
 }
 
 .invite-link button {
-    background-color: #007bff; /* Blue background for the invite button */
-    color: #fff; /* White text for the invite button */
+    background-color: #007bff;
+    color: #fff;
 }
 
 .invite-link button:hover {
-    background-color: #0056b3; /* Darker blue for hover effect */
+    background-color: #0056b3;
 }
 
 /* Tasks section styles */
@@ -150,57 +135,57 @@ button:active {
 }
 
 .task {
-    background-color: #222; /* Dark gray for tasks */
+    background-color: #222;
     padding: 15px;
     border-radius: 10px;
     width: 100%;
-    max-width: 500px; /* Adjust as needed */
+    max-width: 500px;
     text-align: left;
-    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2); /* Soft white shadow for tasks */
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
 .task p {
-    margin-bottom: 10px; /* Space between description and buttons */
+    margin-bottom: 10px;
 }
 
 .task button {
     margin: 5px;
-    font-size: 14px; /* Slightly smaller font size for task buttons */
+    font-size: 14px;
 }
 
 .task .claim-button {
-    background-color: #28a745; /* Green background for claim button */
+    background-color: #28a745;
 }
 
 .task .claim-button:hover {
-    background-color: #218838; /* Darker green for hover effect */
+    background-color: #218838;
 }
 
 .task .check-button {
-    background-color: #17a2b8; /* Blue background for check button */
+    background-color: #17a2b8;
 }
 
 .task .check-button:hover {
-    background-color: #138496; /* Darker blue for hover effect */
+    background-color: #138496;
 }
 
 /* Bottom navigation styles */
 .bottom-nav {
-    background-color: #000; /* Black background for the bottom navigation */
-    color: #fff; /* White text */
+    background-color: #000;
+    color: #fff;
     display: flex;
     justify-content: space-around;
     padding: 10px;
-    position: fixed; /* Fixes the navigation to the bottom */
+    position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #333; /* Subtle border for separation */
-    z-index: 1000; /* Ensure it appears above other content */
+    border-top: 1px solid #333;
+    z-index: 1000;
 }
 
 .bottom-nav button {
-    background: none; /* No background for buttons in the navigation bar */
-    color: #fff; /* White text for navigation buttons */
+    background: none;
+    color: #fff;
     border: none;
     font-size: 16px;
     display: flex;
@@ -213,7 +198,6 @@ button:active {
 
 /* Responsive design */
 @media (max-width: 1200px) {
-    /* Adjust font sizes for smaller screens */
     #home-section h2 {
         font-size: 22px;
     }
@@ -232,17 +216,15 @@ button:active {
 
     .bottom-nav {
         font-size: 14px;
-        padding: 8px; /* Reduce padding for smaller screens */
+        padding: 8px;
     }
 
     .task {
-        max-width: 90%; /* Fit tasks better on mobile screens */
+        max-width: 90%;
     }
 }
 
-/* For very small screens like mobile phones */
 @media (max-width: 600px) {
-    /* Adjust font sizes for very small screens */
     #home-section h2 {
         font-size: 18px;
     }
@@ -261,10 +243,10 @@ button:active {
 
     .bottom-nav {
         font-size: 12px;
-        padding: 5px; /* Further reduce padding for very small screens */
+        padding: 5px;
     }
 
     .task {
-        max-width: 95%; /* Fit tasks better on very small screens */
+        max-width: 95%;
     }
 }
