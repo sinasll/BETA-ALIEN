@@ -74,17 +74,26 @@ main {
     font-size: 28px;
 }
 
-/* Score styling */
-#home-section p {
-    font-size: 20px;
-    font-weight: 600;
+/* Score box styling */
+#score-box {
+    display: none; /* Hide the score box */
+}
+
+/* Ads section styling */
+#ads-section {
     margin-top: 20px;
 }
 
-#home-section #score {
-    font-size: 36px;
-    font-family: 'Poppins', sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+#ads-section p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+#ads-section #ad-status {
+    font-size: 16px;
+    color: #28a745; /* Green color for status messages */
+    margin-top: 10px;
 }
 
 /* Button styles */
@@ -206,10 +215,6 @@ button:active {
         font-size: 26px;
     }
 
-    #home-section p {
-        font-size: 18px;
-    }
-
     #home-section #score {
         font-size: 32px;
     }
@@ -231,10 +236,6 @@ button:active {
 
     #home-section i.fas.fa-bat {
         font-size: 22px;
-    }
-
-    #home-section p {
-        font-size: 16px;
     }
 
     #home-section #score {
