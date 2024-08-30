@@ -56,7 +56,7 @@ main {
     border-radius: 10px; /* Rounded corners for a modern look */
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* Soft white shadow for depth */
     background-color: #111; /* Slightly lighter black background */
-    max-width: 600px; /* Limit width for better readability */
+    max-width: 90%; /* Limit width to a percentage to fit mobile screens */
     width: 100%;
     margin-bottom: 20px;
     position: relative;
@@ -67,33 +67,36 @@ main {
 #home-section h2 {
     display: flex;
     align-items: center;
-    font-size: 28px; /* Larger font size for headings */
+    font-size: 24px; /* Adjusted for better readability on mobile */
     font-weight: 600; /* Bold font weight for prominence */
 }
 
 #home-section i.fas.fa-bat {
     margin-right: 10px; /* Space between icon and text */
-    font-size: 32px; /* Adjust icon size for better visibility */
+    font-size: 28px; /* Adjust icon size for better visibility */
 }
 
 /* Score styling */
 #home-section p {
-    font-size: 24px; /* Larger font size for scores */
+    font-size: 20px; /* Adjusted for better readability on mobile */
     font-weight: 600; /* Bold font weight for prominence */
     margin-top: 20px;
     position: relative;
-    height: 80px; /* Adjust height as needed */
+    height: auto; /* Automatically adjusts height based on content */
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #333; /* Dark background for score box */
     border-radius: 10px; /* Rounded corners for the score box */
     width: 100%; /* Full width of the content box */
+    max-width: 400px; /* Limit max width for larger screens */
     color: #fff; /* White text for score */
+    padding: 20px; /* Ensure padding inside the box */
+    box-sizing: border-box; /* Includes padding in width calculation */
 }
 
 #home-section #score {
-    font-size: 48px; /* Larger font size for score value */
+    font-size: 36px; /* Larger font size for score value */
     font-family: 'Poppins', sans-serif; /* Modern and clean font */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
@@ -208,7 +211,29 @@ button:active {
 
 /* Responsive design */
 @media (max-width: 600px) {
+    /* Adjust font sizes for smaller screens */
+    #home-section h2 {
+        font-size: 20px;
+    }
+
+    #home-section i.fas.fa-bat {
+        font-size: 24px;
+    }
+
+    #home-section p {
+        font-size: 18px;
+    }
+
+    #home-section #score {
+        font-size: 30px;
+    }
+
     .bottom-nav {
         font-size: 14px;
+        padding: 8px; /* Reduce padding for smaller screens */
+    }
+
+    .task {
+        max-width: 90%; /* Fit tasks better on mobile screens */
     }
 }
