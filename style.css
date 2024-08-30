@@ -1,0 +1,260 @@
+/* Basic reset */
+body, h1, h2, button, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Ensure body uses full height */
+html, body {
+    height: 100%;
+    color: #fff;
+    background-color: #000;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Header styles */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Logo styles */
+.logo {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Main content styles */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Content section styles */
+.content {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+    background-color: #111;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Home section h2 styling */
+#home-section h2 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#home-section i.fas.fa-bat {
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+/* Ads section styling */
+#ads-section {
+    margin-top: 20px;
+}
+
+#ads-section p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+#ads-section #ad-status {
+    font-size: 16px;
+    color: #28a745; /* Green color for status messages */
+    margin-top: 10px;
+}
+
+/* Button styles */
+button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #e0e0e0;
+    transform: translateY(0);
+}
+
+/* Invite link styles */
+.invite-link {
+    text-decoration: none;
+}
+
+.invite-link button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.invite-link button:hover {
+    background-color: #0056b3;
+}
+
+/* Tasks section styles */
+#tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.task {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+}
+
+.task p {
+    margin-bottom: 10px;
+}
+
+.task button {
+    margin: 5px;
+    font-size: 14px;
+}
+
+.task .claim-button {
+    background-color: #28a745;
+}
+
+.task .claim-button:hover {
+    background-color: #218838;
+}
+
+.task .check-button {
+    background-color: #17a2b8;
+}
+
+.task .check-button:hover {
+    background-color: #138496;
+}
+
+/* Bottom navigation styles */
+.bottom-nav {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #333;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.bottom-nav button {
+    background: none;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.bottom-nav i {
+    margin-right: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    #home-section h2 {
+        font-size: 22px;
+    }
+
+    #home-section i.fas.fa-bat {
+        font-size: 26px;
+    }
+
+    #home-section #score {
+        font-size: 32px;
+    }
+
+    .bottom-nav {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .task {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    #home-section h2 {
+        font-size: 18px;
+    }
+
+    #home-section i.fas.fa-bat {
+        font-size: 22px;
+    }
+
+    #home-section #score {
+        font-size: 28px;
+    }
+
+    .bottom-nav {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .task {
+        max-width: 95%;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
