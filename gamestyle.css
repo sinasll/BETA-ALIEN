@@ -40,12 +40,7 @@ body {
     border: 3px solid white;
     overflow: hidden;
     background-color: #000; /* Black background for game box */
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.5), 
-        rgba(0, 0, 0, 0.5)
-    ), 
-    url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none"%3E%3Crect width="100%" height="100%" fill="none" stroke="%23fff" stroke-width="1" stroke-dasharray="2,2" /%3E%3C/svg%3E'); /* Semi-transparent grid */
-    background-blend-mode: overlay;
+    /* Removed grid background image and blend mode */
 }
 
 /* Snowflake styles */
