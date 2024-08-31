@@ -37,7 +37,7 @@ body {
     position: relative;
     width: 300px;
     height: 500px;
-    border: 3px solid white;
+    border: 3px solid white; /* Keeps the box lines */
     overflow: hidden;
     background-color: #000; /* Black background for game box */
     /* Removed grid background image and blend mode */
