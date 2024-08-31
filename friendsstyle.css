@@ -1,0 +1,167 @@
+/* Reset margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo-section {
+    margin-top: 20px;
+}
+
+.logo {
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+}
+
+.logo::after {
+    content: '\2744'; /* Snowflake symbol */
+    position: absolute;
+    font-size: 30px;
+    right: -30px;
+    top: 0;
+    color: white;
+}
+
+.invite-section {
+    margin-top: 20px;
+}
+
+.invite-btn {
+    background-color: #154f4f;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.invite-message {
+    margin-top: 20px;
+    color: white;
+    font-size: 16px;
+}
+
+.leaderboard {
+    margin-top: 20px;
+}
+
+.leaderboard ul {
+    list-style: none;
+}
+
+.leaderboard li {
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.nav-item {
+    text-align: center;
+    color: #A0A0A0;
+}
+
+.nav-item img {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-item p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Responsive for smaller devices */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .logo {
+        font-size: 70px;
+    }
+
+    .invite-btn {
+        padding: 12px 40px;
+        font-size: 18px;
+    }
+
+    .leaderboard li {
+        font-size: 18px;
+    }
+
+    .nav-item img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Footer Icons */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 30px; /* Adjust this value to raise the nav bar */
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+}
+
+.icon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+}
+
+.icon-box i {
+    font-size: 24px; /* Font Awesome icon size */
+    margin-bottom: 5px; /* Space between icon and text */
+    position: relative;
+    top: -5px; /* Move icon up slightly */
+}
+
+.icon-box p {
+    font-size: 12px; /* Adjust text size if needed */
+    margin: 0; /* Remove default margin */
+    position: relative;
+    top: 10px; /* Adjust text position to align with the icon */
+}
