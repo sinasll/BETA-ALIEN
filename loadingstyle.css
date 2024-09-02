@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+.loading-container {
+    text-align: center;
+    color: white;
+}
+
+.alien-img {
+    width: 100px; /* Size appropriately for mini app */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+}
