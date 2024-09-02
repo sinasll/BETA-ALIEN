@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -92,4 +91,27 @@ header {
 /* Navigation Bar */
 nav {
     background-color: #000000;
-    padding: 10px 0; }
+    padding: 10px 0;
+}
+
+.nav-bar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    font-size: 24px; /* Adjust size as needed */
+    color: #fff; /* Change color as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #c0c0c0; /* Change hover color as needed */
+}
