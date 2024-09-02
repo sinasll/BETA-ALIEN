@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    /* Prevent zooming on touch */
+    touch-action: manipulation;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 body {
     background-color: #000000;
     color: white;
@@ -12,6 +18,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+    font-size: 16px; /* Base font size */
 }
 
 /* Header */
@@ -104,14 +111,50 @@ nav {
 
 .nav-item {
     font-size: 24px; /* Adjust size as needed */
-    color: #fff; /* Change color as needed */
+    color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
     transition: color 0.3s;
+    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
 }
 
+/* Hover state */
 .nav-item:hover {
-    color: #c0c0c0; /* Change hover color as needed */
+    color: #c0c0c0; /* Grey color on hover */
+}
+
+/* Active or selected state */
+.nav-item.active {
+    color: #c0c0c0; /* Grey color when active */
+}
+
+/* Optional: Add media queries for better responsiveness */
+@media (max-width: 600px) {
+    .profile-img {
+        width: 30px; /* Adjust size for smaller screens */
+        height: 30px;
+    }
+
+    .username {
+        font-size: 1rem;
+    }
+
+    .score {
+        font-size: 1rem;
+    }
+
+    .play-box {
+        height: 80px;
+    }
+
+    .button {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .nav-item {
+        font-size: 20px; /* Adjust icon size for smaller screens */
+    }
 }
