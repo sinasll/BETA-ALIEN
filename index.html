@@ -13,7 +13,7 @@
     <!-- Header with profile, score, and alien icon -->
     <header>
         <div class="profile">
-            <img id="profile-icon" src="" alt="Profile" class="profile-img">
+            <div id="profile-icon" class="profile-img default-profile-img"></div>
             <span id="username" class="username">Loading...</span>
         </div>
         <div class="score-container">
@@ -38,7 +38,7 @@
             <li class="nav-item">
                 <i class="fas fa-users" aria-hidden="true"></i> <!-- Friends Icon -->
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <i class="fas fa-gamepad" aria-hidden="true"></i> <!-- Game Icon -->
             </li>
             <li class="nav-item">
@@ -56,9 +56,16 @@
         const user = window.Telegram.WebApp.initDataUnsafe.user;
 
         if (user) {
-            // Set profile icon and username
             const profileIcon = document.getElementById('profile-icon');
-            profileIcon.src = user.photo_url || 'default_profile_icon.png'; // Use default if no photo
+
+            // Check if photo_url is available
+            if (user.photo_url) {
+                profileIcon.style.backgroundImage = `url(${user.photo_url})`;
+                profileIcon.classList.remove('default-profile-img');
+            } else {
+                // Use default image styling if photo_url is not available
+                profileIcon.classList.add('default-profile-img');
+            }
 
             // Set username
             document.getElementById('username').innerText = user.first_name || 'Unknown User';
