@@ -10,12 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header with profile, score, and alien icon -->
+    <!-- Header with profile and score -->
     <header>
         <div class="profile">
-            <div id="profile-icon" class="profile-img default-profile-img">
-                <i class="fas fa-user"></i> <!-- Default profile icon -->
-            </div>
+            <img id="profile-pic" src="alien.png" alt="Profile Picture" class="profile-pic">
             <span id="username" class="username">Loading...</span>
         </div>
         <div class="score-container">
@@ -49,13 +47,6 @@
         </ul>
     </nav>
 
-    <!-- Name Input Form -->
-    <div id="name-form" style="display: none;">
-        <h2>Enter Your Name</h2>
-        <input type="text" id="user-name-input" placeholder="Enter your name">
-        <button id="submit-name">Submit</button>
-    </div>
-
     <script src="script.js"></script>
     <script>
         // Ensure the Telegram Web App SDK is ready
@@ -64,43 +55,21 @@
         // Fetch user data from Telegram Web App SDK
         const user = window.Telegram.WebApp.initDataUnsafe.user;
 
-        function setProfileData(name) {
-            const profileIcon = document.getElementById('profile-icon');
+        function setProfileData(name, photoUrl) {
             const usernameElement = document.getElementById('username');
+            const profilePicElement = document.getElementById('profile-pic');
+
             usernameElement.innerText = name;
 
-            // Check if photo_url is available
-            if (user.photo_url) {
-                profileIcon.style.backgroundImage = `url(${user.photo_url})`;
-                profileIcon.classList.remove('default-profile-img');
-                profileIcon.querySelector('i').style.display = 'none'; // Hide default icon
-            } else {
-                // Use default image styling if photo_url is not available
-                profileIcon.classList.add('default-profile-img');
-                profileIcon.style.backgroundImage = ''; // Ensure no background image
-                profileIcon.querySelector('i').style.display = 'block'; // Show default icon
-            }
+            // Set the profile picture
+            profilePicElement.src = photoUrl || 'path/to/your/default-profile-pic.png';
         }
 
         if (user) {
             const name = user.username || user.first_name || 'Unknown User';
-            
-            if (user.first_name) {
-                setProfileData(user.username || user.first_name);
-            } else {
-                // Show the form to enter name
-                document.getElementById('name-form').style.display = 'block';
-                
-                document.getElementById('submit-name').addEventListener('click', () => {
-                    const inputName = document.getElementById('user-name-input').value.trim();
-                    if (inputName) {
-                        setProfileData(inputName);
-                        document.getElementById('name-form').style.display = 'none';
-                    } else {
-                        alert('Please enter a name');
-                    }
-                });
-            }
+            const photoUrl = user.photo_url || ''; // Use default if no photo_url
+
+            setProfileData(name, photoUrl);
         } else {
             console.error('User information is not available');
         }
