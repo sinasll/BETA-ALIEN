@@ -34,27 +34,15 @@ header {
     align-items: center;
 }
 
-.profile-img {
+.profile-pic {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #888; /* Default grey background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-    text-align: center;
+    margin-right: 10px; /* Space between picture and username */
 }
 
-/* Default profile image style */
-.default-profile-img::before {
-    content: "?"; /* Placeholder text */
-}
-
-/* Username */
 .username {
-    margin-left: 10px;
     font-size: 1.2rem;
 }
 
@@ -146,7 +134,7 @@ nav {
 
 /* Optional: Add media queries for better responsiveness */
 @media (max-width: 600px) {
-    .profile-img {
+    .profile-pic {
         width: 30px; /* Adjust size for smaller screens */
         height: 30px;
     }
