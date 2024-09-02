@@ -13,7 +13,9 @@
     <!-- Header with profile, score, and alien icon -->
     <header>
         <div class="profile">
-            <div id="profile-icon" class="profile-img default-profile-img"></div>
+            <div id="profile-icon" class="profile-img default-profile-img">
+                <i class="fas fa-user"></i> <!-- Default profile icon -->
+            </div>
             <span id="username" class="username">Loading...</span>
         </div>
         <div class="score-container">
@@ -27,9 +29,9 @@
         <div class="play-box">
             <h2>PLAY</h2>
         </div>
-        <button class="button">you have 5 tickets</button>
-        <button class="button">bonus ticket</button>
-        <button class="button">daily reward</button>
+        <button class="button">You have 5 tickets</button>
+        <button class="button">Bonus ticket</button>
+        <button class="button">Daily reward</button>
     </div>
 
     <!-- Navigation Bar -->
@@ -62,9 +64,12 @@
             if (user.photo_url) {
                 profileIcon.style.backgroundImage = `url(${user.photo_url})`;
                 profileIcon.classList.remove('default-profile-img');
+                profileIcon.querySelector('i').style.display = 'none'; // Hide default icon
             } else {
                 // Use default image styling if photo_url is not available
                 profileIcon.classList.add('default-profile-img');
+                profileIcon.style.backgroundImage = ''; // Ensure no background image
+                profileIcon.querySelector('i').style.display = 'block'; // Show default icon
             }
 
             // Set username
