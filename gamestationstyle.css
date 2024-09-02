@@ -35,15 +35,16 @@ header {
 }
 
 .profile-pic {
-    width: 40px;
-    height: 40px;
+    width: 36px; /* Adjusted width for better appearance */
+    height: 36px; /* Adjusted height for better appearance */
     border-radius: 50%;
     background-color: #888; /* Default grey background */
     margin-right: 10px; /* Space between picture and username */
+    object-fit: cover; /* Ensure the image covers the container */
 }
 
 .username {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Slightly smaller font size for better alignment */
 }
 
 /* Score Container */
@@ -140,7 +141,7 @@ nav {
     }
 
     .username {
-        font-size: 1rem;
+        font-size: 0.9rem; /* Slightly smaller font size on smaller screens */
     }
 
     .score {
