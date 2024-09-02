@@ -38,13 +38,27 @@ header {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    background-color: #888; /* Default grey background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
+/* Default profile image style */
+.default-profile-img::before {
+    content: "?"; /* Placeholder text */
+}
+
+/* Username */
 .username {
     margin-left: 10px;
     font-size: 1.2rem;
 }
 
+/* Score Container */
 .score-container {
     display: flex;
     align-items: center;
@@ -117,17 +131,17 @@ nav {
     justify-content: center;
     padding: 10px;
     transition: color 0.3s;
-    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+    cursor: pointer; /* Indicate that it's clickable */
 }
 
 /* Hover state */
 .nav-item:hover {
-    color: #c0c0c0; /* Grey color on hover */
+    color: #727272; /* Grey color on hover */
 }
 
 /* Active or selected state */
 .nav-item.active {
-    color: #c0c0c0; /* Grey color when active */
+    color: #727272; /* Grey color when active */
 }
 
 /* Optional: Add media queries for better responsiveness */
