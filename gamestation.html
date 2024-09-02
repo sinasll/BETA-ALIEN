@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Station</title>
+    <link rel="stylesheet" href="gamestationstyle.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <!-- Header with profile, score, and alien icon -->
+    <header>
+        <div class="profile">
+            <img id="profile-icon" src="profile_icon.png" alt="Profile" class="profile-img">
+            <span id="username" class="username">Loading...</span>
+        </div>
+        <div class="score-container">
+            <span class="score">1,037,727</span>
+            <img src="alincoin.png" alt="Alien Icon" class="alien-icon">
+        </div>
+    </header>
+
+    <!-- Play Section -->
+    <div class="play-container">
+        <div class="play-box">
+            <h2>PLAY</h2>
+        </div>
+        <button class="button">you have 5 tickets</button>
+        <button class="button">bonus ticket</button>
+        <button class="button">daily reward</button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul class="nav-bar">
+            <li class="nav-item">
+                <img src="icon_friends.png" alt="Friends">
+            </li>
+            <li class="nav-item">
+                <img src="icon_game.png" alt="Game">
+            </li>
+            <li class="nav-item">
+                <img src="icon_rewards.png" alt="Rewards">
+            </li>
+        </ul>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Ensure the Telegram Web App SDK is ready
+        window.Telegram.WebApp.ready();
+        const user = window.Telegram.WebApp.initDataUnsafe.user;
+
+        if (user) {
+            document.getElementById('profile-icon').src = user.photo_url || 'default_profile_icon.png'; // Use default if no photo
+            document.getElementById('username').innerText = user.first_name || 'Unknown User';
+        } else {
+            console.error('User information is not available');
+        }
+    </script>
+</body>
+</html>
