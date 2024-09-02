@@ -1,29 +1,97 @@
+/* Apply reset and box-sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Full-height container setup */
 body, html {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #000000;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
+/* Centering text and logo */
 .loading-container {
     text-align: center;
     color: white;
 }
 
+/* Style for the logo */
 .alien-img {
-    width: 100px; /* Size appropriately for mini app */
+    width: 150px; /* Adjust size as needed */
     height: auto;
     margin-bottom: 20px;
 }
 
+/* Stylish font for h1 */
 h1 {
-    font-size: 2rem;
+    font-size: 2.2rem; /* Slightly larger for emphasis */
+    font-family: 'Bebas Neue', sans-serif; /* Bold, modern font from Google Fonts */
+    font-weight: normal;
+    letter-spacing: 4px; /* Enhanced spacing for readability */
+    margin-top: 10px;
 }
+
+/* Loader styles */
+.loader-wrapper {
+    margin-bottom: 20px; /* Space between loader and image */
+}
+
+/* Modern loading spinner with smooth transition */
+.loader {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.7) 100%); /* Radial gradient effect */
+    position: relative;
+    animation: rotate 1.5s linear infinite; /* Rotation animation */
+    margin: 0 auto; /* Center the loader */
+}
+
+/* Pseudo-element for the spinner effect */
+.loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 1.5s ease-in-out infinite; /* Pulse animation */
+}
+
+/* Spin animation for loader */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse effect for loader to add smoothness */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
+
+/* Import the Google Font for bold, modern text */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
