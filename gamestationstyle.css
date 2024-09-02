@@ -1,0 +1,95 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.username {
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.score-container {
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.alien-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Play Section */
+.play-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.play-box {
+    border: 2px solid white;
+    width: 80%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.play-box h2 {
+    font-size: 2rem;
+}
+
+.button {
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 25px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #000000;
+    padding: 10px 0;
