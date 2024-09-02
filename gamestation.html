@@ -57,20 +57,19 @@
     <script>
         // Ensure the Telegram Web App SDK is ready
         window.Telegram.WebApp.ready();
-    
+
         // Fetch user data from Telegram Web App SDK
         const user = window.Telegram.WebApp.initDataUnsafe.user;
-    
+
+        console.log('User Data:', user); // Log user data for debugging
+
         function setProfileData(name) {
             const usernameElement = document.getElementById('username');
-    
-            // Set the username or first name
             usernameElement.innerText = name;
         }
-    
+
         if (user) {
             const name = user.username || user.first_name || 'Unknown User';
-    
             setProfileData(name);
         } else {
             console.error('User information is not available');
