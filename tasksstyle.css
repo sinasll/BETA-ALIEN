@@ -1,0 +1,204 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+html, body {
+    touch-action: manipulation;
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #000000; /* Black background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background: none; /* Remove background from header */
+}
+
+/* Profile Container */
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    border-radius: 50%; /* Circular shape */
+    margin-right: 10px; /* Space between the picture and username */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: 2px solid #fff; /* Optional: border around the profile picture */
+}
+
+/* Username */
+.username {
+    font-size: 2rem; /* Larger font size for username */
+    font-weight: bold; /* Make username text bold */
+}
+
+/* Score Container */
+.score-container {
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    font-size: 2rem; /* Larger font size for score */
+    margin-right: 10px;
+}
+
+/* Alien Icon */
+.alien-icon {
+    width: 50px; /* Size of the coin icon */
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* Add shadow to create a coin effect */
+}
+
+/* Tasks Section */
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.tasks-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.task-list {
+    width: 80%;
+    max-width: 400px;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #1c1c1c; /* Slightly different background color for task items */
+}
+
+.task-description {
+    font-size: 1.2rem;
+}
+
+.claim-button {
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 25px; /* Rounded corners to match button style */
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.claim-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #000000; /* Black background for the nav */
+    padding: 10px 0;
+}
+
+.nav-bar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    font-size: 24px; /* Adjust size as needed */
+    color: #fff; /* Default color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.nav-item a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+/* Hide text labels */
+.nav-item span {
+    display: none;
+}
+
+/* Active state for the task icon */
+.nav-item.active i {
+    color: #a9a9a9; /* Highlight color for active icon */
+}
+
+/* Hover state */
+.nav-item:hover i {
+    color: #727272; /* Grey color on hover */
+}
+
+/* Optional: Add media queries for better responsiveness */
+@media (max-width: 600px) {
+    .username {
+        font-size: 1.5rem;
+    }
+
+    .score {
+        font-size: 1.5rem;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .claim-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .alien-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-item {
+        font-size: 20px; /* Adjust icon size for smaller screens */
+    }
+}
