@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Game Station</title>
-    <link rel="stylesheet" href="gamestationstyle.css">
+    <title>Tasks - Game Station</title>
+    <link rel="stylesheet" href="tasksstyle.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-</head>
+ </head>
 <body>
     <!-- Header with score -->
     <header>
         <div class="profile">
             <img src="alien.png" alt="Profile Picture" class="profile-pic">
-            <span id="username" class="username">USER</span> <!-- Default loading text -->
+            <span id="username" class="username">USER</span> <!-- Default text -->
         </div>
         <div class="score-container">
             <span class="score">0</span>
@@ -23,25 +23,46 @@
         </div>
     </header>
 
-    <!-- Play Section -->
-    <div class="play-container">
-        <div class="play-box">
-            <h2>PLAY</h2>
+    <!-- Tasks Section -->
+    <div class="tasks-container">
+        <h3 class="dotasks">Do tasks and earn Aliens</h3>
+        <div class="task-list">
+            <div class="task-item">
+                <span class="task-description">join our Telegram channel for 100 ALIENS</span>
+                <button class="button claim-button">claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">follow our Instagram for 100 ALIENS</span>
+                <button class="button claim-button">claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">follow our X for 100 ALIENS</span>
+                <button class="button claim-button">claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">subscribe our YouTube for 100 ALIENS</span>
+                <button class="button claim-button">claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">join BLUM for 100 ALIENS</span>
+                <button class="button claim-button">claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">join CATS for 100 ALIENS</span>
+                <button class="button claim-button">claim</button>
+            </div>
         </div>
-        <div class="tickets-text">You have 5 tickets</div>
-        <button class="button">Bonus ticket</button>
-        <button class="button">Daily reward</button>
     </div>
 
     <!-- Navigation Bar -->
     <nav>
         <ul class="nav-bar">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a href="gamestation.html">
                     <i class="fas fa-gamepad" aria-hidden="true"></i> <!-- Game Icon -->
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a href="tasks.html">
                     <i class="fas fa-tasks" aria-hidden="true"></i> <!-- Task Icon -->
                 </a>
