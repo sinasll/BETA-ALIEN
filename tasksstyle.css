@@ -105,33 +105,34 @@ header {
     border: 2px solid white;
     border-radius: 10px;
     margin-bottom: 10px;
-    background-color: #1c1c1c; /* Slightly different background color for task items */
+    background-color: #000000; /* Set task item background to black */
 }
 
 .task-description {
     font-size: 1.2rem;
+    color: #ffffff; /* Ensure text is visible on black background */
 }
 
 .claim-button {
     padding: 10px 20px;
-    border: 2px solid #fff;
+    border: 2px solid #000; /* Border to match the background */
     border-radius: 25px; /* Rounded corners to match button style */
-    background-color: transparent;
-    color: white;
+    background-color: #ffffff; /* White background for the button */
+    color: #000000; /* Black text color */
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .claim-button:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: #000000; /* Black background on hover */
+    color: #ffffff; /* White text color on hover */
 }
 
 /* Navigation Bar */
 nav {
     background-color: #000000; /* Black background for the nav */
-    padding: 10px 0;
+    padding: 15px 0; /* Increased padding for more space around the nav bar */
 }
 
 .nav-bar {
@@ -143,12 +144,12 @@ nav {
 }
 
 .nav-item {
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 30px; /* Increased font size */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 15px; /* Increased padding */
     transition: color 0.3s;
 }
 
@@ -199,6 +200,7 @@ nav {
     }
 
     .nav-item {
-        font-size: 20px; /* Adjust icon size for smaller screens */
+        font-size: 24px; /* Adjust icon size for smaller screens */
+        padding: 12px; /* Adjust padding for smaller screens */
     }
 }
