@@ -1,19 +1,29 @@
-/* Apply reset and box-sizing */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Full-height container setup */
-body, html {
+/* Body */
+html, body {
+    touch-action: manipulation;
+    overflow: hidden; /* Prevent scrolling */
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000000;
-    font-family: 'Arial', sans-serif;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
 }
+
+/* Ensure the body occupies the full viewport height */
+body {
+    background-color: #000000; /* Black background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
+
 
 /* Centering text and logo */
 .loading-container {
