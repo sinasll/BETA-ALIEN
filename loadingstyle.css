@@ -40,7 +40,7 @@ body {
 /* Stylish font for h1 */
 h1 {
     font-size: 2.2rem; /* Slightly larger for emphasis */
-    font-family: 'Bebas Neue', sans-serif; /* Bold, modern font from Google Fonts */
+    font-family: 'Press Start 2P', cursive; /* Bold, modern font from Google Fonts */
     font-weight: normal;
     letter-spacing: 4px; /* Enhanced spacing for readability */
     margin-top: 10px;
@@ -48,7 +48,7 @@ h1 {
 
 /* Loader styles */
 .loader-wrapper {
-    margin-bottom: 20px; /* Space between loader and image */
+    margin-bottom: 60px; /* Space between loader and image */
 }
 
 /* Modern loading spinner with smooth transition */
