@@ -8,19 +8,18 @@
 /* Body */
 html, body {
     touch-action: manipulation;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevent scrolling */
     height: 100%;
     margin: 0;
     font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
 }
 
-/* Ensure the body occupies the full viewport height and doesn't scroll */
+/* Ensure the body occupies the full viewport height */
 body {
     background-color: #000000; /* Black background */
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100vh;
     overflow: hidden; /* Prevent scrolling */
 }
@@ -32,6 +31,8 @@ header {
     padding: 10px;
     align-items: center;
     background: none; /* Remove background from header */
+    /* Adjusted to not push content down */
+    flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 /* Profile Container */
@@ -85,9 +86,10 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
+    flex-grow: 1; /* Allow this section to take available space */
     padding: 20px;
     overflow-y: auto; /* Allow scrolling within this section if needed */
+    margin-bottom: 70px; /* Space for the fixed footer */
 }
 
 .play-box {
@@ -147,8 +149,15 @@ header {
 
 /* Navigation Bar */
 nav {
+    position: fixed; /* Fixes the position at the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
     padding: 15px 0; /* Increase padding for bigger nav */
+    display: flex;
+    justify-content: center; /* Center align nav items */
+    z-index: 1000; /* Ensure nav is above other content */
 }
 
 .nav-bar {
@@ -157,6 +166,8 @@ nav {
     margin: 0;
     display: flex;
     justify-content: space-around;
+    width: 100%; /* Full width to fit the nav */
+    max-width: 600px; /* Optional: Limit the width of the nav items */
 }
 
 .nav-item {
