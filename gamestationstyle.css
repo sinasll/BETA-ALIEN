@@ -11,9 +11,10 @@ html, body {
     overflow-x: hidden;
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
 }
 
+/* Ensure the body occupies the full viewport height and doesn't scroll */
 body {
     background-color: #000000; /* Black background */
     color: white;
@@ -21,6 +22,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
 }
 
 /* Header */
@@ -40,7 +42,7 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 50px; /* Adjust size as needed */
+    width: 50px; /* Smaller size */
     height: 50px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
@@ -50,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 2rem; /* Larger font size for username */
+    font-size: 1.5rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -61,14 +63,14 @@ header {
 }
 
 .score {
-    font-size: 2rem; /* Larger font size for score */
+    font-size: 1rem; /* Smaller font size */
     margin-right: 10px;
 }
 
 /* Alien Icon */
 .alien-icon {
-    width: 50px; /* Size of the coin icon */
-    height: 50px;
+    width: 40px; /* Smaller size */
+    height: 40px;
     border-radius: 50%;
     background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
     display: flex;
@@ -85,56 +87,62 @@ header {
     justify-content: center;
     flex-grow: 1;
     padding: 20px;
+    overflow-y: auto; /* Allow scrolling within this section if needed */
 }
 
 .play-box {
     border: 2px solid white;
     width: 80%;
-    max-width: 400px; /* Limit max width */
-    height: 100px;
+    max-width: 350px; /* Adjusted max width */
+    height: 90px; /* Updated height */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Added space between boxes */
     border-radius: 15px; /* Rounded corners */
     background-color: #000000; /* Black background */
     color: white; /* White text */
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.5), -5px -5px 15px rgba(255,255,255,0.1); /* Cool shadow effect */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6); /* Removed inset shadow */
 }
 
 .play-box h2 {
-    font-size: 2rem;
+    font-size: 1.6rem; /* Smaller font size */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Text shadow for a glowing effect */
 }
 
 /* Button */
 .button {
     width: 80%;
-    max-width: 400px; /* Limit max width */
-    padding: 15px;
-    margin: 10px 0;
+    max-width: 350px; /* Adjusted max width */
+    padding: 12px;
+    margin: 8px 0; /* Smaller margin */
     background-color: #000000; /* Black background */
     border: 2px solid white;
-    border-radius: 25px;
+    border-radius: 0px;
     color: white; /* White text */
-    font-size: 1.1rem;
+    font-size: 1rem; /* Font size */
+    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
     cursor: pointer;
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.5); /* Subtle shadow */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Removed gradient and inset shadow */
 }
 
+/* Remove hover effect for the button */
 .button:hover {
-    background-color: #333; /* Slightly lighter on hover */
+    background-color: #ffffff; /* White background on hover */
+    color: #000000; /* Black text color on hover */
 }
 
 /* Tickets Text */
 .tickets-text {
-    font-size: 1.4rem; /* Larger font size */
+    font-size: 1.2rem; /* Smaller font size */
     color: #fff;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px; /* Added margin for spacing */
     padding: 10px;
     background: none; /* No background */
     border: none; /* No border */
     box-shadow: none; /* No shadow */
+    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
 }
 
 /* Navigation Bar */
@@ -152,13 +160,14 @@ nav {
 }
 
 .nav-item {
-    font-size: 30px; /* Larger font size for nav items */
+    font-size: 24px; /* Slightly smaller font size */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; /* Increase padding for bigger nav items */
+    padding: 10px; /* Slightly smaller padding */
     transition: color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
 }
 
 .nav-item a {
@@ -183,30 +192,35 @@ nav {
 
 /* Optional: Add media queries for better responsiveness */
 @media (max-width: 600px) {
+    .profile-pic {
+        width: 35px; /* Smaller profile picture */
+        height: 35px;
+    }
+
     .username {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Smaller font size */
     }
 
     .score {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Smaller font size */
     }
 
     .play-box {
-        height: 80px;
+        height: 80px; /* Adjusted height for smaller screens */
     }
 
     .button {
-        font-size: 1rem;
+        font-size: 0.9rem; /* Smaller font size */
         padding: 10px;
     }
 
     .alien-icon {
-        width: 40px;
-        height: 40px;
+        width: 35px; /* Smaller size */
+        height: 35px;
     }
 
     .nav-item {
-        font-size: 24px; /* Adjust icon size for smaller screens */
-        padding: 10px; /* Adjust padding for smaller screens */
+        font-size: 20px; /* Smaller font size */
+        padding: 8px; /* Smaller padding */
     }
 }
