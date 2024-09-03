@@ -134,7 +134,7 @@ header {
 /* Navigation Bar */
 nav {
     background-color: #000000; /* Black background for the nav */
-    padding: 10px 0;
+    padding: 15px 0; /* Increased padding for more space around the nav bar */
 }
 
 .nav-bar {
@@ -146,18 +146,33 @@ nav {
 }
 
 .nav-item {
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 30px; /* Increased font size */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 15px; /* Increased padding */
     transition: color 0.3s;
 }
 
 .nav-item a {
     text-decoration: none; /* Remove underline from links */
     color: inherit; /* Inherit color from parent */
+}
+
+/* Hide text labels */
+.nav-item span {
+    display: none;
+}
+
+/* Active state for the task icon */
+.nav-item.active i {
+    color: #a9a9a9; /* Highlight color for active icon */
+}
+
+/* Hover state */
+.nav-item:hover i {
+    color: #727272; /* Grey color on hover */
 }
 
 /* Hide text labels */
@@ -185,17 +200,22 @@ nav {
         font-size: 1.5rem;
     }
 
-    .invite-button {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+    .play-box {
+        height: 80px;
     }
 
-    .profile-pic {
+    .button {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .alien-icon {
         width: 40px;
         height: 40px;
     }
 
     .nav-item {
-        font-size: 20px; /* Adjust icon size for smaller screens */
+        font-size: 24px; /* Adjust icon size for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
 }
