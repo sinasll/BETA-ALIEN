@@ -92,23 +92,35 @@ header {
 }
 
 .play-box {
-    border: 2px solid white;
     width: 80%;
     max-width: 350px; /* Adjusted max width */
-    height: 90px; /* Updated height */
+    padding: 12px;
+    background-color: #000000; /* Black background */
+    border: 2px solid white;
+    border-radius: 0px; /* Rounded corners */
+    color: white; /* White text */
+    font-size: 1rem; /* Font size */
+    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Same shadow as button */
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center; /* Center text */
     margin-bottom: 20px; /* Added space between boxes */
-    border-radius: 15px; /* Rounded corners */
-    background-color: #000000; /* Black background */
-    color: white; /* White text */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.6); /* Removed inset shadow */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
+/* Text inside play-box */
 .play-box h2 {
     font-size: 1.6rem; /* Smaller font size */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Text shadow for a glowing effect */
+}
+
+/* Hover effect for play-box */
+.play-box:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #000000; /* Black text color on hover */
 }
 
 /* Button */
@@ -119,12 +131,13 @@ header {
     margin: 8px 0; /* Smaller margin */
     background-color: #000000; /* Black background */
     border: 2px solid white;
-    border-radius: 0px;
+    border-radius: 0px; /* Rounded corners */
     color: white; /* White text */
     font-size: 1rem; /* Font size */
     font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Removed gradient and inset shadow */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
 /* Remove hover effect for the button */
