@@ -97,7 +97,8 @@ header {
     justify-content: center;
     margin-bottom: 20px;
     border-radius: 15px; /* Rounded corners */
-    background: linear-gradient(145deg, #1c1c1c, #333); /* Gradient background */
+    background-color: #000000; /* Black background */
+    color: white; /* White text */
     box-shadow: 5px 5px 15px rgba(0,0,0,0.5), -5px -5px 15px rgba(255,255,255,0.1); /* Cool shadow effect */
 }
 
@@ -111,10 +112,10 @@ header {
     max-width: 400px; /* Limit max width */
     padding: 15px;
     margin: 10px 0;
-    background-color: #1c1c1c; /* Dark background */
+    background-color: #000000; /* Black background */
     border: 2px solid white;
     border-radius: 25px;
-    color: white;
+    color: white; /* White text */
     font-size: 1.1rem;
     cursor: pointer;
     box-shadow: 3px 3px 8px rgba(0,0,0,0.5); /* Subtle shadow */
@@ -139,7 +140,7 @@ header {
 /* Navigation Bar */
 nav {
     background-color: #000000; /* Black background for the nav */
-    padding: 10px 0;
+    padding: 15px 0; /* Increase padding for bigger nav */
 }
 
 .nav-bar {
@@ -151,12 +152,12 @@ nav {
 }
 
 .nav-item {
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 30px; /* Larger font size for nav items */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 15px; /* Increase padding for bigger nav items */
     transition: color 0.3s;
 }
 
@@ -205,6 +206,7 @@ nav {
     }
 
     .nav-item {
-        font-size: 20px; /* Adjust icon size for smaller screens */
+        font-size: 24px; /* Adjust icon size for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
 }
