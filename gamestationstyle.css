@@ -31,7 +31,6 @@ header {
     padding: 10px;
     align-items: center;
     background: none; /* Remove background from header */
-    /* Adjusted to not push content down */
     flex-shrink: 0; /* Prevent header from shrinking */
 }
 
@@ -154,7 +153,7 @@ nav {
     left: 0;
     width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
-    padding: 15px 0; /* Increase padding for bigger nav */
+    padding: 20px 0; /* Increased padding for a bigger nav */
     display: flex;
     justify-content: center; /* Center align nav items */
     z-index: 1000; /* Ensure nav is above other content */
@@ -171,12 +170,12 @@ nav {
 }
 
 .nav-item {
-    font-size: 24px; /* Slightly smaller font size */
+    font-size: 30px; /* Increased font size for better visibility */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px; /* Slightly smaller padding */
+    padding: 15px; /* Increased padding for larger clickable area */
     transition: color 0.3s;
     font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
 }
@@ -231,7 +230,7 @@ nav {
     }
 
     .nav-item {
-        font-size: 20px; /* Smaller font size */
-        padding: 8px; /* Smaller padding */
+        font-size: 24px; /* Adjust font size for smaller screens */
+        padding: 12px; /* Adjust padding for smaller screens */
     }
 }
