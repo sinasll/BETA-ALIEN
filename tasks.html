@@ -1,4 +1,74 @@
-// Function to set the profile data
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tasks - Game Station</title>
+    <link rel="stylesheet" href="tasksstyle.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header with score -->
+    <header>
+        <div class="profile">
+            <img src="alien.png" alt="Profile Picture" class="profile-pic">
+            <span id="username" class="username">Unknown User</span> <!-- Default text -->
+        </div>
+        <div class="score-container">
+            <span class="score">0</span>
+            <img src="alincoin.png" alt="Alien Icon" class="alien-icon">
+        </div>
+    </header>
+
+    <!-- Tasks Section -->
+    <div class="tasks-container">
+        <h2>Do tasks and earn Aliens</h2>
+        <div class="task-list">
+            <div class="task-item">
+                <span class="task-description">join our Telegram channel</span>
+                <button class="button claim-button">Claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">follow our Instagram</span>
+                <button class="button claim-button">Claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">follow our X</span>
+                <button class="button claim-button">Claim</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">subscribe our YouTube</span>
+                <button class="button claim-button">Claim</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul class="nav-bar">
+            <li class="nav-item">
+                <a href="gamestation.html">
+                    <i class="fas fa-gamepad" aria-hidden="true"></i> <!-- Game Icon -->
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a href="tasks.html">
+                    <i class="fas fa-tasks" aria-hidden="true"></i> <!-- Task Icon -->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="friends.html">
+                    <i class="fas fa-users" aria-hidden="true"></i> <!-- Friends Icon -->
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Function to set the profile data
         function setProfileData(name) {
             const usernameElement = document.getElementById('username');
             usernameElement.innerText = name;
@@ -24,3 +94,6 @@
             console.error('Telegram Web App SDK initialization failed');
             setProfileData('Unknown User'); // Default fallback if SDK is not initialized
         }
+    </script>
+</body>
+</html>
