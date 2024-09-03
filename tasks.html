@@ -9,21 +9,7 @@
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <script>
-        window.onload = function() {
-            // Initialize Telegram Web App
-            Telegram.WebApp.init();
-
-            // Check if the Telegram Web App is available
-            if (Telegram.WebApp) {
-                // Access the user's Telegram username
-                const username = Telegram.WebApp.initDataUnsafe?.user?.username || "USER";
-                // Update the username span with the Telegram username
-                document.getElementById('username').textContent = username;
-            }
-        };
-    </script>
-</head>
+ </head>
 <body>
     <!-- Header with score -->
     <header>
