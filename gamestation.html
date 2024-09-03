@@ -60,27 +60,33 @@
             const usernameElement = document.getElementById('username');
             usernameElement.innerText = name;
         }
-
+    
         // Ensure the Telegram Web App SDK is ready
         window.Telegram.WebApp.ready();
-
-        // Check if SDK is ready and user data is available
-        if (window.Telegram.WebApp.initDataUnsafe) {
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-
-            console.log('User Data:', user); // Log user data for debugging
-
-            if (user) {
-                const name = user.username ? `@${user.username}` : user.first_name || 'Unknown User';
-                setProfileData(name);
+    
+        // Function to handle user data retrieval and setting
+        function handleUserData() {
+            // Check if SDK is initialized and user data is available
+            if (window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+                const user = window.Telegram.WebApp.initDataUnsafe.user;
+                console.log('User Data:', user); // Log user data for debugging
+    
+                // Check if user has a username, else use the first name
+                const displayName = user.username ? `@${user.username}` : user.first_name || 'Unknown User';
+                setProfileData(displayName);
             } else {
-                console.error('User information is not available');
-                setProfileData('Unknown User'); // Default fallback in case of error
+                console.error('User information is not available or SDK initialization failed');
+                setProfileData('Unknown User'); // Default fallback if user data is not available
             }
-        } else {
-            console.error('Telegram Web App SDK initialization failed');
-            setProfileData('Unknown User'); // Default fallback if SDK is not initialized
         }
-    </script>
+    
+        // Ensure that Telegram WebApp SDK is fully initialized before retrieving user data
+        window.Telegram.WebApp.onEvent('ready', handleUserData);
+    
+        // If SDK is already ready, call the function immediately
+        if (window.Telegram.WebApp.ready) {
+            handleUserData();
+        }
+    </script>    
 </body>
 </html>
