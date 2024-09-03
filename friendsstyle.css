@@ -121,27 +121,6 @@ header {
     color: #000;
 }
 
-.friends-list {
-    width: 80%;
-    max-width: 350px; /* Adjusted max width */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Smaller border radius */
-    background-color: transparent; /* No background color */
-    padding: 0;
-    box-shadow: none; /* No shadow */
-    max-height: 250px; /* Set a smaller maximum height for scrolling */
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
-}
-
-.friend-item {
-    padding: 8px; /* Smaller padding */
-    border-bottom: 1px solid #333; /* Divider between friends */
-}
-
-.friend-item:last-child {
-    border-bottom: none; /* Remove border from the last item */
-}
-
 /* Navigation Bar */
 nav {
     position: fixed; /* Fixes the position at the bottom */
