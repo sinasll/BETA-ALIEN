@@ -8,19 +8,18 @@
 /* Body */
 html, body {
     touch-action: manipulation;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevent scrolling */
     height: 100%;
     margin: 0;
     font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
 }
 
-/* Ensure the body occupies the full viewport height and doesn't scroll */
+/* Ensure the body occupies the full viewport height */
 body {
     background-color: #000000; /* Black background */
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100vh;
     overflow: hidden; /* Prevent scrolling */
 }
@@ -32,6 +31,7 @@ header {
     padding: 10px;
     align-items: center;
     background: none; /* Remove background from header */
+    flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 /* Profile Container */
@@ -79,72 +79,72 @@ header {
     box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* Add shadow to create a coin effect */
 }
 
-.prize {
-
-    margin-bottom: 30px;
-    font-size: 0.75rem;
-}
-
-/* Friends Section */
-.friends-container {
+/* Tasks Section */
+.tasks-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    padding: 16px; /* Smaller padding */
-    overflow: hidden; /* Hide scrollbars for container */
+    padding: 20px; /* Smaller padding */
 }
 
-.friends-container h2 {
-    font-size: 1rem; /* Smaller font size */
-    margin-bottom: 15px; /* Reduced margin */
+/* Task List Box */
+.dotasks {
+    font-size: 0.8rem;
+    margin-bottom: 30px; /* Adjust margin */
 }
 
-/* Invite Button */
-.invite-button {
-    padding: 10px 16px; /* Smaller padding */
-    border: 2px solid #fff;
-    border-radius: 0px; /* Rounded corners to match button style */
-    background-color: transparent;
-    color: white;
-    font-size: 1.5rem; /* Smaller font size */
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    margin-bottom: 50px; /* Space between button and friends list */
-    font-family: 'Press Start 2P', cursive; /* Game-themed font applied */
-}
-
-.invite-button:hover {
-    background-color: #fff;
-    color: #000;
-}
-
-.friends-list {
-    width: 80%;
-    max-width: 350px; /* Adjusted max width */
+/* Task Item Container */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; /* Adjust padding for better spacing */
+    margin-bottom: 10px; /* Space between task items */
+    background-color: transparent; /* Transparent background */
     border: none; /* Remove border */
-    border-radius: 8px; /* Smaller border radius */
-    background-color: transparent; /* No background color */
-    padding: 0;
-    box-shadow: none; /* No shadow */
-    max-height: 250px; /* Set a smaller maximum height for scrolling */
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
 }
 
-.friend-item {
-    padding: 8px; /* Smaller padding */
-    border-bottom: 1px solid #333; /* Divider between friends */
+/* Task Description */
+.task-description {
+    font-size: 0.5rem; /* Font size */
+    color: #ffffff; /* Text color */
+    flex: 1; /* Allow the description to take up remaining space */
+    margin-right: 10px; /* Space between description and button */
+    overflow-wrap: break-word; /* Ensure long words break and don't overflow */
 }
 
-.friend-item:last-child {
-    border-bottom: none; /* Remove border from the last item */
+/* Claim Button */
+.claim-button {
+    padding: 4px 6px; /* Adjusted padding to match task-description size */
+    border: 2px solid #fff; /* Border color */
+    border-radius: 0px; /* Rounded corners for the button */
+    background-color: #000000; /* Black background for the button */
+    color: #ffffff; /* White text color */
+    font-size: 0.5rem; /* Matching font size to task-description */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+}
+
+/* Adjust Button on Hover */
+.claim-button:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #000000; /* Black text color on hover */
 }
 
 /* Navigation Bar */
 nav {
+    position: fixed; /* Fixes the position at the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
     padding: 15px 0; /* Increase padding for bigger nav */
+    display: flex;
+    justify-content: center; /* Center align nav items */
+    z-index: 1000; /* Ensure nav is above other content */
 }
 
 .nav-bar {
@@ -153,6 +153,8 @@ nav {
     margin: 0;
     display: flex;
     justify-content: space-around;
+    width: 100%; /* Full width to fit the nav */
+    max-width: 600px; /* Optional: Limit the width of the nav items */
 }
 
 .nav-item {
