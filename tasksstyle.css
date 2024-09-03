@@ -107,26 +107,28 @@ header {
 }
 
 /* Task Description */
+/* Claim Button */
+.claim-button {
+    padding: 6px 10px; /* Adjust padding for button */
+    border: 2px solid #fff; /* Border color */
+    border-radius: 0px; /* Square corners for the button */
+    background-color: #000000; /* Black background for the button */
+    color: #ffffff; /* White text color */
+    font-size: 0.5rem; /* Smaller font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+}
+
+
 .task-description {
-    font-size: 0.5rem; /* Font size */
+    font-size: 0.7rem; /* Font size */
     color: #ffffff; /* Text color */
     flex: 1; /* Allow the description to take up remaining space */
     margin-right: 10px; /* Space between description and button */
     overflow-wrap: break-word; /* Ensure long words break and don't overflow */
 }
 
-/* Claim Button */
-.claim-button {
-    padding: 4px 6px; /* Adjusted padding to match task-description size */
-    border: 2px solid #fff; /* Border color */
-    border-radius: 0px; /* Rounded corners for the button */
-    background-color: #000000; /* Black background for the button */
-    color: #ffffff; /* White text color */
-    font-size: 0.5rem; /* Matching font size to task-description */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Press Start 2P', cursive; /* Game-themed font */
-}
 
 /* Adjust Button on Hover */
 .claim-button:hover {
@@ -141,7 +143,7 @@ nav {
     left: 0;
     width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
-    padding: 15px 0; /* Increase padding for bigger nav */
+    padding: 20px 0; /* Increased padding for a bigger nav */
     display: flex;
     justify-content: center; /* Center align nav items */
     z-index: 1000; /* Ensure nav is above other content */
@@ -158,12 +160,12 @@ nav {
 }
 
 .nav-item {
-    font-size: 24px; /* Slightly smaller font size */
+    font-size: 30px; /* Increased font size for better visibility */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px; /* Slightly smaller padding */
+    padding: 15px; /* Increased padding for larger clickable area */
     transition: color 0.3s;
     font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
 }
@@ -218,7 +220,7 @@ nav {
     }
 
     .nav-item {
-        font-size: 20px; /* Smaller font size */
-        padding: 8px; /* Smaller padding */
+        font-size: 24px; /* Adjust font size for smaller screens */
+        padding: 12px; /* Adjust padding for smaller screens */
     }
 }
