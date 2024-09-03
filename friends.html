@@ -9,7 +9,64 @@
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    </head>
+    <script>
+        // Function to generate a random username
+        function generateRandomUsername() {
+            return 'User' + Math.floor(Math.random() * 10000);
+        }
+
+        // Function to set username based on Telegram data or random username
+        function setUsername() {
+            let username = localStorage.getItem('username');
+            
+            if (username) {
+                // If username is already stored in localStorage, use it
+                document.getElementById('username').textContent = username;
+            } else {
+                // Check if the Telegram Web App is available
+                if (window.Telegram && window.Telegram.WebApp) {
+                    const user = window.Telegram.WebApp.initDataUnsafe.user;
+                    if (user && user.username) {
+                        username = user.username;
+                    } else {
+                        username = generateRandomUsername();
+                    }
+                    // Store the username in localStorage
+                    localStorage.setItem('username', username);
+                } else {
+                    // Fallback if Telegram Web App is not available
+                    username = generateRandomUsername();
+                    // Store the username in localStorage
+                    localStorage.setItem('username', username);
+                }
+                document.getElementById('username').textContent = username;
+            }
+        }
+
+        // Function to initialize and display user data
+        function initializeData() {
+            const points = parseInt(localStorage.getItem('points'), 10) || 0;
+
+            // Display points
+            document.querySelector('.score').textContent = points;
+        }
+
+        // Function to handle friend invite
+        function inviteFriend() {
+            let points = parseInt(localStorage.getItem('points'), 10) || 0;
+            points += 100; // Award 100 points for inviting a friend
+            localStorage.setItem('points', points);
+            document.querySelector('.score').textContent = points;
+            alert('You have invited a friend and earned 100 points!');
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            setUsername();
+            initializeData();
+        };
+    </script>
+</head>
 <body>
     <!-- Header with score -->
     <header>
@@ -27,9 +84,6 @@
     <div class="friends-container">
         <h3 class="prize">Get 100 ALIENS for each friend you invite</h3>
         <button class="button invite-button" onclick="inviteFriend()">Invite a friend</button>
-        <div id="friends-list" class="friends-list">
-            <!-- Friend items will be dynamically added here -->
-        </div>
     </div>
 
     <!-- Navigation Bar -->
