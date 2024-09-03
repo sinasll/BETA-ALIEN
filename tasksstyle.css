@@ -8,20 +8,18 @@
 /* Body */
 html, body {
     touch-action: manipulation;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevent scrolling */
     height: 100%;
     margin: 0;
     font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
-    font-size: 14px; /* Set base font-size for better scaling */
 }
 
-/* Ensure the body occupies the full viewport height and doesn't scroll */
+/* Ensure the body occupies the full viewport height */
 body {
     background-color: #000000; /* Black background */
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100vh;
     overflow: hidden; /* Prevent scrolling */
 }
@@ -33,6 +31,7 @@ header {
     padding: 10px;
     align-items: center;
     background: none; /* Remove background from header */
+    flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 /* Profile Container */
@@ -53,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1.2rem; /* Adjusted font size for smaller screens */
+    font-size: 1.5rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -64,7 +63,7 @@ header {
 }
 
 .score {
-    font-size: 1rem; /* Adjust font size */
+    font-size: 1rem; /* Smaller font size */
     margin-right: 10px;
 }
 
@@ -92,18 +91,8 @@ header {
 
 /* Task List Box */
 .dotasks {
+    font-size: 0.8rem;
     margin-bottom: 30px; /* Adjust margin */
-}
-
-.task-list-box {
-    width: 90%; /* Adjusted width for better responsiveness */
-    max-width: 400px; /* Adjusted max width */
-    max-height: 400px; /* Fixed height for scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 10px; /* Padding inside the box */
-    border: 1px solid #fff; /* Border around the task list */
-    border-radius: 8px; /* Rounded corners for the box */
-    background-color: #000000; /* Black background for the box */
 }
 
 /* Task Item Container */
@@ -119,21 +108,21 @@ header {
 
 /* Task Description */
 .task-description {
-    font-size: 0.9rem; /* Slightly bigger font for readability */
+    font-size: 0.5rem; /* Font size */
     color: #ffffff; /* Text color */
     flex: 1; /* Allow the description to take up remaining space */
-    margin-right: 20px; /* Space between description and button */
+    margin-right: 10px; /* Space between description and button */
     overflow-wrap: break-word; /* Ensure long words break and don't overflow */
 }
 
 /* Claim Button */
 .claim-button {
-    padding: 8px 12px; /* Adjusted padding for button */
+    padding: 4px 6px; /* Adjusted padding to match task-description size */
     border: 2px solid #fff; /* Border color */
-    border-radius: 4px; /* Rounded corners for the button */
+    border-radius: 0px; /* Rounded corners for the button */
     background-color: #000000; /* Black background for the button */
     color: #ffffff; /* White text color */
-    font-size: 0.75rem; /* Smaller font size */
+    font-size: 0.5rem; /* Matching font size to task-description */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s, color 0.3s;
     font-family: 'Press Start 2P', cursive; /* Game-themed font */
