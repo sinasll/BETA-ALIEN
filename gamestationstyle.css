@@ -148,7 +148,7 @@ header {
 
 /* Tickets Text */
 .tickets-text {
-    font-size: 0.4rem; /* Smaller font size */
+    font-size: 1rem; /* Smaller font size */
     color: #fff;
     text-align: center;
     margin-top: 20px; /* Added margin for spacing */
