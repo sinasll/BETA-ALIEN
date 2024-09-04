@@ -98,12 +98,14 @@ header {
 /* Task Item Container */
 .task-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 5px 0; /* Adjust padding for better spacing */
     margin-bottom: 10px; /* Space between task items */
     background-color: transparent; /* Transparent background */
     border: none; /* Remove border */
+    width: 100%; /* Ensure full width for task items */
+    max-width: 500px; /* Optional: Limit the width of task items */
+    position: relative; /* Position relative for proper positioning of the claim button */
 }
 
 /* Task Description */
@@ -112,9 +114,8 @@ header {
     color: #ffffff; /* Text color */
     flex: 1; /* Allow the description to take up remaining space */
     margin-right: 10px; /* Space between description and button */
-    white-space: nowrap; /* Prevent text from wrapping to the next line */
-    overflow: hidden; /* Hide overflow text */
-    text-overflow: ellipsis; /* Display ellipsis (...) for overflowing text */
+    white-space: normal; /* Allow text to wrap normally */
+    overflow: visible; /* Ensure text is visible */
 }
 
 /* Claim Button */
@@ -124,10 +125,14 @@ header {
     border-radius: 0px; /* Square corners for the button */
     background-color: #000000; /* Black background for the button */
     color: #ffffff; /* White text color */
-    font-size: 0.4rem; /* Smaller font size */
+    font-size: 0.75rem; /* Smaller font size */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s, color 0.3s;
     font-family: 'Press Start 2P', cursive; /* Game-themed font */
+    position: absolute; /* Position button absolutely within the task-item */
+    right: -100%; /* Align button to the right */
+    top: 50%; /* Center button vertically */
+    transform: translateY(-50%); /* Adjust vertical alignment */
 }
 
 /* Adjust Button on Hover */
