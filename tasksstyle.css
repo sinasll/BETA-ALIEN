@@ -42,8 +42,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 50px; /* Smaller size */
-    height: 50px;
+    width: 70px; /* Increased size for profile picture */
+    height: 70px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1.5rem; /* Smaller font size */
+    font-size: 1.2rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,13 +63,13 @@ header {
 }
 
 .score {
-    font-size: 1rem; /* Smaller font size */
-    margin-right: 10px;
+    font-size: 0.7rem; /* Smaller font size for scores */
+    margin-right: 5px;
 }
 
 /* Alien Icon */
 .alien-icon {
-    width: 40px; /* Smaller size */
+    width: 40px; /* Size for the alien icon */
     height: 40px;
     border-radius: 50%;
     background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
@@ -86,13 +86,13 @@ header {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    padding: 20px; /* Smaller padding */
+    padding: 20px; /* Padding for tasks section */
 }
 
 /* Task List Box */
 .dotasks {
-    font-size: 0.8rem;
-    margin-bottom: 30px; /* Adjust margin */
+    font-size: 0.8rem; /* Font size for task list */
+    margin-bottom: 30px; /* Margin between tasks */
 }
 
 /* Task Item Container */
@@ -100,35 +100,33 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 0; /* Adjust padding for better spacing */
+    padding: 8px 0; /* Adjusted padding for better spacing */
     margin-bottom: 10px; /* Space between task items */
     background-color: transparent; /* Transparent background */
     border: none; /* Remove border */
 }
 
 /* Task Description */
-/* Claim Button */
-.claim-button {
-    padding: 6px 10px; /* Adjust padding for button */
-    border: 2px solid #fff; /* Border color */
-    border-radius: 0px; /* Square corners for the button */
-    background-color: #000000; /* Black background for the button */
-    color: #ffffff; /* White text color */
-    font-size: 0.5rem; /* Smaller font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Press Start 2P', cursive; /* Game-themed font */
-}
-
-
 .task-description {
-    font-size: 0.7rem; /* Font size */
+    font-size: 0.9rem; /* Font size for task description */
     color: #ffffff; /* Text color */
     flex: 1; /* Allow the description to take up remaining space */
     margin-right: 10px; /* Space between description and button */
     overflow-wrap: break-word; /* Ensure long words break and don't overflow */
 }
 
+/* Claim Button */
+.claim-button {
+    padding: 8px 12px; /* Padding for button */
+    border: 2px solid #fff; /* Border color */
+    border-radius: 0px; /* Square corners for the button */
+    background-color: #000000; /* Black background for the button */
+    color: #ffffff; /* White text color */
+    font-size: 0.7rem; /* Font size for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover effect */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+}
 
 /* Adjust Button on Hover */
 .claim-button:hover {
@@ -143,7 +141,7 @@ nav {
     left: 0;
     width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
-    padding: 20px 0; /* Increased padding for a bigger nav */
+    padding: 15px 0; /* Reduced padding for nav */
     display: flex;
     justify-content: center; /* Center align nav items */
     z-index: 1000; /* Ensure nav is above other content */
@@ -160,14 +158,14 @@ nav {
 }
 
 .nav-item {
-    font-size: 30px; /* Increased font size for better visibility */
+    font-size: 24px; /* Adjusted font size for better visibility */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; /* Increased padding for larger clickable area */
-    transition: color 0.3s;
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    padding: 12px; /* Adjusted padding for larger clickable area */
+    transition: color 0.3s; /* Transition for hover effect */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
 }
 
 .nav-item a {
@@ -193,34 +191,33 @@ nav {
 /* Optional: Add media queries for better responsiveness */
 @media (max-width: 600px) {
     .profile-pic {
-        width: 35px; /* Smaller profile picture */
-        height: 35px;
+        width: 50px; /* Smaller profile picture for mobile */
+        height: 50px;
     }
 
     .username {
-        font-size: 1.2rem; /* Smaller font size */
+        font-size: 1rem; /* Adjusted font size for mobile */
     }
 
     .score {
-        font-size: 1.2rem; /* Smaller font size */
+        font-size: 0.7rem; /* Adjusted font size for mobile */
     }
 
-    .play-box {
-        height: 80px; /* Adjusted height for smaller screens */
+    .dotasks {
+        font-size: 0.7rem; /* Font size for task list on mobile */
     }
 
-    .button {
-        font-size: 0.9rem; /* Smaller font size */
-        padding: 10px;
+    .task-description {
+        font-size: 0.8rem; /* Font size for task description on mobile */
     }
 
-    .alien-icon {
-        width: 35px; /* Smaller size */
-        height: 35px;
+    .claim-button {
+        font-size: 0.6rem; /* Smaller font size for button on mobile */
+        padding: 6px 8px; /* Adjusted padding for button on mobile */
     }
 
     .nav-item {
-        font-size: 24px; /* Adjust font size for smaller screens */
-        padding: 12px; /* Adjust padding for smaller screens */
+        font-size: 20px; /* Adjust font size for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
 }
