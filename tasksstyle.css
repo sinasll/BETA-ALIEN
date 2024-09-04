@@ -107,28 +107,28 @@ header {
 }
 
 /* Task Description */
-/* Claim Button */
-.claim-button {
-    padding: 6px 10px; /* Adjust padding for button */
-    border: 2px solid #fff; /* Border color */
-    border-radius: 0px; /* Square corners for the button */
-    background-color: #000000; /* Black background for the button */
-    color: #ffffff; /* White text color */
-    font-size: 0.5rem; /* Smaller font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Press Start 2P', cursive; /* Game-themed font */
-}
-
-
 .task-description {
     font-size: 0.7rem; /* Font size */
     color: #ffffff; /* Text color */
     flex: 1; /* Allow the description to take up remaining space */
     margin-right: 10px; /* Space between description and button */
-    overflow-wrap: break-word; /* Ensure long words break and don't overflow */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflowing text */
 }
 
+/* Claim Button */
+.claim-button {
+    padding: 4px 8px; /* Smaller padding for the button */
+    border: 2px solid #fff; /* Border color */
+    border-radius: 0px; /* Square corners for the button */
+    background-color: #000000; /* Black background for the button */
+    color: #ffffff; /* White text color */
+    font-size: 0.4rem; /* Smaller font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+}
 
 /* Adjust Button on Hover */
 .claim-button:hover {
