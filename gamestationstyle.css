@@ -43,7 +43,7 @@ header {
 /* Profile Picture */
 .profile-pic {
     width: 70px; /* Smaller size */
-    height:70px;
+    height: 70px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -70,7 +70,7 @@ header {
 /* Alien Icon */
 .alien-icon {
     width: 40px; /* Smaller size */
-    height: 40px;
+    height:40px;
     border-radius: 50%;
     background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
     display: flex;
@@ -148,7 +148,7 @@ header {
 
 /* Tickets Text */
 .tickets-text {
-    font-size: 1rem; /* Smaller font size */
+    font-size: 1.2rem; /* Smaller font size */
     color: #fff;
     text-align: center;
     margin-top: 20px; /* Added margin for spacing */
@@ -157,8 +157,6 @@ header {
     border: none; /* No border */
     box-shadow: none; /* No shadow */
     font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
-    white-space: normal; /* Allow text to wrap normally */
-
 }
 
 /* Navigation Bar */
