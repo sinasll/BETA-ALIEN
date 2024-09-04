@@ -42,8 +42,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 90px; /* Larger size for profile picture */
-    height: 90px;
+    width: 70px; /* Increased size for profile picture */
+    height: 70px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1rem; /* Font size for username */
+    font-size: 1.2rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,7 +63,7 @@ header {
 }
 
 .score {
-    font-size: 0.5rem; /* Smaller font size for scores */
+    font-size: 0.8rem; /* Smaller font size for scores */
     margin-right: 5px;
 }
 
