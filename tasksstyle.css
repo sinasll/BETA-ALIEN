@@ -42,8 +42,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 70px; /* Smaller size */
-    height:70px;
+    width: 50px; /* Smaller size */
+    height: 50px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1rem; /* Smaller font size */
+    font-size: 1.5rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,8 +63,8 @@ header {
 }
 
 .score {
-    font-size: 0.7rem; /* Smaller font size */
-    margin-right: 5px;
+    font-size: 1rem; /* Smaller font size */
+    margin-right: 10px;
 }
 
 /* Alien Icon */
@@ -79,86 +79,61 @@ header {
     box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* Add shadow to create a coin effect */
 }
 
-/* Play Section */
-.play-container {
+/* Tasks Section */
+.tasks-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-grow: 1; /* Allow this section to take available space */
-    padding: 20px;
-    overflow-y: auto; /* Allow scrolling within this section if needed */
-    margin-bottom: 70px; /* Space for the fixed footer */
+    flex-grow: 1;
+    padding: 20px; /* Smaller padding */
 }
 
-.play-box {
-    width: 80%;
-    max-width: 350px; /* Adjusted max width */
-    padding: 12px;
-    background-color: #000000; /* Black background */
-    border: 2px solid white;
-    border-radius: 0px; /* Rounded corners */
-    color: white; /* White text */
-    font-size: 1rem; /* Font size */
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Same shadow as button */
+/* Task List Box */
+.dotasks {
+    font-size: 0.8rem;
+    margin-bottom: 30px; /* Adjust margin */
+}
+
+/* Task Item Container */
+.task-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    text-align: center; /* Center text */
-    margin-bottom: 20px; /* Added space between boxes */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    padding: 5px 0; /* Adjust padding for better spacing */
+    margin-bottom: 10px; /* Space between task items */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
 }
 
-/* Text inside play-box */
-.play-box h2 {
-    font-size: 1.6rem; /* Smaller font size */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Text shadow for a glowing effect */
+/* Task Description */
+/* Claim Button */
+.claim-button {
+    padding: 6px 10px; /* Adjust padding for button */
+    border: 2px solid #fff; /* Border color */
+    border-radius: 0px; /* Square corners for the button */
+    background-color: #000000; /* Black background for the button */
+    color: #ffffff; /* White text color */
+    font-size: 0.5rem; /* Smaller font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
 }
 
-/* Hover effect for play-box */
-.play-box:hover {
+
+.task-description {
+    font-size: 0.7rem; /* Font size */
+    color: #ffffff; /* Text color */
+    flex: 1; /* Allow the description to take up remaining space */
+    margin-right: 10px; /* Space between description and button */
+    overflow-wrap: break-word; /* Ensure long words break and don't overflow */
+}
+
+
+/* Adjust Button on Hover */
+.claim-button:hover {
     background-color: #ffffff; /* White background on hover */
     color: #000000; /* Black text color on hover */
-}
-
-/* Button */
-.button {
-    width: 80%;
-    max-width: 350px; /* Adjusted max width */
-    padding: 12px;
-    margin: 8px 0; /* Smaller margin */
-    background-color: #000000; /* Black background */
-    border: 2px solid white;
-    border-radius: 0px; /* Rounded corners */
-    color: white; /* White text */
-    font-size: 1rem; /* Font size */
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
-}
-
-/* Remove hover effect for the button */
-.button:hover {
-    background-color: #ffffff; /* White background on hover */
-    color: #000000; /* Black text color on hover */
-}
-
-/* Tickets Text */
-.tickets-text {
-    font-size: 1rem; /* Smaller font size */
-    color: #fff;
-    text-align: center;
-    margin-top: 20px; /* Added margin for spacing */
-    padding: 10px;
-    background: none; /* No background */
-    border: none; /* No border */
-    box-shadow: none; /* No shadow */
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
-    white-space: normal; /* Allow text to wrap normally */
-
 }
 
 /* Navigation Bar */
