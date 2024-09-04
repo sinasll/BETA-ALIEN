@@ -157,6 +157,8 @@ header {
     border: none; /* No border */
     box-shadow: none; /* No shadow */
     font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    white-space: normal; /* Allow text to wrap normally */
+
 }
 
 /* Navigation Bar */
