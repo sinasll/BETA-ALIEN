@@ -42,8 +42,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 70px; /* Smaller size */
-    height: 70px;
+    width: 90px; /* Larger size for profile picture */
+    height: 90px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1rem; /* Smaller font size */
+    font-size: 1rem; /* Font size for username */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,14 +63,14 @@ header {
 }
 
 .score {
-    font-size: 0.7rem; /* Smaller font size */
+    font-size: 0.5rem; /* Smaller font size for scores */
     margin-right: 5px;
 }
 
 /* Alien Icon */
 .alien-icon {
-    width: 40px; /* Smaller size */
-    height:40px;
+    width: 40px; /* Size for the alien icon */
+    height: 40px;
     border-radius: 50%;
     background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
     display: flex;
@@ -93,27 +93,27 @@ header {
 
 .play-box {
     width: 80%;
-    max-width: 350px; /* Adjusted max width */
+    max-width: 300px; /* Adjusted max width */
     padding: 12px;
     background-color: #000000; /* Black background */
     border: 2px solid white;
-    border-radius: 0px; /* Rounded corners */
+    border-radius: 0px; /* No rounded corners */
     color: white; /* White text */
-    font-size: 1rem; /* Font size */
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    font-size: 0.9rem; /* Smaller font size */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Same shadow as button */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow for button effect */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center; /* Center text */
-    margin-bottom: 20px; /* Added space between boxes */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    margin-bottom: 20px; /* Space between boxes */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
 /* Text inside play-box */
 .play-box h2 {
-    font-size: 1.6rem; /* Smaller font size */
+    font-size: 1.4rem; /* Adjusted font size */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Text shadow for a glowing effect */
 }
 
@@ -126,18 +126,18 @@ header {
 /* Button */
 .button {
     width: 80%;
-    max-width: 350px; /* Adjusted max width */
+    max-width: 300px; /* Adjusted max width */
     padding: 12px;
     margin: 8px 0; /* Smaller margin */
     background-color: #000000; /* Black background */
     border: 2px solid white;
-    border-radius: 0px; /* Rounded corners */
+    border-radius: 0px; /* No rounded corners */
     color: white; /* White text */
-    font-size: 1rem; /* Font size */
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    font-size: 0.9rem; /* Smaller font size */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow for button effect */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
 /* Remove hover effect for the button */
@@ -148,15 +148,15 @@ header {
 
 /* Tickets Text */
 .tickets-text {
-    font-size: 1.2rem; /* Smaller font size */
+    font-size: 1rem; /* Adjusted font size */
     color: #fff;
     text-align: center;
-    margin-top: 20px; /* Added margin for spacing */
+    margin-top: 20px; /* Spacing */
     padding: 10px;
     background: none; /* No background */
     border: none; /* No border */
     box-shadow: none; /* No shadow */
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
 }
 
 /* Navigation Bar */
@@ -166,7 +166,7 @@ nav {
     left: 0;
     width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
-    padding: 20px 0; /* Increased padding for a bigger nav */
+    padding: 15px 0; /* Reduced padding for nav */
     display: flex;
     justify-content: center; /* Center align nav items */
     z-index: 1000; /* Ensure nav is above other content */
@@ -179,18 +179,18 @@ nav {
     display: flex;
     justify-content: space-around;
     width: 100%; /* Full width to fit the nav */
-    max-width: 600px; /* Optional: Limit the width of the nav items */
+    max-width: 600px; /* Limit the width of the nav items */
 }
 
 .nav-item {
-    font-size: 30px; /* Increased font size for better visibility */
+    font-size: 24px; /* Adjusted font size for better visibility */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; /* Increased padding for larger clickable area */
+    padding: 12px; /* Adjusted padding */
     transition: color 0.3s;
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
 }
 
 .nav-item a {
@@ -216,24 +216,24 @@ nav {
 /* Optional: Add media queries for better responsiveness */
 @media (max-width: 600px) {
     .profile-pic {
-        width: 35px; /* Smaller profile picture */
-        height: 35px;
+        width: 70px; /* Slightly smaller profile picture */
+        height: 70px;
     }
 
     .username {
-        font-size: 1.2rem; /* Smaller font size */
+        font-size: 0.9rem; /* Smaller font size */
     }
 
     .score {
-        font-size: 1.2rem; /* Smaller font size */
+        font-size: 0.4rem; /* Even smaller font size for scores */
     }
 
     .play-box {
-        height: 80px; /* Adjusted height for smaller screens */
+        height: auto; /* Adjust height as needed */
     }
 
     .button {
-        font-size: 0.9rem; /* Smaller font size */
+        font-size: 0.8rem; /* Smaller font size */
         padding: 10px;
     }
 
@@ -243,7 +243,7 @@ nav {
     }
 
     .nav-item {
-        font-size: 24px; /* Adjust font size for smaller screens */
-        padding: 12px; /* Adjust padding for smaller screens */
+        font-size: 20px; /* Adjust font size for smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
 }
