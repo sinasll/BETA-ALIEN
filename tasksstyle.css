@@ -42,8 +42,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 50px; /* Smaller size */
-    height: 50px;
+    width: 70px; /* Smaller size */
+    height:70px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1.5rem; /* Smaller font size */
+    font-size: 1rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,8 +63,8 @@ header {
 }
 
 .score {
-    font-size: 1rem; /* Smaller font size */
-    margin-right: 10px;
+    font-size: 0.7rem; /* Smaller font size */
+    margin-right: 5px;
 }
 
 /* Alien Icon */
@@ -84,28 +84,30 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Align items to the start */
     flex-grow: 1;
-    padding: 20px; /* Smaller padding */
+    padding: 20px; /* Padding for the container */
+    overflow-y: auto; /* Scroll if content overflows */
+    max-height: calc(100vh - 80px); /* Adjust max height considering header/nav heights */
 }
 
 /* Task List Box */
 .dotasks {
     font-size: 0.8rem;
-    margin-bottom: 30px; /* Adjust margin */
+    margin-bottom: 50px; /* Adjust margin */
 }
 
 /* Task Item Container */
 .task-item {
-    display: flex;
+    display: flex; /* Flexbox layout */
     align-items: center;
-    padding: 5px 0; /* Adjust padding for better spacing */
+    padding: 10px; /* Increased padding for better spacing */
     margin-bottom: 10px; /* Space between task items */
     background-color: transparent; /* Transparent background */
     border: none; /* Remove border */
     width: 100%; /* Ensure full width for task items */
-    max-width: 500px; /* Optional: Limit the width of task items */
-    position: relative; /* Position relative for proper positioning of the claim button */
+    max-width: 600px; /* Increased width to fit description and button */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
 /* Task Description */
@@ -115,24 +117,27 @@ header {
     flex: 1; /* Allow the description to take up remaining space */
     margin-right: 10px; /* Space between description and button */
     white-space: normal; /* Allow text to wrap normally */
-    overflow: visible; /* Ensure text is visible */
+    overflow: hidden; /* Hide overflow text */
+    text-align: left; /* Align text to the left */
 }
 
 /* Claim Button */
 .claim-button {
-    padding: 4px 8px; /* Smaller padding for the button */
+    padding: 6px 12px; /* Adjusted padding to better fit text */
     border: 2px solid #fff; /* Border color */
     border-radius: 0px; /* Square corners for the button */
     background-color: #000000; /* Black background for the button */
     color: #ffffff; /* White text color */
-    font-size: 0.75rem; /* Smaller font size */
+    font-size: 0.75rem; /* Font size to fit better */
+    line-height: 1.2; /* Adjust line-height to ensure text fits well */
+    text-align: center; /* Center text horizontally */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide text overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s, color 0.3s;
     font-family: 'Press Start 2P', cursive; /* Game-themed font */
-    position: absolute; /* Position button absolutely within the task-item */
-    right: -100%; /* Align button to the right */
-    top: 50%; /* Center button vertically */
-    transform: translateY(-50%); /* Adjust vertical alignment */
+    margin-left: auto; /* Push button to the right */
 }
 
 /* Adjust Button on Hover */
@@ -227,5 +232,14 @@ nav {
     .nav-item {
         font-size: 24px; /* Adjust font size for smaller screens */
         padding: 12px; /* Adjust padding for smaller screens */
+    }
+
+    .task-description {
+        font-size: 0.6rem; /* Smaller font size on smaller screens */
+    }
+
+    .claim-button {
+        padding: 4px 8px; /* Smaller padding for the button on smaller screens */
+        font-size: 0.6rem; /* Smaller font size for the button on smaller screens */
     }
 }
