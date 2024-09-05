@@ -1,0 +1,216 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+html, body {
+    touch-action: manipulation;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
+}
+
+/* Ensure the body occupies the full viewport height */
+body {
+    background-color: #000000; /* Black background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background: none; /* Remove background from header */
+    flex-shrink: 0; /* Prevent header from shrinking */
+    z-index: 1001; /* Ensure header is above other content */
+    position: relative; /* Ensure it’s in normal document flow */
+}
+
+/* Profile Container */
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 70px; /* Increased size for profile picture */
+    height: 70px;
+    border-radius: 50%; /* Circular shape */
+    margin-right: 10px; /* Space between the picture and username */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: 2px solid #fff; /* Optional: border around the profile picture */
+}
+
+/* Username */
+.username {
+    font-size: 1.2rem; /* Smaller font size */
+    font-weight: bold; /* Make username text bold */
+}
+
+/* Score Container */
+.score-container {
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    font-size: 0.8rem; /* Smaller font size for scores */
+    margin-right: 5px;
+}
+
+/* Alien Icon */
+.alien-icon {
+    width: 40px; /* Size for the alien icon */
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* Add shadow to create a coin effect */
+}
+
+/* Play Section */
+.play-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Allow this section to take available space */
+    padding: 20px;
+    overflow-y: auto; /* Allow scrolling within this section if needed */
+    margin-bottom: 70px; /* Space for the fixed footer */
+}
+
+.play-box {
+    width: 80%;
+    max-width: 300px; /* Adjusted max width */
+    padding: 12px;
+    background-color: #000000; /* Black background */
+    border: 2px solid white;
+    border-radius: 0px; /* No rounded corners */
+    color: white; /* White text */
+    font-size: 0.9rem; /* Smaller font size */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow for button effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center text */
+    margin-bottom: 20px; /* Space between boxes */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Text inside play-box */
+.play-box h2 {
+    font-size: 1.4rem; /* Adjusted font size */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Text shadow for a glowing effect */
+}
+
+/* Hover effect for play-box */
+.play-box:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #000000; /* Black text color on hover */
+}
+
+/* Button */
+.button {
+    width: 80%;
+    max-width: 300px; /* Adjusted max width */
+    padding: 12px;
+    margin: 8px 0; /* Smaller margin */
+    background-color: #000000; /* Black background */
+    border: 2px solid white;
+    border-radius: 0px; /* No rounded corners */
+    color: white; /* White text */
+    font-size: 0.9rem; /* Smaller font size */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5); /* Shadow for button effect */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Remove hover effect for the button */
+.button:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #000000; /* Black text color on hover */
+}
+
+/* Tickets Text */
+.tickets-text {
+    font-size: 1rem; /* Adjusted font size */
+    color: #fff;
+    text-align: center;
+    margin-top: 20px; /* Spacing */
+    padding: 10px;
+    background: none; /* No background */
+    border: none; /* No border */
+    box-shadow: none; /* No shadow */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed; /* Fixes the position at the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: #000000; /* Black background for the nav */
+    padding: 15px 0; /* Reduced padding for nav */
+    display: flex;
+    justify-content: center; /* Center align nav items */
+    z-index: 1000; /* Ensure nav is above other content */
+}
+
+.nav-bar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%; /* Full width to fit the nav */
+    max-width: 600px; /* Limit the width of the nav items */
+}
+
+.nav-item {
+    font-size: 24px; /* Adjusted font size for better visibility */
+    color: #fff; /* Default color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px; /* Adjusted padding */
+    transition: color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+}
+
+.nav-item a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+/* Hide text labels */
+.nav-item span {
+    display: none;
+}
+
+/* Active state for the task icon */
+.nav-item.active i {
+    color: #a9a9a9; /* Highlight color for active icon */
+}
+
+/* Hover state */
+.nav-item:hover i {
+    color: #727272; /* Grey color on hover */
+}
