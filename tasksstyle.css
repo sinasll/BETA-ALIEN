@@ -32,6 +32,8 @@ header {
     align-items: center;
     background: none; /* Remove background from header */
     flex-shrink: 0; /* Prevent header from shrinking */
+    z-index: 1001; /* Ensure header is above other content */
+    position: relative; /* Ensure it’s in normal document flow */
 }
 
 /* Profile Container */
@@ -42,8 +44,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 50px; /* Smaller size */
-    height: 50px;
+    width: 70px; /* Increased size for profile picture */
+    height: 70px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +54,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1.5rem; /* Smaller font size */
+    font-size: 1.2rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,13 +65,13 @@ header {
 }
 
 .score {
-    font-size: 1rem; /* Smaller font size */
-    margin-right: 10px;
+    font-size: 0.8rem; /* Smaller font size for scores */
+    margin-right: 5px;
 }
 
 /* Alien Icon */
 .alien-icon {
-    width: 40px; /* Smaller size */
+    width: 40px; /* Size for the alien icon */
     height: 40px;
     border-radius: 50%;
     background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
@@ -78,7 +80,6 @@ header {
     justify-content: center;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* Add shadow to create a coin effect */
 }
-
 /* Tasks Section */
 .tasks-container {
     display: flex;
@@ -163,7 +164,7 @@ nav {
     left: 0;
     width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
-    padding: 20px 0; /* Increased padding for a bigger nav */
+    padding: 15px 0; /* Reduced padding for nav */
     display: flex;
     justify-content: center; /* Center align nav items */
     z-index: 1000; /* Ensure nav is above other content */
@@ -176,18 +177,18 @@ nav {
     display: flex;
     justify-content: space-around;
     width: 100%; /* Full width to fit the nav */
-    max-width: 600px; /* Optional: Limit the width of the nav items */
+    max-width: 600px; /* Limit the width of the nav items */
 }
 
 .nav-item {
-    font-size: 30px; /* Increased font size for better visibility */
+    font-size: 24px; /* Adjusted font size for better visibility */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px; /* Increased padding for larger clickable area */
+    padding: 12px; /* Adjusted padding */
     transition: color 0.3s;
-    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
+    font-family: 'Press Start 2P', cursive; /* Game-themed font */
 }
 
 .nav-item a {
