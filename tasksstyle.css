@@ -42,8 +42,8 @@ header {
 
 /* Profile Picture */
 .profile-pic {
-    width: 70px; /* Increased size for profile picture */
-    height: 70px;
+    width: 50px; /* Smaller size */
+    height: 50px;
     border-radius: 50%; /* Circular shape */
     margin-right: 10px; /* Space between the picture and username */
     object-fit: cover; /* Ensures the image covers the area without distortion */
@@ -52,7 +52,7 @@ header {
 
 /* Username */
 .username {
-    font-size: 1.2rem; /* Smaller font size */
+    font-size: 1.5rem; /* Smaller font size */
     font-weight: bold; /* Make username text bold */
 }
 
@@ -63,13 +63,13 @@ header {
 }
 
 .score {
-    font-size: 0.8rem; /* Smaller font size for scores */
-    margin-right: 5px;
+    font-size: 1rem; /* Smaller font size */
+    margin-right: 10px;
 }
 
 /* Alien Icon */
 .alien-icon {
-    width: 40px; /* Size for the alien icon */
+    width: 40px; /* Smaller size */
     height: 40px;
     border-radius: 50%;
     background: radial-gradient(circle at 50%, #f0f0f0 40%, #888 60%);
@@ -79,6 +79,83 @@ header {
     box-shadow: inset 0 0 5px rgba(0,0,0,0.5); /* Add shadow to create a coin effect */
 }
 
+/* Tasks Section */
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 20px; /* Smaller padding */
+    margin-top: 0px;
+}
+
+/* Task List Box */
+.dotasks {
+    font-size: 0.8rem;
+    margin-bottom: 10px; /* Adjust margin */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+}
+
+/* Include both fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Task Item Container */
+.task-item {
+    font-family: 'VT323', monospace; /* Use VT323 for task items */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0; /* Adjust padding for better spacing */
+    margin-bottom: 10px; /* Space between task items */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
+}
+
+/* Prize Text */
+.prize {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+/* Claim Button */
+.claim-button {
+    padding: 6px 10px; /* Adjust padding for button */
+    border: 2px solid #fff; /* Border color */
+    border-radius: 0px; /* Square corners for the button */
+    background-color: #000000; /* Black background for the button */
+    color: #ffffff; /* White text color */
+    font-size: 1.3rem; /* Smaller font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'VT323', monospace; /* Use VT323 for button text */
+}
+
+.claim-button:disabled {
+    background-color: #333; /* Darker background for disabled state */
+    color: #777; /* Lighter text color for disabled state */
+    cursor: not-allowed; /* Not allowed cursor */
+}
+
+/* Task Description */
+.task-description {
+    font-size: 1.5rem; /* Font size */
+    color: #ffffff; /* Text color */
+    flex: 1; /* Allow the description to take up remaining space */
+    margin-right: 10px; /* Space between description and button */
+    overflow-wrap: break-word; /* Ensure long words break and don't overflow */
+}
+
+/* Adjust Button on Hover */
+.claim-button:hover {
+    background-color: #ffffff; /* White background on hover */
+    color: #000000; /* Black text color on hover */
+}
+
 /* Navigation Bar */
 nav {
     position: fixed; /* Fixes the position at the bottom */
@@ -86,7 +163,7 @@ nav {
     left: 0;
     width: 100%; /* Full width */
     background-color: #000000; /* Black background for the nav */
-    padding: 15px 0; /* Reduced padding for nav */
+    padding: 20px 0; /* Increased padding for a bigger nav */
     display: flex;
     justify-content: center; /* Center align nav items */
     z-index: 1000; /* Ensure nav is above other content */
@@ -103,14 +180,14 @@ nav {
 }
 
 .nav-item {
-    font-size: 24px; /* Adjusted font size for better visibility */
+    font-size: 30px; /* Increased font size for better visibility */
     color: #fff; /* Default color */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px; /* Adjusted padding for larger clickable area */
-    transition: color 0.3s; /* Transition for hover effect */
-    font-family: 'Press Start 2P', cursive; /* Game-themed font */
+    padding: 15px; /* Increased padding for larger clickable area */
+    transition: color 0.3s;
+    font-family: 'Press Start 2P', cursive; /* Ensure the same game-themed font */
 }
 
 .nav-item a {
