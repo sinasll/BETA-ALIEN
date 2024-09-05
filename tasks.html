@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Tasks</title>
     <link rel="stylesheet" href="tasksstyle.css">
+    <title>Tasks - Game Station</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
 
     <script>
         // Function to generate a random username
@@ -46,6 +46,33 @@
             document.getElementById('tickets-text').textContent = `You have ${tickets} tickets`;
         }
 
+        // Function to handle task claim
+        function claimTask(taskId, taskDescription, rewardPoints, taskLink) {
+            let claimedTasks = JSON.parse(localStorage.getItem('claimedTasks')) || {};
+            
+            if (claimedTasks[taskId]) {
+                alert('You have already claimed this task.');
+                return;
+            }
+
+            // Open the task link
+            window.open(taskLink, '_blank');
+            
+            // Update points
+            let points = parseInt(localStorage.getItem('points'), 10) || 0;
+            points += rewardPoints;
+            localStorage.setItem('points', points);
+            document.querySelector('.score').textContent = points;
+            
+            // Mark task as claimed
+            claimedTasks[taskId] = true;
+            localStorage.setItem('claimedTasks', JSON.stringify(claimedTasks));
+
+            // Disable the claim button
+            document.getElementById(taskId).disabled = true;
+            document.getElementById(taskId).textContent = 'CLAIMED';
+        }
+
         // Initialize the page
         window.onload = function() {
             setUsername();
@@ -58,14 +85,55 @@
     <header>
         <div class="profile">
             <img src="alien.png" alt="Profile Picture" class="profile-pic">
-            <span id
-            ="username" class="username"></span> <!-- Default text -->
+            <span id="username" class="username"></span>
         </div>
         <div class="score-container">
             <span class="score"></span>
             <img src="alincoin.png" alt="Alien Icon" class="alien-icon">
         </div>
     </header>
+    
+    <!-- Tasks Section -->
+    <div class="tasks-container">
+        <div>
+            <span class="dotasks">
+                <h3 class="dotasks">Do tasks and earn ALIENS</h3>
+            </span>
+        </div>
+        <div class="task-list">
+            <div class="task-item">
+                <span class="task-description">Join our Telegram channel</span>
+                <div><span class="prize">+100 ALIENS</span></div>
+                <button id="task1" class="claim-button" onclick="claimTask('task1', 'Join our Telegram channel', 100, 'https://t.me/YourChannel')">CLAIM</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">Follow our Instagram</span>
+                <div><span class="prize">+100 ALIENS</span></div>
+                <button id="task2" class="claim-button" onclick="claimTask('task2', 'Follow our Instagram', 100, 'https://instagram.com/YourProfile')">CLAIM</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">Follow our X</span>
+                <div><span class="prize">+100 ALIENS</span></div>
+                <button id="task3" class="claim-button" onclick="claimTask('task3', 'Follow our X', 100, 'https://twitter.com/YourProfile')">CLAIM</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">Subscribe to our YouTube</span>
+                <div><span class="prize">+100 ALIENS</span></div>
+                <button id="task4" class="claim-button" onclick="claimTask('task4', 'Subscribe to our YouTube', 100, 'https://youtube.com/YourChannel')">CLAIM</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">Join BLUM</span>
+                <div><span class="prize">+100 ALIENS</span></div>
+                <button id="task5" class="claim-button" onclick="claimTask('task5', 'Join BLUM', 100, 'https://blum.com/YourProfile')">CLAIM</button>
+            </div>
+            <div class="task-item">
+                <span class="task-description">Join CATS</span>
+                <div><span class="prize">+100 ALIENS</span></div>
+                <button id="task6" class="claim-button" onclick="claimTask('task6', 'Join CATS', 100, 'https://cats.com/YourProfile')">CLAIM</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Bar -->
     <nav>
         <ul class="nav-bar">
