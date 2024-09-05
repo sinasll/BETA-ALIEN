@@ -60,7 +60,7 @@
         let tickets;
         let points;
         let lastDailyRewardDate;
-        
+
         // Function to initialize ticket count and daily reward data from localStorage
         function initializeTickets() {
             let savedTickets = localStorage.getItem('tickets');
@@ -110,6 +110,7 @@
                 document.getElementById('username').textContent = username;
             } else {
                 if (window.Telegram && window.Telegram.WebApp) {
+                    window.Telegram.WebApp.ready(); // Ensure WebApp is ready
                     const user = window.Telegram.WebApp.initDataUnsafe.user;
                     username = user && user.username ? user.username : generateRandomUsername();
                     localStorage.setItem('username', username);
