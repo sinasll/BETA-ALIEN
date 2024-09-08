@@ -144,7 +144,7 @@ header {
 
 /* Task Description */
 .task-description {
-    font-size: 1.5rem; /* Font size */
+    font-size: 1.3rem; /* Font size */
     color: #ffffff; /* Text color */
     flex: 1; /* Allow the description to take up remaining space */
     margin-right: 10px; /* Space between description and button */
