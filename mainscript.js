@@ -1,20 +1,25 @@
-// mainscript.js
+window.Telegram.WebApp.ready();  // Initialize the Telegram Web App
 
-// Function to fetch the username from Telegram
-async function fetchUsername() {
-    try {
-        // Using your actual Telegram bot token
-        const response = await fetch(`https://api.telegram.org/bot7350557281:AAHDt0zRKcBaWo2a2XDdc-ViwB-N2H6ZeVo/getMe`);
-        const data = await response.json();
-        
-        // Check if the username is available
-        const username = data.result.username; // Get the username
-        document.getElementById('username').textContent = username ? username : ''; // Display username or leave empty
-    } catch (error) {
-        console.error('Error fetching username:', error);
-        document.getElementById('username').textContent = ''; // Leave empty in case of error
+const usernameDiv = document.getElementById('username');
+
+// Get the user data from Telegram Web App
+const user = Telegram.WebApp.initDataUnsafe.user;
+
+if (user) {
+    if (user.username) {
+        // Display the Telegram username if it's available
+        usernameDiv.textContent = `Welcome, ${user.username}!`;
+    } else {
+        // If no username, prompt the user to create one
+        usernameDiv.textContent = 'Please set a username in your Telegram settings to continue.';
+        Telegram.WebApp.showPopup({
+            title: "Username Required",
+            message: "You need to set a username in your Telegram settings to proceed.",
+            buttons: [
+                { id: "ok", type: "ok", text: "OK" }
+            ]
+        });
     }
+} else {
+    usernameDiv.textContent = 'Error: Unable to retrieve user data.';
 }
-
-// Call the function to fetch the username when the page loads
-fetchUsername();
