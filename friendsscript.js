@@ -8,9 +8,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to invite friends via Telegram
     window.inviteFriends = function() {
+        const friendUsername = prompt("Enter your friend's Telegram username:");
+        if (!friendUsername) {
+            alert("Friend's username is required!");
+            return; // Exit if no username is provided
+        }
+        
         const message = `Join @minortappingbot! And get ALIENS to be rewarded with airdrop, I'm - ${localStorage.getItem("username")}`;
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}&text=Inviting ${friendUsername}`;
         window.open(telegramUrl, '_blank'); // Open in a new tab
+
+        // Save the invited friend's username
+        saveInvitedFriend(friendUsername);
     };
 
     // Function to copy the invite link to clipboard
@@ -45,22 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Automatically save the current user's username as an invited friend
-    function addCurrentUserAsFriend() {
-        const currentUsername = localStorage.getItem("username");
-        if (currentUsername) {
-            saveInvitedFriend(currentUsername);
-        }
-    }
-
     // Function to display the invited friends
     function displayInvitedFriends() {
         let invitedFriends = JSON.parse(localStorage.getItem("invitedFriends")) || [];
         friendsList.innerHTML = invitedFriends.map(friend => `<div>${friend}</div>`).join('');
     }
-
-    // Call to add the current user as an invited friend on load
-    addCurrentUserAsFriend();
 
     function getTelegramDetails() {
         let username = localStorage.getItem("username");
