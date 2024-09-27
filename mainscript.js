@@ -13,23 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return allUsernames.includes(username.toLowerCase());
     }
 
-    // Function to handle user data setup
-    function setupUserData(username) {
-        // Ensure username is not empty or taken
-        while (!username || username.trim() === "" || isUsernameTaken(username)) {
-            username = prompt("Please enter a unique username:");
+    // Function to calculate days between two dates
+    function calculateDaysBetween(startDate, endDate) {
+        const oneDay = 24 * 60 * 60 * 1000; // Hours * minutes * seconds * milliseconds
+        return Math.floor((endDate - startDate) / oneDay);
+    }
 
-            if (!username || username.trim() === "") {
-                alert("Username cannot be empty.");
-            } else if (isUsernameTaken(username)) {
-                alert("This username is already taken. Please choose a different one.");
-            }
-        }
-
-        // Create user data object
+    // Function to set up the user data and calculate score based on Telegram account age
+    function setupUserData(username, accountAgeInDays) {
         userData = {
             username: username.trim(),
-            score: 0 // Initial score
+            score: accountAgeInDays * 10 // 10 points for each day the account has existed
         };
 
         // Save the new username in the list of all usernames
@@ -51,20 +45,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Check if we already have user data stored
     if (!userData) {
-        // Use Telegram's Mini App API to get the user's Telegram username
+        // Use Telegram's Mini App API to get the user's Telegram username and user ID
         if (window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
-            const telegramUsername = window.Telegram.WebApp.initDataUnsafe.user.username;
+            const telegramUser = window.Telegram.WebApp.initDataUnsafe.user;
+            const telegramUsername = telegramUser.username;
 
+            // Assume we have the account creation date (for example, from an external API or predefined method)
+            // For demo purposes, let's assume the account was created on a specific date
+            const accountCreationDate = new Date("2020-01-01"); // This should ideally come from the API
+            const currentDate = new Date();
+
+            // Calculate account age in days
+            const accountAgeInDays = calculateDaysBetween(accountCreationDate, currentDate);
+
+            // If Telegram username exists and is not taken, use it
             if (telegramUsername && !isUsernameTaken(telegramUsername)) {
-                // If Telegram username exists and is not taken, use it
-                setupUserData(telegramUsername);
+                setupUserData(telegramUsername, accountAgeInDays);
             } else {
                 // If Telegram username is missing or taken, prompt user to enter one
-                setupUserData(null);
+                let username = prompt("Please enter a unique username:");
+                setupUserData(username, accountAgeInDays);
             }
         } else {
             // Fallback: if Telegram username isn't available, prompt for one
-            setupUserData(null);
+            let username = prompt("Please enter a unique username:");
+            const accountCreationDate = new Date("2020-01-01"); // Placeholder
+            const currentDate = new Date();
+            const accountAgeInDays = calculateDaysBetween(accountCreationDate, currentDate);
+            setupUserData(username, accountAgeInDays);
         }
     } else {
         // If user data exists, display it
