@@ -14,11 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const urlParams = new URLSearchParams(window.location.search);
         const urlUsername = urlParams.get('username');
 
-        // Use username from URL if available, otherwise prompt for it
+        // Use username from URL if available
         if (urlUsername) {
-            username = urlUsername;
+            username = urlUsername.replace('@', ''); // Remove '@' if included
             localStorage.setItem("username", username);
         } else if (!username) {
+            // If no username is stored or provided, prompt for it
             username = prompt("Please enter your Telegram username:");
             if (username) {
                 localStorage.setItem("username", username);
