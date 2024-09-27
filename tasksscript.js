@@ -8,17 +8,11 @@ function loadUserData() {
     const savedUsername = localStorage.getItem('telegramUsername');
     const savedScore = localStorage.getItem('userScore');
 
-    if (savedUsername) {
-        document.getElementById('username').innerText = "@" + savedUsername; // Display saved username
-    } else {
-        document.getElementById('username').innerText = "@unknown"; // Default username if none saved
-    }
+    // Display saved username or a default message
+    document.getElementById('username').innerText = savedUsername ? "@" + savedUsername : "@unknown";
 
-    if (savedScore) {
-        document.getElementById('score').textContent = formatScore(parseInt(savedScore)); // Display saved score
-    } else {
-        document.getElementById('score').textContent = formatScore(0); // Default score if none saved
-    }
+    // Display saved score or default score
+    document.getElementById('score').textContent = formatScore(savedScore ? parseInt(savedScore) : 0);
 }
 
 // Function to update the score and save it in local storage
@@ -35,29 +29,28 @@ function claimReward(button) {
     let reward = 0;
 
     // Determine reward based on task description
-    if (taskDescription.includes('join our Telegram channel')) {
-        reward = 100;
-    } else if (taskDescription.includes('follow our X')) {
-        reward = 100;
-    } else if (taskDescription.includes('follow our Instagram')) {
-        reward = 100;
-    } else if (taskDescription.includes('subscribe to our YouTube')) {
-        reward = 100;
-    } else if (taskDescription.includes('watch our video')) {
-        reward = 100;
-    } else if (taskDescription.includes('join BLUM')) {
-        reward = 100;
-    } else if (taskDescription.includes('join CATS')) {
-        reward = 100;
+    const rewardTasks = [
+        'join our Telegram channel',
+        'follow our X',
+        'follow our Instagram',
+        'subscribe to our YouTube',
+        'watch our video',
+        'join BLUM',
+        'join CATS'
+    ];
+    
+    if (rewardTasks.some(task => taskDescription.includes(task))) {
+        reward = 100; // Assign reward for eligible tasks
     }
 
-    // Update the score and disable the button after claiming
-    updateScore(reward);
-    const taskId = button.dataset.taskId; // Get the task ID from data attribute
-    localStorage.setItem(taskId, true); // Save that the task has been claimed
-    button.disabled = true; // Disable the claim button after use
-    button.classList.add('claimed'); // Add the claimed class for styling
-    button.textContent = "Claimed"; // Change button text
+    if (reward > 0) {
+        updateScore(reward); // Update the score if reward is valid
+        const taskId = button.dataset.taskId; // Get the task ID from data attribute
+        localStorage.setItem(taskId, true); // Save that the task has been claimed
+        button.disabled = true; // Disable the claim button after use
+        button.classList.add('claimed'); // Add the claimed class for styling
+        button.textContent = "Claimed"; // Change button text
+    }
 }
 
 // Function to check and disable claimed buttons on load
