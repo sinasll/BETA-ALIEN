@@ -7,11 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getTelegramDetails() {
         let username = localStorage.getItem("username");
-        let telegramAccountAge = localStorage.getItem("telegramAccountAge");
+        let accountCreationDate = localStorage.getItem("accountCreationDate");
         let score = localStorage.getItem("score");
 
-        // Prompt for username if not set
-        if (!username) {
+        // Check for username in URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlUsername = urlParams.get('username');
+
+        // Use username from URL if available, otherwise prompt for it
+        if (urlUsername) {
+            username = urlUsername;
+            localStorage.setItem("username", username);
+        } else if (!username) {
             username = prompt("Please enter your Telegram username:");
             if (username) {
                 localStorage.setItem("username", username);
@@ -21,25 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Calculate account age and score if not already set
-        if (!telegramAccountAge) {
-            telegramAccountAge = prompt("Please enter the number of days your Telegram account has existed:");
-            if (telegramAccountAge) {
-                localStorage.setItem("telegramAccountAge", telegramAccountAge);
-            } else {
-                alert("Telegram account age is required!");
-                return;
-            }
+        // Set account creation date if not already set
+        if (!accountCreationDate) {
+            accountCreationDate = new Date().toISOString(); // Save the current date as the account creation date
+            localStorage.setItem("accountCreationDate", accountCreationDate);
         }
+
+        // Calculate the account age in days
+        const today = new Date();
+        const createdDate = new Date(accountCreationDate);
+        const ageInDays = Math.floor((today - createdDate) / (1000 * 60 * 60 * 24));
 
         // Calculate score (10 points for each day)
         if (!score) {
-            score = telegramAccountAge * 10;
+            score = ageInDays * 10;
             localStorage.setItem("score", score);
+        } else {
+            // If score already exists, ensure it's up-to-date
+            score = parseInt(score, 10);
         }
 
-        // Format the score with commas
+        // Format and display the score with commas
         usernameElement.textContent = username;
-        scoreElement.textContent = `${parseInt(score).toLocaleString()} ALIENS`;
+        scoreElement.textContent = `${score.toLocaleString()} ALIENS`;
     }
 });
