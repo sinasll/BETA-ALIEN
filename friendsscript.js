@@ -1,128 +1,108 @@
-// Function to format the score with commas
-function formatScore(score) {
-    return score.toLocaleString(); // Adds commas based on the locale
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const usernameElement = document.getElementById("username");
+    const scoreElement = document.getElementById("score");
+    const friendsList = document.getElementById("friendsList");
 
-// Function to retrieve the saved username and score from local storage
-function loadUserData() {
-    const savedUsername = localStorage.getItem('telegramUsername');
-    const savedScore = localStorage.getItem('userScore');
+    // Fetch username and score
+    getTelegramDetails();
 
-    if (savedUsername) {
-        document.getElementById('username').innerText = "@" + savedUsername; // Display saved username
-    } else {
-        document.getElementById('username').innerText = "@unknown"; // Default username if none saved
-    }
+    // Function to invite friends via Telegram
+    window.inviteFriends = function() {
+        const message = `Join @minortappingbot! And get ALIENS to be rewarded with airdrop, I'm - ${localStorage.getItem("username")}`;
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
+        window.open(telegramUrl, '_blank'); // Open in a new tab
+    };
 
-    if (savedScore) {
-        document.getElementById('score').textContent = formatScore(savedScore); // Display saved score
-    } else {
-        document.getElementById('score').textContent = formatScore(0); // Default score if none saved
-    }
-}
+    // Function to copy the invite link to clipboard
+    window.copyInviteLink = function() {
+        const botLink = "https://t.me/minortappingbot";
+        navigator.clipboard.writeText(botLink)
+            .then(() => {
+                alert("Invite link copied");
+            })
+            .catch(err => {
+                console.error("Could not copy text: ", err);
+            });
+    };
 
-// Function to calculate the user's score based on account age
-function calculateScore(creationDate) {
-    const currentDate = new Date();
-    const accountAgeInMilliseconds = currentDate - new Date(creationDate);
-    const accountAgeInDays = Math.floor(accountAgeInMilliseconds / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-    const scorePerDay = 10; // Score per day
+    // Function to save invited friends automatically
+    function saveInvitedFriend(friendUsername) {
+        let invitedFriends = JSON.parse(localStorage.getItem("invitedFriends")) || [];
+        if (!invitedFriends.includes(friendUsername)) { // Avoid duplicates
+            invitedFriends.push(friendUsername);
+            localStorage.setItem("invitedFriends", JSON.stringify(invitedFriends));
 
-    return accountAgeInDays * scorePerDay; // Total score
-}
+            // Reward the user with 50 points for each invite
+            let score = parseInt(localStorage.getItem("score")) || 0;
+            score += 50;  // 50 points for each invite
+            localStorage.setItem("score", score);
+            
+            // Update the displayed score
+            scoreElement.textContent = `${score.toLocaleString()} ALIENS`;
 
-// Function to retrieve the Telegram account creation date via API
-async function getAccountCreationDate() {
-    try {
-        const response = await fetch('/api/getTelegramAccountCreationDate'); // Replace with your API endpoint
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return new Date(data.creationDate); // Assuming the API returns a JSON object with the creationDate
-    } catch (error) {
-        console.error('Error fetching account creation date:', error);
-        return null; // Return null if the fetch fails
-    }
-}
-
-// Function to update the score and save it in local storage
-async function updateScoreDisplay() {
-    const creationDate = await getAccountCreationDate(); // Retrieve the creation date
-    if (creationDate) {
-        const score = calculateScore(creationDate); // Calculate score
-        document.getElementById('score').textContent = formatScore(score); // Display formatted score
-
-        // Save the score to local storage
-        localStorage.setItem('userScore', score);
-    } else {
-        document.getElementById('score').textContent = formatScore(0); // Display 0 if no valid date
-    }
-}
-
-// Function to update the score when a new invite is claimed
-function updateScore(newScore) {
-    const currentScore = parseInt(localStorage.getItem('userScore')) || 0; // Get current score or 0
-    const totalScore = currentScore + newScore; // Calculate total score
-    localStorage.setItem('userScore', totalScore); // Save total score to local storage
-    document.getElementById('score').textContent = formatScore(totalScore); // Update score display
-}
-
-// Function to invite friends via Telegram
-function inviteFriends() {
-    const inviteLink = "https://t.me/minortappingbot"; // Link to your bot
-    const message = `Hey! Join me on this awesome mini app: ${inviteLink}`;
-    
-    // This will trigger the Telegram app to send the message
-    window.open(`tg://msg?text=${encodeURIComponent(message)}`);
-    
-    // Save the friend's username to the list (for demonstration, assuming the friend is known)
-    const friendUsername = prompt("Enter your friend's Telegram username:");
-    if (friendUsername) {
-        saveInvitedFriend(friendUsername);
-    }
-}
-
-// Function to save invited friends and update the display
-function saveInvitedFriend(username) {
-    const friendsList = document.getElementById('friendsList');
-    
-    // Create a new div for the invited friend
-    const friendDiv = document.createElement('div');
-    friendDiv.innerText = username; // Display the friend's username
-    friendsList.appendChild(friendDiv); // Add to the list
-
-    // Reward the user (but don't count the score yet)
-    localStorage.setItem(`invited_${username}`, 'pending'); // Mark as pending until they launch the bot
-}
-
-// Function to copy the invite link to the clipboard
-function copyInviteLink() {
-    const inviteLink = "https://t.me/minortappingbot"; // Change to your bot's Telegram link
-    navigator.clipboard.writeText(inviteLink).then(() => {
-        alert("Invite link copied to clipboard!");
-    }).catch(err => {
-        console.error('Error copying link: ', err);
-    });
-}
-
-// Check for pending friends and update score if they launch the bot
-async function checkPendingInvites() {
-    const friendsList = document.getElementById('friendsList').children;
-    for (let friend of friendsList) {
-        const username = friend.innerText;
-        if (localStorage.getItem(`invited_${username}`) === 'pending') {
-            // Here, you would have a mechanism to check if the friend launched the bot
-            // For illustration, let's assume they did
-            localStorage.setItem(`invited_${username}`, 'claimed'); // Mark as claimed
-            updateScore(150); // Reward with points
+            // Update the friends list display
+            displayInvitedFriends();
         }
     }
-}
 
-// Add event listeners and load user data
-window.onload = async function() {
-    loadUserData(); // Load saved username and score
-    await updateScoreDisplay(); // Update the score display
-    checkPendingInvites(); // Check if any invites are pending
-};
+    // Automatically save the current user's username as an invited friend
+    function addCurrentUserAsFriend() {
+        const currentUsername = localStorage.getItem("username");
+        if (currentUsername) {
+            saveInvitedFriend(currentUsername);
+        }
+    }
+
+    // Function to display the invited friends
+    function displayInvitedFriends() {
+        let invitedFriends = JSON.parse(localStorage.getItem("invitedFriends")) || [];
+        friendsList.innerHTML = invitedFriends.map(friend => `<div>${friend}</div>`).join('');
+    }
+
+    // Call to add the current user as an invited friend on load
+    addCurrentUserAsFriend();
+
+    function getTelegramDetails() {
+        let username = localStorage.getItem("username");
+        let telegramAccountAge = localStorage.getItem("telegramAccountAge");
+        let score = localStorage.getItem("score");
+
+        // Prompt for username if not set
+        if (!username) {
+            username = prompt("Please enter your Telegram username:");
+            if (username) {
+                localStorage.setItem("username", username);
+            } else {
+                alert("Username is required!");
+                return;
+            }
+        }
+
+        // Prompt for Telegram account age if not set
+        if (!telegramAccountAge) {
+            telegramAccountAge = prompt("Please enter the number of days your Telegram account has existed:");
+            if (telegramAccountAge) {
+                localStorage.setItem("telegramAccountAge", telegramAccountAge);
+            } else {
+                alert("Telegram account age is required!");
+                return;
+            }
+        }
+
+        // Calculate score if not already set
+        if (!score) {
+            score = telegramAccountAge * 10; // 10 points for each day
+            localStorage.setItem("score", score);
+        } else {
+            // If score already exists, ensure it’s up-to-date
+            score = parseInt(score, 10);
+        }
+
+        // Format the score with commas and display
+        usernameElement.textContent = username;
+        scoreElement.textContent = `${score.toLocaleString()} ALIENS`;
+
+        // Display previously invited friends
+        displayInvitedFriends();
+    }
+});
