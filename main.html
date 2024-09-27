@@ -37,47 +37,49 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Reference to username and score display elements
-            const usernameDisplay = document.getElementById("username");
-            const scoreDisplay = document.getElementById("score");
-
-            // Use Telegram's WebApp API to get user information
+            // Ensure the Telegram WebApp API is ready before accessing its data
             const telegram = window.Telegram.WebApp;
 
-            // Get the user's Telegram username and ID from the initDataUnsafe object
-            if (telegram.initDataUnsafe && telegram.initDataUnsafe.user) {
-                const telegramUser = telegram.initDataUnsafe.user;
-                const username = telegramUser.username ? `@${telegramUser.username}` : 'Unknown User';
-                const telegramUserId = telegramUser.id;
+            telegram.onEvent("ready", function() {
+                // Reference to username and score display elements
+                const usernameDisplay = document.getElementById("username");
+                const scoreDisplay = document.getElementById("score");
 
-                // Display the Telegram username
-                usernameDisplay.textContent = username;
+                // Get the user's Telegram username and ID from the initDataUnsafe object
+                if (telegram.initDataUnsafe && telegram.initDataUnsafe.user) {
+                    const telegramUser = telegram.initDataUnsafe.user;
+                    const username = telegramUser.username ? `@${telegramUser.username}` : 'Unknown User';
+                    const telegramUserId = telegramUser.id;
 
-                // Calculate the account age based on a fixed Telegram ID creation date (for demo purposes)
-                // Assume Telegram IDs were first used on October 13, 2013
-                const TELEGRAM_START_DATE = new Date('2013-10-13');
-                const currentDate = new Date();
+                    // Display the Telegram username
+                    usernameDisplay.textContent = username;
 
-                // Estimate the account creation date based on user ID
-                const userAccountCreationDate = new Date(TELEGRAM_START_DATE.getTime() + telegramUserId * 1000);
+                    // Calculate the account age based on a fixed Telegram ID creation date (for demo purposes)
+                    // Assume Telegram IDs were first used on October 13, 2013
+                    const TELEGRAM_START_DATE = new Date('2013-10-13');
+                    const currentDate = new Date();
 
-                // Calculate how many days since the account was created
-                const oneDayInMs = 24 * 60 * 60 * 1000; // Milliseconds in a day
-                const accountAgeInDays = Math.floor((currentDate - userAccountCreationDate) / oneDayInMs);
+                    // Estimate the account creation date based on user ID
+                    const userAccountCreationDate = new Date(TELEGRAM_START_DATE.getTime() + telegramUserId * 1000);
 
-                // Calculate the score (10 points per day)
-                const score = accountAgeInDays * 10;
+                    // Calculate how many days since the account was created
+                    const oneDayInMs = 24 * 60 * 60 * 1000; // Milliseconds in a day
+                    const accountAgeInDays = Math.floor((currentDate - userAccountCreationDate) / oneDayInMs);
 
-                // Display the score
-                scoreDisplay.textContent = score;
-            } else {
-                // Handle case when Telegram WebApp data isn't available
-                usernameDisplay.textContent = "Unknown User";
-                scoreDisplay.textContent = "0";
-            }
+                    // Calculate the score (10 points per day)
+                    const score = accountAgeInDays * 10;
 
-            // Expand the WebApp interface to fit content
-            telegram.expand();
+                    // Display the score
+                    scoreDisplay.textContent = score;
+                } else {
+                    // Handle case when Telegram WebApp data isn't available
+                    usernameDisplay.textContent = "Unknown User";
+                    scoreDisplay.textContent = "0";
+                }
+
+                // Expand the WebApp interface to fit content
+                telegram.expand();
+            });
         });
     </script>
 </body>
