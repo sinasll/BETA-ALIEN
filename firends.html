@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALIENS</title>
+    <link rel="stylesheet" href="friendsstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+</head>
+<body>
+    <div class="container">
+        <img src="alien.png" alt="ALIENS Logo" class="logo">
+        <div class="username" id="username">@username</div>
+        <div class="score-box" id="score-box">
+            <span id="score">0</span>
+        </div>
+
+        <!-- Invite Friends Section -->
+        <div class="invite-section">
+            <button class="invite-button" onclick="inviteFriends()">Invite Friends</button>
+            <button class="copy-link-button" onclick="copyInviteLink()">Copy Invite Link</button>
+        </div>
+
+        <!-- Scrolled Box for Invited Friends -->
+        <div class="invited-friends-box" id="invited-friends-box">
+            <h3>Invited Friends</h3>
+            <div id="friendsList"></div>
+        </div>
+
+        <nav>
+            <ul class="nav-bar">
+                <li class="nav-item">
+                    <a href="tasks.html">
+                        <i class="fas fa-bullseye" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="main.html">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="firends.html">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    
+        <script src="friendsscript.js"></script>
+    </div>
+</body>
+</html>
