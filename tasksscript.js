@@ -15,7 +15,46 @@ function loadUserData() {
     document.getElementById('score').textContent = formatScore(savedScore ? parseInt(savedScore) : 0);
 }
 
+// Function to calculate the user's score based on account age
+function calculateScore(creationDate) {
+    const currentDate = new Date();
+    const accountAgeInMilliseconds = currentDate - new Date(creationDate);
+    const accountAgeInDays = Math.floor(accountAgeInMilliseconds / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+    const scorePerDay = 10; // Score per day
+
+    return accountAgeInDays * scorePerDay; // Total score
+}
+
+// Function to retrieve the Telegram account creation date via API
+async function getAccountCreationDate() {
+    try {
+        const response = await fetch('/api/getTelegramAccountCreationDate'); // Replace with your API endpoint
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return new Date(data.creationDate); // Assuming the API returns a JSON object with the creationDate
+    } catch (error) {
+        console.error('Error fetching account creation date:', error);
+        return null; // Return null if the fetch fails
+    }
+}
+
 // Function to update the score and save it in local storage
+async function updateScoreDisplay() {
+    const creationDate = await getAccountCreationDate(); // Retrieve the creation date
+    if (creationDate) {
+        const score = calculateScore(creationDate); // Calculate score
+        document.getElementById('score').textContent = formatScore(score); // Display formatted score
+
+        // Save the score to local storage
+        localStorage.setItem('userScore', score);
+    } else {
+        document.getElementById('score').textContent = formatScore(0); // Display 0 if no valid date
+    }
+}
+
+// Function to update the score when a new invite is claimed
 function updateScore(newScore) {
     const currentScore = parseInt(localStorage.getItem('userScore')) || 0; // Get current score or 0
     const totalScore = currentScore + newScore; // Calculate total score
@@ -67,8 +106,9 @@ function checkClaimedTasks() {
 }
 
 // Add event listeners to claim buttons
-window.onload = function() {
+window.onload = async function() {
     loadUserData(); // Load saved username and score
+    await updateScoreDisplay(); // Update the score display based on account age
     checkClaimedTasks(); // Check claimed tasks and disable buttons
 
     const claimButtons = document.querySelectorAll('.claim-button');
