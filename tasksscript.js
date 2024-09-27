@@ -1,118 +1,68 @@
-// Function to format the score with commas
-function formatScore(score) {
-    return score.toLocaleString(); // Adds commas based on the locale
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const usernameElement = document.getElementById("username");
+    const scoreElement = document.getElementById("score");
+    const claimButtons = document.querySelectorAll(".claim-button");
 
-// Function to retrieve the saved username from local storage
-function loadUserData() {
-    const savedUsername = localStorage.getItem('telegramUsername');
-    const savedScore = localStorage.getItem('userScore');
+    // Fetch username and score
+    getTelegramDetails();
 
-    // Display saved username or a default message
-    document.getElementById('username').innerText = savedUsername ? "@" + savedUsername : "@unknown";
-
-    // Display saved score or default score
-    document.getElementById('score').textContent = formatScore(savedScore ? parseInt(savedScore) : 0);
-}
-
-// Function to calculate the user's score based on account age
-function calculateScore(creationDate) {
-    const currentDate = new Date();
-    const accountAgeInMilliseconds = currentDate - new Date(creationDate);
-    const accountAgeInDays = Math.floor(accountAgeInMilliseconds / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-    const scorePerDay = 10; // Score per day
-
-    return accountAgeInDays * scorePerDay; // Total score
-}
-
-// Function to retrieve the Telegram account creation date via API
-async function getAccountCreationDate() {
-    try {
-        const response = await fetch('/api/getTelegramAccountCreationDate'); // Replace with your API endpoint
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return new Date(data.creationDate); // Assuming the API returns a JSON object with the creationDate
-    } catch (error) {
-        console.error('Error fetching account creation date:', error);
-        return null; // Return null if the fetch fails
-    }
-}
-
-// Function to update the score and save it in local storage
-async function updateScoreDisplay() {
-    const creationDate = await getAccountCreationDate(); // Retrieve the creation date
-    if (creationDate) {
-        const score = calculateScore(creationDate); // Calculate score
-        document.getElementById('score').textContent = formatScore(score); // Display formatted score
-
-        // Save the score to local storage
-        localStorage.setItem('userScore', score);
-    } else {
-        document.getElementById('score').textContent = formatScore(0); // Display 0 if no valid date
-    }
-}
-
-// Function to update the score when a new invite is claimed
-function updateScore(newScore) {
-    const currentScore = parseInt(localStorage.getItem('userScore')) || 0; // Get current score or 0
-    const totalScore = currentScore + newScore; // Calculate total score
-    localStorage.setItem('userScore', totalScore); // Save total score to local storage
-    document.getElementById('score').textContent = formatScore(totalScore); // Update score display
-}
-
-// Function to handle claiming a task reward
-function claimReward(button) {
-    const taskDescription = button.previousElementSibling.textContent; // Get the task description
-    let reward = 0;
-
-    // Determine reward based on task description
-    const rewardTasks = [
-        'join our Telegram channel',
-        'follow our X',
-        'follow our Instagram',
-        'subscribe to our YouTube',
-        'watch our video',
-        'join BLUM',
-        'join CATS'
-    ];
-    
-    if (rewardTasks.some(task => taskDescription.includes(task))) {
-        reward = 100; // Assign reward for eligible tasks
-    }
-
-    if (reward > 0) {
-        updateScore(reward); // Update the score if reward is valid
-        const taskId = button.dataset.taskId; // Get the task ID from data attribute
-        localStorage.setItem(taskId, true); // Save that the task has been claimed
-        button.disabled = true; // Disable the claim button after use
-        button.classList.add('claimed'); // Add the claimed class for styling
-        button.textContent = "Claimed"; // Change button text
-    }
-}
-
-// Function to check and disable claimed buttons on load
-function checkClaimedTasks() {
-    const claimButtons = document.querySelectorAll('.claim-button');
+    // Initialize claim button states
     claimButtons.forEach(button => {
-        const taskId = button.dataset.taskId; // Get the task ID from data attribute
-        if (localStorage.getItem(taskId)) {
-            button.disabled = true; // Disable the button if the task was already claimed
-            button.classList.add('claimed'); // Add the claimed class for styling
-            button.textContent = "Claimed"; // Change button text
+        const taskId = button.getAttribute("data-task-id");
+        const taskClaimed = localStorage.getItem(`claimed_${taskId}`);
+
+        // Disable the button if the task has already been claimed
+        if (taskClaimed === 'true') {
+            button.textContent = "Claimed";
+            button.disabled = true;
         }
-    });
-}
 
-// Add event listeners to claim buttons
-window.onload = async function() {
-    loadUserData(); // Load saved username and score
-    await updateScoreDisplay(); // Update the score display based on account age
-    checkClaimedTasks(); // Check claimed tasks and disable buttons
+        // Add event listener to handle claiming
+        button.addEventListener("click", function () {
+            // Check if the task is already claimed
+            if (localStorage.getItem(`claimed_${taskId}`) !== 'true') {
+                let score = parseInt(localStorage.getItem("score")) || 0;
+                score += 100;  // Example of rewarding 100 points per task
 
-    const claimButtons = document.querySelectorAll('.claim-button');
-    claimButtons.forEach(button => {
-        button.addEventListener('click', () => claimReward(button)); // Add click event to each button
+                // Save the new score to localStorage
+                localStorage.setItem("score", score);
+
+                // Mark the task as claimed in localStorage
+                localStorage.setItem(`claimed_${taskId}`, 'true');
+
+                // Update the score display with commas for thousand separators
+                scoreElement.textContent = `${parseInt(score).toLocaleString()} ALIENS`;
+
+                // Disable the button and change text to "Claimed"
+                button.textContent = "Claimed";
+                button.disabled = true;
+
+                alert(`Task ${taskId} claimed! You earned 100 ALIENS.`);
+            }
+        });
     });
-};
+
+    function getTelegramDetails() {
+        let username = localStorage.getItem("username");
+        let telegramAccountAge = localStorage.getItem("telegramAccountAge");
+        let score = localStorage.getItem("score");
+
+        // Prompt for username if not set
+        if (!username) {
+            username = prompt("Please enter your Telegram username:");
+            localStorage.setItem("username", username);
+        }
+
+        // Calculate score based on Telegram account age if not already done
+        if (!telegramAccountAge || !score) {
+            telegramAccountAge = 365;  // Example, replace with actual days
+            score = telegramAccountAge * 10;
+            localStorage.setItem("telegramAccountAge", telegramAccountAge);
+            localStorage.setItem("score", score);
+        }
+
+        // Format and display the username and score
+        usernameElement.textContent = username;
+        scoreElement.textContent = `${parseInt(score).toLocaleString()} ALIENS`;
+    }
+});
