@@ -1,34 +1,20 @@
-// Function to fetch user info from Telegram
-function fetchTelegramUserInfo() {
-    const usernameElement = document.getElementById('username'); // Get the username element
-    usernameElement.textContent = "Loading..."; // Show loading message
+// mainscript.js
 
-    // Check if the Telegram Web App API is available
-    if (window.Telegram && window.Telegram.WebApp) {
-        const userInfo = window.Telegram.WebApp.initDataUnsafe.user; // Get user data
-
-        // Validate userInfo object exists
-        if (userInfo) {
-            // Check if the user has a username
-            if (userInfo.username) {
-                // If the username exists, display it
-                usernameElement.textContent = `Username: @${userInfo.username}`; // Display username
-            } else if (userInfo.first_name) {
-                // If the username does not exist, fallback to displaying the first name
-                usernameElement.textContent = `Name: ${userInfo.first_name}`; // Fallback to first name
-            } else {
-                // If neither username nor first name exists
-                usernameElement.textContent = "Name: Unknown"; // Display fallback message
-            }
-        } else {
-            // If userInfo is not available
-            usernameElement.textContent = "User information is not available.";
-        }
-    } else {
-        // If Telegram Web App API is not available
-        usernameElement.textContent = "Open in Telegram";
+// Function to fetch the username from Telegram
+async function fetchUsername() {
+    try {
+        // Using your actual Telegram bot token
+        const response = await fetch(`https://api.telegram.org/bot7350557281:AAHDt0zRKcBaWo2a2XDdc-ViwB-N2H6ZeVo/getMe`);
+        const data = await response.json();
+        
+        // Check if the username is available
+        const username = data.result.username || 'unknown'; // Use 'unknown' if no username
+        document.getElementById('username').textContent = username;
+    } catch (error) {
+        console.error('Error fetching username:', error);
+        document.getElementById('username').textContent = 'Error fetching username'; // Error handling
     }
 }
 
-// Call the function to fetch and display the user's information
-fetchTelegramUserInfo();
+// Call the function to fetch the username when the page loads
+fetchUsername();
