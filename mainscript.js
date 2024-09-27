@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return allUsernames.includes(username.toLowerCase());
     }
 
-    if (!userData) {
-        let username = null;
+    // Function to handle user data setup
+    function setupUserData(username) {
+        // Ensure username is not empty or taken
         while (!username || username.trim() === "" || isUsernameTaken(username)) {
             username = prompt("Please enter a unique username:");
 
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        // Create user data object
         userData = {
             username: username.trim(),
             score: 0 // Initial score
@@ -36,11 +38,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Save user data to localStorage
         localStorage.setItem("alienGameUserData", JSON.stringify(userData));
+
+        // Display the username and score
+        displayUserData();
     }
 
-    // Display the username and score
-    usernameDisplay.textContent = `Username: ${userData.username}`;
-    scoreDisplay.textContent = `Score: ${userData.score}`;
+    // Function to display user data on the screen
+    function displayUserData() {
+        usernameDisplay.textContent = `Username: ${userData.username}`;
+        scoreDisplay.textContent = `Score: ${userData.score}`;
+    }
+
+    // Check if we already have user data stored
+    if (!userData) {
+        // Use Telegram's Mini App API to get the user's Telegram username
+        if (window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+            const telegramUsername = window.Telegram.WebApp.initDataUnsafe.user.username;
+
+            if (telegramUsername && !isUsernameTaken(telegramUsername)) {
+                // If Telegram username exists and is not taken, use it
+                setupUserData(telegramUsername);
+            } else {
+                // If Telegram username is missing or taken, prompt user to enter one
+                setupUserData(null);
+            }
+        } else {
+            // Fallback: if Telegram username isn't available, prompt for one
+            setupUserData(null);
+        }
+    } else {
+        // If user data exists, display it
+        displayUserData();
+    }
 
     // Example of how you could update the score in the future
     function updateScore(newScore) {
