@@ -71,12 +71,6 @@ body {
     background-color: #ffffff;
 }
 
-.claimed {
-    background-color: #424242;
-    color: #fff;
-    cursor: not-allowed;
-}
-
 /* Additional styles for nav, etc. */
 nav {
     position: fixed;
