@@ -4,7 +4,7 @@ function fetchTelegramUserInfo() {
     usernameElement.textContent = "Loading..."; // Show loading message
 
     // Check if the Telegram Web App API is available
-    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+    if (window.Telegram && window.Telegram.WebApp) {
         const userInfo = window.Telegram.WebApp.initDataUnsafe.user; // Get user data
 
         // Validate userInfo object exists
@@ -26,7 +26,7 @@ function fetchTelegramUserInfo() {
         }
     } else {
         // If Telegram Web App API is not available
-        usernameElement.textContent = "This app must be opened in Telegram.";
+        usernameElement.textContent = "Open in Telegram";
     }
 }
 
