@@ -31,12 +31,23 @@ async function getAccountCreationDate() {
     }
 }
 
-// Function to set the Telegram username from a simulated automatic retrieval
-function getTelegramUsername() {
-    const username = "unknown"; // Changed simulated username to "unknown"
-    const usernameDisplay = document.getElementById("username");
-
-    usernameDisplay.innerText = "@" + username; // Display the username with '@'
+// Function to retrieve the user's Telegram username via API
+async function getTelegramUsername() {
+    try {
+        const response = await fetch('/api/getTelegramUsername'); // Replace with your API endpoint
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        const username = data.username || "unknown"; // Assuming the API returns a JSON object with the username
+        document.getElementById("username").innerText = "@" + username; // Display the username with '@'
+        
+        // Save the username to local storage
+        localStorage.setItem('telegramUsername', username);
+    } catch (error) {
+        console.error('Error fetching Telegram username:', error);
+        document.getElementById("username").innerText = "@unknown"; // Default if fetch fails
+    }
 }
 
 // Function to update the score display and save the username and score in local storage
@@ -45,8 +56,7 @@ async function updateScoreDisplay() {
     const score = calculateScore(creationDate); // Calculate score
     document.getElementById('score').textContent = formatScore(score); // Display formatted score
 
-    // Save the username and score to local storage (optional)
-    localStorage.setItem('telegramUsername', "unknown"); // Change to actual username retrieval
+    // Save the score to local storage
     localStorage.setItem('userScore', score);
 }
 
@@ -66,6 +76,6 @@ function loadUserData() {
 // Call the functions on page load
 window.onload = async function() {
     loadUserData(); // Load saved username and score
-    getTelegramUsername(); // Set the username
+    await getTelegramUsername(); // Set the username
     await updateScoreDisplay(); // Update the score display
 };
