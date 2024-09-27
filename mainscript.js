@@ -8,7 +8,7 @@ function calculateScore(creationDate) {
     const currentDate = new Date();
     const accountAgeInMilliseconds = currentDate - new Date(creationDate);
     const accountAgeInDays = Math.floor(accountAgeInMilliseconds / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-    const scorePerDay = 10; // Example score per day
+    const scorePerDay = 10; // Score per day
 
     return accountAgeInDays * scorePerDay; // Total score
 }
@@ -24,10 +24,7 @@ async function getAccountCreationDate() {
         return new Date(data.creationDate); // Assuming the API returns a JSON object with the creationDate
     } catch (error) {
         console.error('Error fetching account creation date:', error);
-        // Return a fallback date if the API call fails
-        const fallbackDate = new Date();
-        fallbackDate.setDate(fallbackDate.getDate() - 30); // Simulate a creation date 30 days ago
-        return fallbackDate;
+        return null; // Return null if the fetch fails
     }
 }
 
@@ -53,11 +50,16 @@ async function getTelegramUsername() {
 // Function to update the score display and save the username and score in local storage
 async function updateScoreDisplay() {
     const creationDate = await getAccountCreationDate(); // Retrieve the creation date
-    const score = calculateScore(creationDate); // Calculate score
-    document.getElementById('score').textContent = formatScore(score); // Display formatted score
+    if (creationDate) {
+        const score = calculateScore(creationDate); // Calculate score
+        document.getElementById('score').textContent = formatScore(score); // Display formatted score
 
-    // Save the score to local storage
-    localStorage.setItem('userScore', score);
+        // Save the score to local storage
+        localStorage.setItem('userScore', score);
+    } else {
+        // Handle the case where the creation date could not be fetched
+        document.getElementById('score').textContent = formatScore(0); // Display 0 if no valid date
+    }
 }
 
 // Function to load saved username and score from local storage
