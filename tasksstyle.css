@@ -53,14 +53,14 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 10px;
 }
 
 .claim-button {
     background-color: #ffffff;
     border: none;
-    padding: 5px;
-    font-size: 13px;
+    padding: 3px;
+    font-size: 10px;
     color: rgb(0, 0, 0);
     cursor: pointer;
     border-radius: 5px;
