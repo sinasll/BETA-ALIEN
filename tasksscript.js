@@ -3,6 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const scoreElement = document.getElementById("score");
     const claimButtons = document.querySelectorAll(".claim-button");
 
+    // Map of tasks to their respective URLs
+    const taskLinks = {
+        task1: "https://t.me/your_telegram_channel", // Replace with your actual Telegram channel link
+        task2: "https://twitter.com/your_x_account", // Replace with your actual X (Twitter) account link
+        task3: "https://instagram.com/your_instagram_account", // Replace with your actual Instagram link
+        task4: "https://youtube.com/c/your_youtube_channel", // Replace with your actual YouTube channel link
+        task5: "https://youtube.com/watch?v=your_video_id", // Replace with your actual YouTube video link
+        task6: "https://t.me/blum/app?startapp=ref_xISYvf9EZw", // Replace with the link for joining BLUM
+        task7: "https://t.me/Dogiators_bot/game?startapp=kJV57iwkt573CXN8"
+    };
+
     // Fetch username and score
     getTelegramDetails();
 
@@ -19,24 +30,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Add event listener to handle claiming
         button.addEventListener("click", function () {
-            // Check if the task is already claimed
-            if (localStorage.getItem(`claimed_${taskId}`) !== 'true') {
-                let score = parseInt(localStorage.getItem("score")) || 0;
-                score += 100;  // Rewarding 100 points per task
+            // Open the task link in a new tab
+            window.open(taskLinks[taskId], '_blank');
 
-                // Save the new score to localStorage
-                localStorage.setItem("score", score);
+            // Inform the user to complete the task
+            alert("Please complete the task in the new tab. You will be able to claim your reward after you do.");
 
-                // Mark the task as claimed in localStorage
-                localStorage.setItem(`claimed_${taskId}`, 'true');
+            // Mark the task as completed in localStorage
+            localStorage.setItem(`completed_${taskId}`, 'true');
 
-                // Update the score display with commas for thousand separators
-                scoreElement.textContent = `${parseInt(score).toLocaleString()} ALIENS`;
-
-                // Disable the button and change text to "Claimed"
-                button.textContent = "Claimed";
-                button.disabled = true;
-            }
+            // Disable the button and change text to "Claimed"
+            button.textContent = "Claimed";
+            button.disabled = true;
         });
     });
 
