@@ -21,7 +21,46 @@ function loadUserData() {
     }
 }
 
+// Function to calculate the user's score based on account age
+function calculateScore(creationDate) {
+    const currentDate = new Date();
+    const accountAgeInMilliseconds = currentDate - new Date(creationDate);
+    const accountAgeInDays = Math.floor(accountAgeInMilliseconds / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+    const scorePerDay = 10; // Score per day
+
+    return accountAgeInDays * scorePerDay; // Total score
+}
+
+// Function to retrieve the Telegram account creation date via API
+async function getAccountCreationDate() {
+    try {
+        const response = await fetch('/api/getTelegramAccountCreationDate'); // Replace with your API endpoint
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return new Date(data.creationDate); // Assuming the API returns a JSON object with the creationDate
+    } catch (error) {
+        console.error('Error fetching account creation date:', error);
+        return null; // Return null if the fetch fails
+    }
+}
+
 // Function to update the score and save it in local storage
+async function updateScoreDisplay() {
+    const creationDate = await getAccountCreationDate(); // Retrieve the creation date
+    if (creationDate) {
+        const score = calculateScore(creationDate); // Calculate score
+        document.getElementById('score').textContent = formatScore(score); // Display formatted score
+
+        // Save the score to local storage
+        localStorage.setItem('userScore', score);
+    } else {
+        document.getElementById('score').textContent = formatScore(0); // Display 0 if no valid date
+    }
+}
+
+// Function to update the score when a new invite is claimed
 function updateScore(newScore) {
     const currentScore = parseInt(localStorage.getItem('userScore')) || 0; // Get current score or 0
     const totalScore = currentScore + newScore; // Calculate total score
@@ -31,10 +70,10 @@ function updateScore(newScore) {
 
 // Function to invite friends via Telegram
 function inviteFriends() {
-    const inviteLink = "https://t.me/your_bot_username"; // Change to your bot's Telegram link
-    const message = "Hey! Join me on this awesome mini app: " + inviteLink;
+    const inviteLink = "https://t.me/minortappingbot"; // Link to your bot
+    const message = `Hey! Join me on this awesome mini app: ${inviteLink}`;
     
-    // This would trigger the Telegram app to send the message
+    // This will trigger the Telegram app to send the message
     window.open(`tg://msg?text=${encodeURIComponent(message)}`);
     
     // Save the friend's username to the list (for demonstration, assuming the friend is known)
@@ -59,7 +98,7 @@ function saveInvitedFriend(username) {
 
 // Function to copy the invite link to the clipboard
 function copyInviteLink() {
-    const inviteLink = "https://t.me/your_bot_username"; // Change to your bot's Telegram link
+    const inviteLink = "https://t.me/minortappingbot"; // Change to your bot's Telegram link
     navigator.clipboard.writeText(inviteLink).then(() => {
         alert("Invite link copied to clipboard!");
     }).catch(err => {
@@ -67,14 +106,14 @@ function copyInviteLink() {
     });
 }
 
-// Check for pending friends and update score if they launch the bot (dummy function for illustration)
-function checkPendingInvites() {
+// Check for pending friends and update score if they launch the bot
+async function checkPendingInvites() {
     const friendsList = document.getElementById('friendsList').children;
     for (let friend of friendsList) {
         const username = friend.innerText;
         if (localStorage.getItem(`invited_${username}`) === 'pending') {
             // Here, you would have a mechanism to check if the friend launched the bot
-            // For illustration, we'll assume they did
+            // For illustration, let's assume they did
             localStorage.setItem(`invited_${username}`, 'claimed'); // Mark as claimed
             updateScore(150); // Reward with points
         }
@@ -82,7 +121,8 @@ function checkPendingInvites() {
 }
 
 // Add event listeners and load user data
-window.onload = function() {
+window.onload = async function() {
     loadUserData(); // Load saved username and score
+    await updateScoreDisplay(); // Update the score display
     checkPendingInvites(); // Check if any invites are pending
 };
