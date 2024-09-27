@@ -8,11 +8,11 @@ async function fetchUsername() {
         const data = await response.json();
         
         // Check if the username is available
-        const username = data.result.username || 'unknown'; // Use 'unknown' if no username
-        document.getElementById('username').textContent = username;
+        const username = data.result.username; // Get the username
+        document.getElementById('username').textContent = username ? username : ''; // Display username or leave empty
     } catch (error) {
         console.error('Error fetching username:', error);
-        document.getElementById('username').textContent = 'Error fetching username'; // Error handling
+        document.getElementById('username').textContent = ''; // Leave empty in case of error
     }
 }
 
