@@ -1,25 +1,51 @@
-window.Telegram.WebApp.ready();  // Initialize the Telegram Web App
+document.addEventListener("DOMContentLoaded", () => {
+    const usernameDisplay = document.getElementById("username");
+    const scoreDisplay = document.getElementById("score");
 
-const usernameDiv = document.getElementById('username');
+    // Retrieve list of all existing usernames from localStorage
+    let allUsernames = JSON.parse(localStorage.getItem("alienGameUsernames")) || [];
 
-// Get the user data from Telegram Web App
-const user = Telegram.WebApp.initDataUnsafe.user;
+    // Check if current user data exists in localStorage
+    let userData = JSON.parse(localStorage.getItem("alienGameUserData"));
 
-if (user) {
-    if (user.username) {
-        // Display the Telegram username if it's available
-        usernameDiv.textContent = `Welcome, ${user.username}!`;
-    } else {
-        // If no username, prompt the user to create one
-        usernameDiv.textContent = 'Please set a username in your Telegram settings to continue.';
-        Telegram.WebApp.showPopup({
-            title: "Username Required",
-            message: "You need to set a username in your Telegram settings to proceed.",
-            buttons: [
-                { id: "ok", type: "ok", text: "OK" }
-            ]
-        });
+    // Function to check if a username is already taken
+    function isUsernameTaken(username) {
+        return allUsernames.includes(username.toLowerCase());
     }
-} else {
-    usernameDiv.textContent = 'Error: Unable to retrieve user data.';
-}
+
+    if (!userData) {
+        let username = null;
+        while (!username || username.trim() === "" || isUsernameTaken(username)) {
+            username = prompt("Please enter a unique username:");
+
+            if (!username || username.trim() === "") {
+                alert("Username cannot be empty.");
+            } else if (isUsernameTaken(username)) {
+                alert("This username is already taken. Please choose a different one.");
+            }
+        }
+
+        userData = {
+            username: username.trim(),
+            score: 0 // Initial score
+        };
+
+        // Save the new username in the list of all usernames
+        allUsernames.push(userData.username.toLowerCase());
+        localStorage.setItem("alienGameUsernames", JSON.stringify(allUsernames));
+
+        // Save user data to localStorage
+        localStorage.setItem("alienGameUserData", JSON.stringify(userData));
+    }
+
+    // Display the username and score
+    usernameDisplay.textContent = `Username: ${userData.username}`;
+    scoreDisplay.textContent = `Score: ${userData.score}`;
+
+    // Example of how you could update the score in the future
+    function updateScore(newScore) {
+        userData.score = newScore;
+        localStorage.setItem("alienGameUserData", JSON.stringify(userData));
+        scoreDisplay.textContent = `Score: ${userData.score}`;
+    }
+});
