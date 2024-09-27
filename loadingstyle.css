@@ -1,0 +1,67 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+html, body {
+    touch-action: manipulation;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive; /* Game-themed font applied to all text */
+}
+
+/* Ensure the body occupies the full viewport height */
+body {
+    background-color: #000000; /* Black background */
+    color: white;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh;
+}
+
+/* Centering text and logo */
+.loading-container {
+    text-align: center;
+}
+
+/* Style for the logo */
+.alien-img {
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Loader styles */
+.loader-wrapper {
+    margin-bottom: 60px; /* Space between loader and image */
+}
+
+/* Modern loading spinner with smooth transition */
+.loader {
+    width: 80px;
+    height: 80px;
+    border: 10px solid transparent; /* Transparent border for smoothness */
+    border-top-color: rgba(255, 255, 255, 0.7); /* Top color for the spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Spin animation */
+    position: relative;
+    margin: 0 auto; /* Center the loader horizontally */
+}
+
+/* Spin animation for loader */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Import the Google Font for bold, modern text */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
