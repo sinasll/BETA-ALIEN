@@ -46,6 +46,8 @@ body {
     font-family: 'Silkscreen', cursive;
     text-transform: uppercase;
     transition: background-color 0.3s, color 0.3s;
+    width: 200px;
+    height: 30px;
 }
 
 .get-button:hover {
