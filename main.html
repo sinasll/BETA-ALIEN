@@ -2,10 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Disable zooming -->
     <title>ALIENS</title>
     <link rel="stylesheet" href="mainstyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Basic modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px; 
+        }
+        .modal-content {
+            background-color: #000000;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 300px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,7 +50,26 @@
         <div class="score-box" id="score-box">
             <span id="score">0</span>
         </div>
+        <a href="get.html" class="get-button">Get ALIENS</a>
     </div>
+    <script>
+        // Telegram Web Apps initialization
+        Telegram.WebApp.onEvent('mainButtonClicked', function() {
+            // Handle button click if needed
+        });
+
+        // Fetch user information
+        const user = Telegram.WebApp.initDataUnsafe.user;
+        console.log(user); // Log the user object
+
+        if (user && user.username) {
+            // Update username in the UI
+            const usernameElement = document.getElementById('username');
+            usernameElement.innerText = `@${user.username}`; // Set the username
+        } else {
+            console.log("User not found or does not have a username.");
+        }
+    </script>
     <nav>
         <ul class="nav-bar">
             <li class="nav-item">
@@ -28,59 +83,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="friends.html">
+                <a href="firends.html">
                     <i class="fas fa-users" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
     </nav>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Ensure the Telegram WebApp API is ready before accessing its data
-            const telegram = window.Telegram.WebApp;
-
-            telegram.onEvent("ready", function() {
-                // Reference to username and score display elements
-                const usernameDisplay = document.getElementById("username");
-                const scoreDisplay = document.getElementById("score");
-
-                // Get the user's Telegram username and ID from the initDataUnsafe object
-                if (telegram.initDataUnsafe && telegram.initDataUnsafe.user) {
-                    const telegramUser = telegram.initDataUnsafe.user;
-                    const username = telegramUser.username ? `@${telegramUser.username}` : 'Unknown User';
-                    const telegramUserId = telegramUser.id;
-
-                    // Display the Telegram username
-                    usernameDisplay.textContent = username;
-
-                    // Calculate the account age based on a fixed Telegram ID creation date (for demo purposes)
-                    // Assume Telegram IDs were first used on October 13, 2013
-                    const TELEGRAM_START_DATE = new Date('2013-10-13');
-                    const currentDate = new Date();
-
-                    // Estimate the account creation date based on user ID
-                    const userAccountCreationDate = new Date(TELEGRAM_START_DATE.getTime() + telegramUserId * 1000);
-
-                    // Calculate how many days since the account was created
-                    const oneDayInMs = 24 * 60 * 60 * 1000; // Milliseconds in a day
-                    const accountAgeInDays = Math.floor((currentDate - userAccountCreationDate) / oneDayInMs);
-
-                    // Calculate the score (10 points per day)
-                    const score = accountAgeInDays * 10;
-
-                    // Display the score
-                    scoreDisplay.textContent = score;
-                } else {
-                    // Handle case when Telegram WebApp data isn't available
-                    usernameDisplay.textContent = "Unknown User";
-                    scoreDisplay.textContent = "0";
-                }
-
-                // Expand the WebApp interface to fit content
-                telegram.expand();
-            });
-        });
-    </script>
 </body>
 </html>
