@@ -1,18 +1,22 @@
-window.addEventListener('DOMContentLoaded', function () {
-    // Initialize the Telegram Web App
-    const tg = window.Telegram.WebApp;
+// main.js
+document.addEventListener('DOMContentLoaded', () => {
+    const telegram = window.Telegram.WebApp;
 
-    // Automatically get the user's Telegram username
-    const user = tg.initDataUnsafe.user;
+    // Fetch username from Telegram Web App
+    const username = telegram.initDataUnsafe.user?.username || '@username';
+    document.getElementById('username').textContent = username;
 
-    if (user && user.username) {
-        // Display the username
-        document.getElementById('username').textContent = `@${user.username}`;
-    } else {
-        // Fallback message if the username is not available
-        document.getElementById('username').textContent = 'Unknown User';
-    }
+    // Initialize score from localStorage or set to 0 if not found
+    let score = parseInt(localStorage.getItem('score')) || 0;
+    document.getElementById('score').textContent = score;
 
-    // Expand the Web App to full screen
-    tg.expand();
+    // Save username to localStorage (optional)
+    localStorage.setItem('username', username);
+
+    // Function to update the score
+    window.updateScore = function(points) {
+        score += points;
+        localStorage.setItem('score', score);
+        document.getElementById('score').textContent = score;
+    };
 });
