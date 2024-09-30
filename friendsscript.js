@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Invite Friends button event listener
     document.getElementById('invite-button').addEventListener('click', () => {
-        const miniAppUrl = 'https://sinasll.github.io/BETA-ALIEN/'; // Replace with your mini app URL
-        const message = `Hey! Check out this cool mini app: ${miniAppUrl}`; // Update message to include the mini app URL
+        const miniAppUrl = 'https://sinasll.github.io/BETA-ALIEN/';
+        const message = `Hey! Check out this cool mini app: ${miniAppUrl}`;
+        
+        // Create a Telegram sharing link
         const telegramLink = `https://t.me/share/url?url=${encodeURIComponent(miniAppUrl)}&text=${encodeURIComponent(message)}`;
         window.open(telegramLink, '_blank'); // Open the Telegram link in a new tab
     });
