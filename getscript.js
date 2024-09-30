@@ -1,4 +1,3 @@
-// getscript.js
 document.addEventListener('DOMContentLoaded', () => {
     const telegram = window.Telegram.WebApp;
 
@@ -20,13 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(telegram.initDataUnsafe.user);
 
         // Get account creation date from Telegram Web App
-        // Note: Adjust this line if the dateCreated property is not available
         const accountCreationDate = new Date(telegram.initDataUnsafe.user?.dateCreated * 1000) || new Date(); // Fallback to current date
 
         // Debugging: log account creation date
         console.log("Account Creation Date:", accountCreationDate);
 
         const currentDate = new Date();
+        console.log("Current Date:", currentDate);
+
         const timeDifference = currentDate - accountCreationDate; // in milliseconds
         
         if (timeDifference < 0) {
@@ -35,9 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+        console.log("Day Difference:", dayDifference);
 
         // Calculate new score based on days since account creation
         const newScore = dayDifference * 10;
+        console.log("New Score:", newScore);
 
         // Update score in localStorage and on the page
         localStorage.setItem('score', newScore);
