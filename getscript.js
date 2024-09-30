@@ -28,5 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update score in localStorage and on the page
         localStorage.setItem('score', newScore);
         document.getElementById('score').textContent = newScore;
+
+        // Change button text and disable it
+        const calculateButton = document.getElementById('calculate-button');
+        calculateButton.textContent = 'Calculated';
+        calculateButton.disabled = true; // Disable the button
     });
 });
