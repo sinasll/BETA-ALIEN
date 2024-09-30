@@ -37,8 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Invite Friends button event listener
     document.getElementById('invite-button').addEventListener('click', () => {
-        const miniAppUrl = 'https://sinasll.github.io/BETA-ALIEN/';
-        const message = `Hey! Check out this cool mini app: ${miniAppUrl}`;
+        const message = `Hey! Check out this cool bot: @betaalien_bot`;
         
         // Prompt the user for the chat ID where the message should be sent
         const chatId = prompt("Enter your Telegram chat ID to send the message:");
