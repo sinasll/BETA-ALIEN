@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Invite Friends button event listener
     document.getElementById('invite-button').addEventListener('click', () => {
-        const botUsername = '@YourBotUsername'; // Replace with your bot's username
-        const message = `Hey! Check out this cool bot: ${botUsername}`;
-        const telegramLink = `https://t.me/share/url?url=${encodeURIComponent(botUsername)}&text=${encodeURIComponent(message)}`;
+        const miniAppUrl = 'https://sinasll.github.io/BETA-ALIEN/'; // Replace with your mini app URL
+        const message = `Hey! Check out this cool mini app: ${miniAppUrl}`; // Update message to include the mini app URL
+        const telegramLink = `https://t.me/share/url?url=${encodeURIComponent(miniAppUrl)}&text=${encodeURIComponent(message)}`;
         window.open(telegramLink, '_blank'); // Open the Telegram link in a new tab
     });
 
     // Copy Invite Link button event listener
     document.getElementById('copy-link-button').addEventListener('click', () => {
-        const inviteLink = `https://t.me/share/url?url=${encodeURIComponent('@YourBotUsername')}`; // Adjust as needed
+        const inviteLink = 'https://sinasll.github.io/BETA-ALIEN/'; // Replace with your mini app URL
         navigator.clipboard.writeText(inviteLink).then(() => {
             alert('Invite link copied to clipboard!');
         }).catch(err => {
