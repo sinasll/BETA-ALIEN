@@ -1,7 +1,7 @@
 // getscript.js
 document.addEventListener('DOMContentLoaded', () => {
     const telegram = window.Telegram.WebApp;
-    
+
     // Fetch username from Telegram Web App
     const username = telegram.initDataUnsafe.user?.username || '@username';
     
@@ -16,10 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add event listener for the calculate button
     document.getElementById('calculate-button').addEventListener('click', () => {
-        // Assuming you have access to the user's account age through some method
-        const accountCreationDate = new Date(telegram.initDataUnsafe.user?.dateCreated * 1000); // Convert Unix timestamp to Date
+        // Debugging: log user data
+        console.log(telegram.initDataUnsafe.user);
+
+        // Get account creation date from Telegram Web App
+        // Note: Adjust this line if the dateCreated property is not available
+        const accountCreationDate = new Date(telegram.initDataUnsafe.user?.dateCreated * 1000) || new Date(); // Fallback to current date
+
+        // Debugging: log account creation date
+        console.log("Account Creation Date:", accountCreationDate);
+
         const currentDate = new Date();
         const timeDifference = currentDate - accountCreationDate; // in milliseconds
+        
+        if (timeDifference < 0) {
+            console.error("Account creation date is in the future.");
+            return; // Prevent further execution if the date is invalid
+        }
+
         const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
 
         // Calculate new score based on days since account creation
