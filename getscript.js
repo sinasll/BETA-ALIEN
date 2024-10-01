@@ -1,16 +1,22 @@
-// getscript.js
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
     const storedScore = parseInt(localStorage.getItem('score')) || 0;
     const accountCreationDate = localStorage.getItem('accountCreationDate');
+    const hasClaimedReward = localStorage.getItem('hasClaimedReward') === 'true'; // Check if reward has been claimed
 
     document.getElementById('username').textContent = storedUsername;
     document.getElementById('score').textContent = storedScore;
 
     // Check if accountCreationDate is already set
     if (!accountCreationDate) {
-        // If not set, store the current date as the creation date
-        localStorage.setItem('accountCreationDate', new Date().toISOString());
+        alert("Please provide your Telegram account creation date!");
+    }
+
+    // Disable the calculate button if reward has been claimed
+    if (hasClaimedReward) {
+        const calculateButton = document.getElementById('calculate-button');
+        calculateButton.classList.add('disabled'); // Add the disabled class
+        calculateButton.textContent = "Calculated"; // Change text here
     }
 
     // Add event listener for the calculate button
@@ -26,5 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update score in localStorage and on the page
         localStorage.setItem('score', newScore);
         document.getElementById('score').textContent = newScore;
+
+        // Set the reward claimed flag, disable the button, and add the disabled class
+        localStorage.setItem('hasClaimedReward', 'true');
+        const calculateButton = document.getElementById('calculate-button');
+        calculateButton.classList.add('disabled'); // Add the disabled class
+        calculateButton.textContent = "Calculated"; // Change text here
     });
 });
