@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
-    const storedScore = parseInt(localStorage.getItem('score')) || 0;
+    let storedScore = parseInt(localStorage.getItem('score')) || 0;
     let accountCreationDate = localStorage.getItem('accountCreationDate');
     const lastClaimTime = localStorage.getItem('lastClaimTime'); // Store the last claim time
     const oneDayInMillis = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
@@ -29,16 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if the button should be disabled
     if (lastClaimTime && (currentTime - new Date(lastClaimTime)) < oneDayInMillis) {
-        rewardButton.classList.add('disabled'); // Disable the button
-        rewardButton.textContent = "Rewarded"; // Change text here
-        rewardButton.style.backgroundColor = "white"; // Change button background to white
-        rewardButton.style.color = "black"; // Change text color to black
-
-        // Calculate remaining time until the button is re-enabled
-        const remainingTime = Math.ceil((oneDayInMillis - (currentTime - new Date(lastClaimTime))) / (1000 * 60 * 60)); // in hours
-
-        // Uncomment below line if you still want to log the remaining time
-        // console.log("You can claim your daily reward again in " + remainingTime + " hours.");
+        disableRewardButton(rewardButton, lastClaimTime);
     }
 
     // Function to claim daily reward
@@ -46,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const rewardAmount = 100; // Amount of points to reward
 
         // Update score in localStorage and on the page
-        const newScore = storedScore + rewardAmount;
-        localStorage.setItem('score', newScore);
-        document.getElementById('score').textContent = newScore;
+        storedScore += rewardAmount;
+        localStorage.setItem('score', storedScore);
+        document.getElementById('score').textContent = storedScore;
 
         // Update the last claim time
         localStorage.setItem('lastClaimTime', currentTime.toISOString());
@@ -56,8 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable the button and change its text
         rewardButton.classList.add('disabled'); // Add the disabled class
         rewardButton.textContent = "Rewarded"; // Change text here
-        rewardButton.style.backgroundColor = "white"; // Change button background to white
-        rewardButton.style.color = "black"; // Change text color to black
     });
 
     // Add event listener for the calculate button
@@ -78,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update score in localStorage and on the page
         localStorage.setItem('score', newScore);
+        storedScore = newScore; // Update storedScore variable for consistency
         document.getElementById('score').textContent = newScore;
 
         // Set the reward claimed flag, disable the button, and add the disabled class
@@ -86,4 +76,37 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateButton.classList.add('disabled'); // Add the disabled class
         calculateButton.textContent = "Calculated"; // Change text here
     });
+
+    // Function to disable reward button and start countdown
+    function disableRewardButton(button, lastClaimTime) {
+        button.classList.add('disabled'); // Disable the button
+        button.textContent = "Rewarded"; // Change text here
+        button.style.backgroundColor = "white"; // Change button background to white
+        button.style.color = "black"; // Change text color to black
+
+        // Create countdown
+        const countdownDisplay = document.getElementById('countdown');
+        countdownDisplay.style.display = 'block'; // Make countdown visible
+
+        const updateInterval = setInterval(() => {
+            const currentTime = new Date();
+            const remainingTime = Math.max(0, (new Date(lastClaimTime).getTime() + oneDayInMillis) - currentTime.getTime()) / 1000; // in seconds
+
+            updateCountdown(remainingTime, countdownDisplay);
+
+            if (remainingTime <= 0) {
+                clearInterval(updateInterval);
+                button.classList.remove('disabled'); // Re-enable the button
+                button.textContent = "Claim Reward"; // Reset button text
+                countdownDisplay.style.display = 'none'; // Hide countdown
+            }
+        }, 1000); // Update every second
+    }
+
+    // Function to update countdown display
+    function updateCountdown(seconds, display) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        display.textContent = `${hours}h ${minutes}m`; // Show only hours and minutes
+    }
 });
