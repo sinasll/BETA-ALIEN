@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
     const storedScore = parseInt(localStorage.getItem('score')) || 0;
-    const accountCreationDate = localStorage.getItem('accountCreationDate');
+    let accountCreationDate = localStorage.getItem('accountCreationDate');
     const hasClaimedReward = localStorage.getItem('hasClaimedReward') === 'true'; // Check if reward has been claimed
 
     document.getElementById('username').textContent = storedUsername;
@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if accountCreationDate is already set
     if (!accountCreationDate) {
-        alert("Please provide your Telegram account creation date!");
+        accountCreationDate = new Date(); // Set current date if not set
+        localStorage.setItem('accountCreationDate', accountCreationDate.toISOString());
+        alert("Your Telegram account creation date has been set.");
     }
 
     // Disable the calculate button if reward has been claimed
@@ -25,6 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentDate = new Date();
         const timeDifference = currentDate - creationDate; // in milliseconds
         const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+
+        // Debugging output
+        console.log("Creation Date:", creationDate);
+        console.log("Current Date:", currentDate);
+        console.log("Time Difference:", timeDifference);
+        console.log("Day Difference:", dayDifference);
 
         // Calculate new score based on days since account creation
         const newScore = dayDifference * 10;
