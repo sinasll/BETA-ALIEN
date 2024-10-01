@@ -1,26 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
     const storedScore = parseInt(localStorage.getItem('score')) || 0;
-    let accountCreationDate = localStorage.getItem('accountCreationDate');
+    const userId = localStorage.getItem('userId'); // Get userId from local storage
     const lastClaimTime = localStorage.getItem('lastClaimTime'); // Store the last claim time
     const oneDayInMillis = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    const apiToken = 'YOUR_API_TOKEN_HERE'; // Replace with your actual API token
 
     document.getElementById('username').textContent = storedUsername;
     document.getElementById('score').textContent = storedScore;
 
-    // Check if accountCreationDate is already set
-    if (!accountCreationDate) {
-        accountCreationDate = new Date(); // Set current date if not set
-        localStorage.setItem('accountCreationDate', accountCreationDate.toISOString());
-    }
-
-    // Disable the calculate button if reward has been claimed
-    const hasClaimedReward = localStorage.getItem('hasClaimedReward') === 'true'; // Check if reward has been claimed
-
-    if (hasClaimedReward) {
-        const calculateButton = document.getElementById('calculate-button');
-        calculateButton.classList.add('disabled'); // Add the disabled class
-        calculateButton.textContent = "Calculated"; // Change text here
+    // Check if the user has an account creation date
+    if (!localStorage.getItem('accountCreationDate') && userId) {
+        // Fetch user information from the Telegram Bot API
+        fetch(`https://api.telegram.org/bot${apiToken}/getChat?chat_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    const joinDate = new Date(data.result.date * 1000); // Convert seconds to milliseconds
+                    localStorage.setItem('accountCreationDate', joinDate.toISOString());
+                    console.log("Account Creation Date:", joinDate);
+                } else {
+                    console.error('Failed to fetch user data:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
     }
 
     // Update reward button state
@@ -34,46 +39,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to claim daily reward
     rewardButton.addEventListener('click', () => {
-        const rewardAmount = 100; // Amount of points to reward
+        const accountCreationDate = localStorage.getItem('accountCreationDate');
+        if (accountCreationDate) {
+            const creationDate = new Date(accountCreationDate);
+            const dayDifference = calculateDaysSinceCreation(creationDate);
 
-        // Update score in localStorage and on the page
-        const newScore = storedScore + rewardAmount;
-        localStorage.setItem('score', newScore);
-        document.getElementById('score').textContent = newScore;
+            // Calculate new score based on days since account creation
+            const newScore = storedScore + dayDifference * 10; // 10 points for each day
+            localStorage.setItem('score', newScore);
+            document.getElementById('score').textContent = newScore;
 
-        // Update the last claim time
-        localStorage.setItem('lastClaimTime', currentTime.toISOString());
+            // Update the last claim time
+            localStorage.setItem('lastClaimTime', currentTime.toISOString());
 
-        // Disable the button and change its text
-        rewardButton.classList.add('disabled'); // Add the disabled class
-        rewardButton.textContent = "Rewarded"; // Change text here
+            // Disable the button and change its text
+            rewardButton.classList.add('disabled'); // Add the disabled class
+            rewardButton.textContent = "Rewarded"; // Change text here
+        } else {
+            alert("Account creation date not found.");
+        }
     });
 
     // Add event listener for the calculate button
     document.getElementById('calculate-button').addEventListener('click', () => {
-        const creationDate = new Date(localStorage.getItem('accountCreationDate'));
-        const currentDate = new Date();
-        const timeDifference = currentDate - creationDate; // in milliseconds
-        const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+        const accountCreationDate = localStorage.getItem('accountCreationDate');
+        if (accountCreationDate) {
+            const creationDate = new Date(accountCreationDate);
+            const dayDifference = calculateDaysSinceCreation(creationDate);
 
-        // Debugging output
-        console.log("Creation Date:", creationDate);
-        console.log("Current Date:", currentDate);
-        console.log("Time Difference:", timeDifference);
-        console.log("Day Difference:", dayDifference);
+            // Calculate new score based on days since account creation
+            const newScore = dayDifference * 10; // 10 points for each day
 
-        // Calculate new score based on days since account creation
-        const newScore = dayDifference * 10;
+            // Update score in localStorage and on the page
+            localStorage.setItem('score', newScore);
+            document.getElementById('score').textContent = newScore;
 
-        // Update score in localStorage and on the page
-        localStorage.setItem('score', newScore);
-        document.getElementById('score').textContent = newScore;
-
-        // Set the reward claimed flag, disable the button, and add the disabled class
-        localStorage.setItem('hasClaimedReward', 'true');
-        const calculateButton = document.getElementById('calculate-button');
-        calculateButton.classList.add('disabled'); // Add the disabled class
-        calculateButton.textContent = "Calculated"; // Change text here
+            // Set the reward claimed flag, disable the button, and add the disabled class
+            localStorage.setItem('hasClaimedReward', 'true');
+            const calculateButton = document.getElementById('calculate-button');
+            calculateButton.classList.add('disabled'); // Add the disabled class
+            calculateButton.textContent = "Calculated"; // Change text here
+        } else {
+            alert("Account creation date not found.");
+        }
     });
 
     // Function to disable reward button and start countdown
@@ -102,6 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000); // Update every second
     }
 
+    // Function to calculate days since account creation
+    function calculateDaysSinceCreation(creationDate) {
+        const currentDate = new Date();
+        const timeDifference = currentDate - creationDate; // in milliseconds
+        return Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+    }
+
     // Function to update countdown display
     function updateCountdown(seconds, display) {
         const hours = Math.floor(seconds / 3600);
@@ -117,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calculate days since account creation
         if (accountCreationDate) {
             const creationDate = new Date(accountCreationDate);
-            const currentDate = new Date();
-            const timeDifference = currentDate - creationDate; // in milliseconds
-            const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+            const dayDifference = calculateDaysSinceCreation(creationDate);
             
             // Show alert with the number of days
             alert(`Your Telegram account has been created for ${dayDifference} days.`);
