@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
-    let storedScore = parseInt(localStorage.getItem('score')) || 0;
+    const storedScore = parseInt(localStorage.getItem('score')) || 0;
     let accountCreationDate = localStorage.getItem('accountCreationDate');
     const lastClaimTime = localStorage.getItem('lastClaimTime'); // Store the last claim time
     const oneDayInMillis = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const rewardAmount = 100; // Amount of points to reward
 
         // Update score in localStorage and on the page
-        storedScore += rewardAmount;
-        localStorage.setItem('score', storedScore);
-        document.getElementById('score').textContent = storedScore;
+        const newScore = storedScore + rewardAmount;
+        localStorage.setItem('score', newScore);
+        document.getElementById('score').textContent = newScore;
 
         // Update the last claim time
         localStorage.setItem('lastClaimTime', currentTime.toISOString());
@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update score in localStorage and on the page
         localStorage.setItem('score', newScore);
-        storedScore = newScore; // Update storedScore variable for consistency
         document.getElementById('score').textContent = newScore;
 
         // Set the reward claimed flag, disable the button, and add the disabled class
@@ -109,4 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((seconds % 3600) / 60);
         display.textContent = `${hours}h ${minutes}m`; // Show only hours and minutes
     }
+
+    // Add event listener for the history button
+    document.getElementById('history-button').addEventListener('click', () => {
+        // Get the account creation date from localStorage
+        const accountCreationDate = localStorage.getItem('accountCreationDate');
+
+        // Calculate days since account creation
+        if (accountCreationDate) {
+            const creationDate = new Date(accountCreationDate);
+            const currentDate = new Date();
+            const timeDifference = currentDate - creationDate; // in milliseconds
+            const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+            
+            // Show alert with the number of days
+            alert(`Your Telegram account has been created for ${dayDifference} days.`);
+        } else {
+            alert("Account creation date not found.");
+        }
+    });
 });
