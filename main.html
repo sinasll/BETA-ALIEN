@@ -17,35 +17,6 @@
         </div>
         <a href="get.html" class="get-button">Get ALIENS</a> 
     </div>
-    
-    <script>
-        // Initialize Telegram Web App API
-        const telegram = window.Telegram.WebApp;
-        telegram.ready(); // Ensure Telegram WebApp is ready
-
-        // Get user information from Telegram Web App context
-        const initDataUnsafe = telegram.initDataUnsafe;
-
-        // Extract user data from the Telegram Web App context
-        const username = initDataUnsafe.user ? `@${initDataUnsafe.user.username}` : 'No username'; // Handle missing username
-        const userId = initDataUnsafe.user ? initDataUnsafe.user.id : null;
-
-        // Placeholder for account creation date (for demonstration)
-        const creationDate = new Date('2020-01-01'); // Replace with actual creation date logic if available
-        const accountAgeDays = calculateAccountAge(creationDate); // Calculate account age
-
-        // Display the user information on the page
-        document.getElementById('usernameDisplay').textContent = username;
-        document.getElementById('score-box').insertAdjacentHTML('beforeend', `<div>Account Age: ${accountAgeDays} days</div>`); // Display account age
-
-        // Function to calculate account age in days
-        function calculateAccountAge(creationDate) {
-            const currentDate = new Date();
-            const timeDifference = currentDate - creationDate; // In milliseconds
-            return Math.floor(timeDifference / (1000 * 3600 * 24)); // Convert to days
-        }
-    </script>
-        
     <nav>
         <ul class="nav-bar">
             <li class="nav-item">
@@ -59,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="friends.html"> <!-- Corrected typo from 'firends.html' to 'friends.html' -->
+                <a href="friends.html">
                     <i class="fas fa-users" aria-hidden="true"></i>
                 </a>
             </li>
