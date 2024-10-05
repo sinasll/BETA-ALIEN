@@ -17,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to invite friends via a Telegram message
 function inviteFriends() {
     const botUsername = 'betaaliens_bot'; // Your bot username
-    const message = `join ALIENS 👾 for the most fun game on Telegram! take the opportunity your UFO ticket is there 🛸: https://t.me/${botUsername}`;
+    const message = `Join ALIENS 👾 for the most fun game on Telegram! Take the opportunity, your UFO ticket is there 🛸
+    
+    : https://t.me/${botUsername}`;
     
     // Open Telegram share dialog with the message
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
@@ -32,7 +34,7 @@ async function addInvitedFriend(username) {
 
     // Check if the friend is already invited
     if (!storedFriends.find(friend => friend.username === username)) {
-        storedFriends.push({ username: username, pending: true, score: 0 }); // Add score for the invited friend
+        storedFriends.push({ username: username, pending: true, score: 0 }); // Add the invited friend
         localStorage.setItem('invitedFriends', JSON.stringify(storedFriends));
 
         // Send invitation to the server
@@ -63,8 +65,7 @@ async function registerLaunch(username) {
 
     if (response.ok) {
         alert(`@${username} has launched the bot!`);
-        // Update the status of the invited friend to reflect that they have launched the bot
-        updateFriendStatus(username);
+        updateFriendStatus(username); // Update the friend's status
     } else {
         alert('Error registering the launch. Please try again.');
     }
@@ -98,12 +99,16 @@ function loadInvitedFriends() {
     }
 }
 
-// Function to copy the invite link to the clipboard
+// Function to copy the invite link to the clipboard with the message
 function copyInviteLink() {
-    const botLink = `https://t.me/${document.getElementById('username').textContent.trim()}`;
-    navigator.clipboard.writeText(botLink)
+    const botUsername = 'betaaliens_bot'; // Your bot username
+    const message = `Join ALIENS 👾 for the most fun game on Telegram! Take the opportunity, your UFO ticket is there 🛸
+    
+    : https://t.me/${botUsername}`;
+    
+    navigator.clipboard.writeText(message)
         .then(() => {
-            alert('Invite link copied to clipboard!');
+            alert('Invite message copied to clipboard! Share it with your friends!');
         })
         .catch(err => {
             console.error('Could not copy text: ', err);
