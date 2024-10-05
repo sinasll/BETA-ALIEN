@@ -25,7 +25,6 @@ function inviteFriends() {
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
     window.open(telegramUrl, '_blank');
 
-    alert('Invite sent! Wait for your friend to launch the bot.'); // Notify the user
 }
 
 // Function to add invited friends and update their status
