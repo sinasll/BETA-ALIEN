@@ -16,18 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to invite friends via a Telegram message
 function inviteFriends() {
-    const botUsername = 'betaalien_bot'; // Your bot username
+    const botUsername = 'betaaliens_bot'; // Your bot username
     const message = `Hey! Join me on this awesome game and earn points: https://t.me/${botUsername}`;
+    
+    // Open Telegram share dialog with the message
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
-
-    // Open Telegram share dialog
     window.open(telegramUrl, '_blank');
 
-    // Prompt for the friend's username
-    const invitedFriendUsername = prompt("Enter the username of your invited friend (without @):");
-    if (invitedFriendUsername) {
-        addInvitedFriend(invitedFriendUsername);
-    }
+// Function to invite friends via a Telegram message
+function inviteFriends() {
+    const botUsername = 'betaaliens_bot'; // Your bot username
+    const message = `Hey! Join me on this awesome game and earn points: https://t.me/${botUsername}`;
+    
+    // Open Telegram share dialog with the message
+    const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
+    window.open(telegramUrl, '_blank');
+
+    alert('Invite sent! Wait for your friend to launch the bot.'); // Notify the user
 }
 
 // Function to add invited friends and update their status
@@ -36,7 +41,7 @@ async function addInvitedFriend(username) {
 
     // Check if the friend is already invited
     if (!storedFriends.find(friend => friend.username === username)) {
-        storedFriends.push({ username: username, pending: true });
+        storedFriends.push({ username: username, pending: true, score: 0 }); // Add score for the invited friend
         localStorage.setItem('invitedFriends', JSON.stringify(storedFriends));
 
         // Send invitation to the server
@@ -81,6 +86,7 @@ function updateFriendStatus(username) {
     
     if (friendIndex !== -1) {
         storedFriends[friendIndex].pending = false; // Mark as not pending
+        storedFriends[friendIndex].score = 100; // Assign score for launching the bot
         localStorage.setItem('invitedFriends', JSON.stringify(storedFriends));
         loadInvitedFriends(); // Refresh the displayed list
     }
@@ -95,7 +101,7 @@ function loadInvitedFriends() {
 
     for (const friend of storedFriends) {
         const friendItem = document.createElement('div');
-        const score = friend.pending ? 'Pending...' : '100 ALIENS'; // Display friend username and status
+        const score = friend.pending ? 'Pending...' : `${friend.score} ALIENS`; // Display friend username and status
         friendItem.textContent = `${friend.username} - ${score}`;
         friendsList.appendChild(friendItem);
     }
