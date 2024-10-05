@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to invite friends via a Telegram message
 function inviteFriends() {
     const botUsername = 'betaaliens_bot'; // Your bot username
-    const message = `Hey! Join me on this awesome game and earn points: https://t.me/${botUsername}`;
+    const message = `join ALIENS 👾 for the most fun game on Telegram! take the opportunity your UFO ticket is there 🛸: https://t.me/${botUsername}`;
     
     // Open Telegram share dialog with the message
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
