@@ -23,15 +23,6 @@ function inviteFriends() {
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
     window.open(telegramUrl, '_blank');
 
-// Function to invite friends via a Telegram message
-function inviteFriends() {
-    const botUsername = 'betaaliens_bot'; // Your bot username
-    const message = `Hey! Join me on this awesome game and earn points: https://t.me/${botUsername}`;
-    
-    // Open Telegram share dialog with the message
-    const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
-    window.open(telegramUrl, '_blank');
-
     alert('Invite sent! Wait for your friend to launch the bot.'); // Notify the user
 }
 
@@ -53,16 +44,16 @@ async function addInvitedFriend(username) {
 
         if (response.ok) {
             alert(`You invited @${username}. Wait for them to launch the bot!`);
+            loadInvitedFriends(); // Refresh the displayed list
         } else {
             alert('There was an error sending the invite. Please try again later.');
         }
-        loadInvitedFriends();
     } else {
         alert('This friend has already been invited.');
     }
 }
 
-// Function to register when an invited friend launches the bot (trigger this when they start the bot)
+// Function to register when an invited friend launches the bot
 async function registerLaunch(username) {
     const response = await fetch('http://localhost:3000/launch', {
         method: 'POST',
