@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const taskLinks = {
                 task1: 'https://t.me/your_channel', // Replace with actual link
                 task2: 'https://x.com/your_profile', // Replace with actual link
-                task3: 'https://instagram.com/your_profile', // Replace with actual link
+                task3: 'https://www.instagram.com/sinasll/', // Replace with actual link
                 task4: 'https://youtube.com/your_channel', // Replace with actual link
                 task5: 'https://youtube.com/your_video', // Replace with actual link
                 task6: 'invite_friends', // Logic for invited friends will be added
