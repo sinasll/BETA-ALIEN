@@ -11,12 +11,14 @@
 <body>
     <div class="container">
         <img src="alien.png" alt="ALIENS Logo" class="logo">
-        <div class="username" id="username"></div>
+        <div class="username" id="usernameDisplay"></div> <!-- Updated ID to match JavaScript -->
         <div class="score-box" id="score-box">
             <span id="score">0</span>
         </div>
         <a href="get.html" class="get-button">Get ALIENS</a> 
- <script>
+    </div>
+    
+    <script>
         // Initialize Telegram Web App API
         const telegram = window.Telegram.WebApp;
         telegram.ready(); // Ensure Telegram WebApp is ready
@@ -25,21 +27,19 @@
         const initDataUnsafe = telegram.initDataUnsafe;
 
         // Extract user data from the Telegram Web App context
-        const username = initDataUnsafe.user ? `@${initDataUnsafe.user.username}` : '@username';
+        const username = initDataUnsafe.user ? `@${initDataUnsafe.user.username}` : 'No username'; // Handle missing username
         const userId = initDataUnsafe.user ? initDataUnsafe.user.id : null;
 
-        // You can't directly get the account creation date, so you may need to implement this on your server
-        // and fetch it from your bot backend (optional).
-        const creationDate = null; // If needed, implement account age calculation logic on the server.
+        // Placeholder for account creation date (for demonstration)
+        const creationDate = new Date('2020-01-01'); // Replace with actual creation date logic if available
+        const accountAgeDays = calculateAccountAge(creationDate); // Calculate account age
 
-        // Calculate the account age based on a predefined creation date (placeholder logic)
-        const accountAgeDays = calculateAccountAge(creationDate);  // Display the user information on the page
+        // Display the user information on the page
         document.getElementById('usernameDisplay').textContent = username;
-        document.getElementById('accountAgeDisplay').textContent = `${accountAgeDays} days`;
+        document.getElementById('score-box').insertAdjacentHTML('beforeend', `<div>Account Age: ${accountAgeDays} days</div>`); // Display account age
 
-        // Function to calculate account age in days (placeholder, as we don't have the real date)
+        // Function to calculate account age in days
         function calculateAccountAge(creationDate) {
-            if (!creationDate) return 'N/A'; // No date available
             const currentDate = new Date();
             const timeDifference = currentDate - creationDate; // In milliseconds
             return Math.floor(timeDifference / (1000 * 3600 * 24)); // Convert to days
@@ -59,12 +59,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="firends.html">
+                <a href="friends.html"> <!-- Corrected typo from 'firends.html' to 'friends.html' -->
                     <i class="fas fa-users" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
     </nav>
+    
+    <script src="mainscript.js"></script>
 </body>
-<script src="mainscript.js"></script>
 </html>
