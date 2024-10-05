@@ -15,7 +15,37 @@
         <div class="score-box" id="score-box">
             <span id="score">0</span>
         </div>
-        <a href="get.html" class="get-button">Get ALIENS</a>  
+        <a href="get.html" class="get-button">Get ALIENS</a> 
+ <script>
+        // Initialize Telegram Web App API
+        const telegram = window.Telegram.WebApp;
+        telegram.ready(); // Ensure Telegram WebApp is ready
+
+        // Get user information from Telegram Web App context
+        const initDataUnsafe = telegram.initDataUnsafe;
+
+        // Extract user data from the Telegram Web App context
+        const username = initDataUnsafe.user ? `@${initDataUnsafe.user.username}` : '@username';
+        const userId = initDataUnsafe.user ? initDataUnsafe.user.id : null;
+
+        // You can't directly get the account creation date, so you may need to implement this on your server
+        // and fetch it from your bot backend (optional).
+        const creationDate = null; // If needed, implement account age calculation logic on the server.
+
+        // Calculate the account age based on a predefined creation date (placeholder logic)
+        const accountAgeDays = calculateAccountAge(creationDate);  // Display the user information on the page
+        document.getElementById('usernameDisplay').textContent = username;
+        document.getElementById('accountAgeDisplay').textContent = `${accountAgeDays} days`;
+
+        // Function to calculate account age in days (placeholder, as we don't have the real date)
+        function calculateAccountAge(creationDate) {
+            if (!creationDate) return 'N/A'; // No date available
+            const currentDate = new Date();
+            const timeDifference = currentDate - creationDate; // In milliseconds
+            return Math.floor(timeDifference / (1000 * 3600 * 24)); // Convert to days
+        }
+    </script>
+        
     <nav>
         <ul class="nav-bar">
             <li class="nav-item">
