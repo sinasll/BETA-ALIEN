@@ -42,7 +42,6 @@ body {
     max-width: 600px;
     height: 50vh; /* Height for the scrollable tasks area */
     overflow-y: auto; /* Allows scrolling */
-    border-radius: 10px;
     padding: 10px;
 }
 
@@ -53,22 +52,24 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 12.5px;
 }
 
 .claim-button {
-    background-color: #ffffff;
-    border: none;
+    background-color: #000000;
+    border: 2px, solid white;
     padding: 3px;
-    font-size: 10px;
-    color: rgb(0, 0, 0);
+    font-size: 12.5px;
+    color: rgb(255, 255, 255);
     cursor: pointer;
-    border-radius: 5px;
     font-family: 'Silkscreen', cursive;
+    width: 70px; 
+    height: 30px;
 }
 
 .claim-button:hover {
     background-color: #ffffff;
+    color: #000000;
 }
 
 /* Additional styles for nav, etc. */
