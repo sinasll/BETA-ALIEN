@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rewardButton.disabled = true; // Disable the button
             rewardButton.classList.add('disabled'); // Add disabled class for styling
         } else {
-            rewardButton.textContent = 'Claim 100 ALIENS'; // Reset button text
+            rewardButton.textContent = 'Daily Reward'; // Reset button text
             rewardButton.disabled = false; // Enable the button
             rewardButton.classList.remove('disabled'); // Remove disabled class
         }
