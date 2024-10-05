@@ -1,43 +1,59 @@
-// getscript.js
 document.addEventListener('DOMContentLoaded', () => {
-    const storedUsername = localStorage.getItem('username') || '@username';
-    const storedScore = parseInt(localStorage.getItem('score')) || 0;
-    const userId = localStorage.getItem('userId'); // Assuming you store user ID in localStorage
-    const apiToken = '7939954803:AAG2d3N4hvKlIW3O2tgF95W0TSVOGKY0Cws'; // Your Telegram bot token
+    // Fetch username from localStorage (set on the main page)
+    const username = localStorage.getItem('username') || '@username';
+    document.getElementById('username').textContent = username;
 
-    document.getElementById('username').textContent = storedUsername;
-    document.getElementById('score').textContent = storedScore;
+    // Initialize score from localStorage or set to 0 if not found
+    let score = parseInt(localStorage.getItem('score')) || 0;
+    document.getElementById('score').textContent = score;
 
-    // Fetch user information from the Telegram Bot API
-    fetch(`https://api.telegram.org/bot${apiToken}/getChat?chat_id=${userId}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.ok) {
-                const joinDate = new Date(data.result.date * 1000); // Convert seconds to milliseconds
-                const currentDate = new Date();
-                const timeDifference = currentDate - joinDate; // in milliseconds
-                const dayDifference = Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
-                
-                // Display the account age in days
-                document.getElementById('age').textContent = dayDifference; // Ensure you have an element with ID 'age' in your HTML
+    // Function to update the score
+    function updateScore(points) {
+        score += points;
+        localStorage.setItem('score', score);  // Save updated score to localStorage
+        document.getElementById('score').textContent = score;
+    }
 
-                // Add event listener for the calculate button
-                document.getElementById('calculate-button').addEventListener('click', () => {
-                    // Calculate new score based on days since account creation
-                    const pointsAwarded = dayDifference * 100; // 100 points for each day
-                    const newScore = storedScore + pointsAwarded;
+    // Function to update the countdown on the button
+    function updateCountdown() {
+        const rewardButton = document.getElementById('reward-button');
+        const lastClaim = parseInt(localStorage.getItem('lastClaim')) || 0;
+        const now = Date.now();
+        const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+        const timeLeft = oneDay - (now - lastClaim);
 
-                    // Update score in localStorage and on the page
-                    localStorage.setItem('score', newScore);
-                    document.getElementById('score').textContent = newScore;
+        if (timeLeft > 0) {
+            const hours = Math.floor(timeLeft / (60 * 60 * 1000));
+            const minutes = Math.floor((timeLeft % (60 * 60 * 1000)) / (60 * 1000));
+            rewardButton.textContent = `${hours}h ${minutes}m`; // Show only the countdown
+            rewardButton.disabled = true; // Disable the button
+            rewardButton.classList.add('disabled'); // Add disabled class for styling
+        } else {
+            rewardButton.textContent = 'Claim 100 ALIENS'; // Reset button text
+            rewardButton.disabled = false; // Enable the button
+            rewardButton.classList.remove('disabled'); // Remove disabled class
+        }
+    }
 
-                    alert(`You have earned ${pointsAwarded} points for having your account for ${dayDifference} days!`);
-                });
-            } else {
-                console.error('Failed to fetch user data:', data);
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching user data:', error);
-        });
+    // Set up the daily reward button
+    const rewardButton = document.getElementById('reward-button');
+    rewardButton.addEventListener('click', () => {
+        const lastClaim = parseInt(localStorage.getItem('lastClaim')) || 0;
+        const now = Date.now();
+        const oneDay = 24 * 60 * 60 * 1000;  // 24 hours in milliseconds
+
+        // Check if 24 hours have passed since the last reward claim
+        if (now - lastClaim >= oneDay) {
+            updateScore(100);  // Add 100 ALIENS to the player's score
+            localStorage.setItem('lastClaim', now);  // Save the time of last reward claim
+            alert('You have claimed 100 ALIENS!');
+            updateCountdown();  // Start the countdown after claiming
+        }
+    });
+
+    // Initialize the countdown if applicable
+    updateCountdown();
+
+    // Update countdown every minute
+    setInterval(updateCountdown, 60 * 1000);  // Update countdown every 60 seconds
 });
