@@ -1,5 +1,3 @@
-// tasksscript.js
-
 // Update username and score from localStorage
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
