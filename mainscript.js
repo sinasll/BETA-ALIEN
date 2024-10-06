@@ -8,7 +8,7 @@ const user = Telegram.WebApp.initDataUnsafe?.user || null;
 if (user) {
     // Display the user's Telegram first name in the HTML
     const usernameDisplay = document.getElementById('usernameDisplay');
-    usernameDisplay.textContent = `Welcome, ${user.username || unknown alien}!`;
+    usernameDisplay.textContent = `${user.username || unknown alien}!`;
     console.log('User Info:', user); // Debugging: log user info
 } else {
     console.error('User data not available.');
