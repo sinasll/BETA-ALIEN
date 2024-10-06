@@ -1,28 +1,30 @@
-// Load environment variables from .env file
-require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 
-// Use the bot token from the .env file
-const token = process.env.BOT_TOKEN;
+const token = '7939954803:AAG2d3N4hvKlIW3O2tgF95W0TSVOGKY0Cws'; // Your bot token
 const bot = new TelegramBot(token, { polling: true });
 
-// Handle when the user sends any message
-bot.on("message", (msg) => {
+// Listen for the /start command
+bot.onText(/\/start/, async (msg) => {
     const chatId = msg.chat.id;
 
-    // Get the user's username
-    const username = msg.from.username || msg.from.first_name || 'User';
+    // Get the username from the message
+    const username = msg.from.username ? `@${msg.from.username}` : '@username'; // Default to @username if not available
+    const userId = msg.from.id; // Get user ID
 
-    console.log(`User accessed the bot: ${username}`);
+    // Fetch user information to get the account creation date
+    const userInfo = await bot.getChat(userId);
+    const creationDate = new Date(userInfo.date * 1000); // Convert from seconds to milliseconds
+    const accountAgeDays = calculateAccountAge(creationDate); // Calculate the account age in days
 
     // Create buttons for Web App and Join Community
     const inlineKeyboard = [
         [
             {
                 text: "Launch ALIENS 👾", // Button text
-                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/loading.html" } // URL to your Web App
+                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/index.html?username=" + encodeURIComponent(username) + "&accountAge=" + accountAgeDays } // URL to your Web App with query parameters
             }
         ],
+
         [
             {
                 text: "Join Community 🌐", // Button text
@@ -31,8 +33,8 @@ bot.on("message", (msg) => {
         ]
     ];
 
-    // Send a message with the buttons only when the user sends a message
-    bot.sendMessage(chatId, `🛸 Welcome to ALIENS, ${username}! Your Galactic Adventure Begins Here 👽
+    // Send a message with the buttons
+    bot.sendMessage(chatId, `🛸 Welcome to ALIENS! Your Galactic Adventure Begins Here 👽
 
 Prepare to explore the universe, conquer new challenges, and earn cosmic rewards.
 But that’s not all—an exclusive airdrop is coming soon! 🌠`, {
@@ -40,34 +42,4 @@ But that’s not all—an exclusive airdrop is coming soon! 🌠`, {
             inline_keyboard: inlineKeyboard
         }
     });
-});
-
-// Handle when the user changes status in the bot (e.g., starts or stops the bot)
-bot.on('my_chat_member', (msg) => {
-    const chatId = msg.chat.id;
-    const status = msg.new_chat_member.status;
-
-    // Get the user's username
-    const username = msg.from.username || msg.from.first_name || 'User';
-
-    if (status === 'member') {
-        // User started the bot, get the username and log it
-        console.log(`User started the bot: ${username}`);
-    } else if (status === 'kicked') {
-        console.log(`User stopped the bot: ${username}`);
-    }
-});
-
-// Handle when the user clicks a menu button
-bot.on("callback_query", (callbackQuery) => {
-    const chatId = callbackQuery.message.chat.id;
-    const username = callbackQuery.from.username || callbackQuery.from.first_name || 'User';
-
-    // Log the username when they click a button
-    console.log(`User clicked a menu button: ${username}`);
-});
-
-// Log errors if any
-bot.on("polling_error", (error) => {
-    console.error(error); // Log any polling errors
 });
