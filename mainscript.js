@@ -15,17 +15,25 @@ if (user) {
 
     // Save the username in localStorage for future use
     localStorage.setItem('username', username);
-    
+
     // Fetch and display score from localStorage
     fetchUserScore();
-    
-    console.log('User Info:', user); // Debugging: log user info
+
+    // Debugging: Log user info to ensure the user object is correctly populated
+    console.log('User Info:', user);
 } else {
     console.error('User data not available. Please ensure Telegram authentication.');
+    console.log('Telegram WebApp Data:', Telegram.WebApp.initDataUnsafe); // Log init data for debugging
 }
 
 // Adjust the app height to the full available viewport height
-document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
+function adjustViewportHeight() {
+    document.body.style.height = `${Telegram.WebApp.viewportHeight}px`;
+}
+
+// Call the function initially and on resize
+adjustViewportHeight();
+window.addEventListener('resize', adjustViewportHeight);
 
 // Function to fetch user score from local storage
 function fetchUserScore() {
@@ -33,6 +41,9 @@ function fetchUserScore() {
     let userScore = parseInt(localStorage.getItem('score')) || 0; // Default score if not found
     const scoreDisplay = document.getElementById('score');
     scoreDisplay.textContent = userScore; // Display the score
+
+    // Debugging: Log the score to ensure it's fetched correctly
+    console.log('User Score:', userScore);
 }
 
 // Function to increase and update the score
@@ -43,9 +54,16 @@ function increaseScore(amount) {
 
     // Save the updated score in localStorage
     localStorage.setItem('score', currentScore);
+
+    // Debugging: Log the updated score
+    console.log('Updated Score:', currentScore);
 }
 
-// Fetch user score only if authenticated
+// Debugging: Check localStorage to ensure username and score are correctly saved
+console.log('Username in localStorage:', localStorage.getItem('username'));
+console.log('Score in localStorage:', localStorage.getItem('score'));
+
+// Only fetch the score if the user is authenticated
 if (user) {
     fetchUserScore();
 }
