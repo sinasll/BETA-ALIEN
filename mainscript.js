@@ -1,9 +1,3 @@
-// Initialize Telegram WebApp
-Telegram.WebApp.ready();
-
-// Request the app to expand to full size
-Telegram.WebApp.expand();
-
 // Display user data if authenticated
 const user = Telegram.WebApp.initDataUnsafe?.user || null;
 
