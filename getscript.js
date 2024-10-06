@@ -1,11 +1,10 @@
+// Update username and score from localStorage
 document.addEventListener('DOMContentLoaded', () => {
-    // Fetch username from localStorage (set on the main page)
-    const username = localStorage.getItem('username') || '@username';
-    document.getElementById('username').textContent = username;
+    const storedUsername = localStorage.getItem('username') || '@username';
+    const storedScore = parseInt(localStorage.getItem('score')) || 0;
 
-    // Initialize score from localStorage or set to 0 if not found
-    let score = parseInt(localStorage.getItem('score')) || 0;
-    document.getElementById('score').textContent = score;
+    document.getElementById('username').textContent = storedUsername;
+    document.getElementById('score').textContent = storedScore;
 
     // Function to update the score
     function updateScore(points) {
