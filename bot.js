@@ -21,7 +21,7 @@ bot.onText(/\/start/, async (msg) => {
         [
             {
                 text: "Launch ALIENS 👾", // Button text
-                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/index.html?username=" + encodeURIComponent(username) + "&accountAge=" + accountAgeDays } // URL to your Web App with query parameters
+                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/index.html" + encodeURIComponent(username) + "&accountAge=" + accountAgeDays } // URL to your Web App with query parameters
             }
         ],
 
