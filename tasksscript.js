@@ -1,3 +1,5 @@
+// tasksscript.js
+
 // Update username and score from localStorage
 document.addEventListener('DOMContentLoaded', () => {
     const storedUsername = localStorage.getItem('username') || '@username';
@@ -23,12 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Task URLs
             const taskLinks = {
                 task1: 'https://t.me/sinasll', // Replace with actual link
-                task2: 'https://x.com/your_profile', // Replace with actual link
+                task2: 'https://x.com', // Replace with actual link
                 task3: 'https://www.instagram.com/sinasll/', // Replace with actual link
                 task4: 'https://youtube.com/your_channel', // Replace with actual link
-                task5: 'https://youtube.com/your_video', // Replace with actual link
-                task6: 'invite_friends', // Logic for invited friends will be added
-                task7: 'invite_friends', // Logic for invited friends will be added
+                task5: 'https://youtube.com', // Replace with actual link
+                task6: 'https://youtube.com',
+                task7: 'https://youtube.com',
+                task8: 'invite_friends', // Logic for invited friends will be added
+                task9: 'invite_friends', // Logic for invited friends will be added
             };
 
             if (taskId === 'task6' || taskId === 'task7') {
