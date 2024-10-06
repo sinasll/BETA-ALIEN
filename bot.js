@@ -20,7 +20,7 @@ bot.on("message", (msg) => {
         [
             {
                 text: "Launch ALIENS 👾", // Button text
-                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/main.html" } // URL to your Web App
+                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/loading.html" } // URL to your Web App
             }
         ],
         [
