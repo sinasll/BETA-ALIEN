@@ -21,10 +21,9 @@ bot.onText(/\/start/, async (msg) => {
         [
             {
                 text: "Launch ALIENS 👾", // Button text
-                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/index.html" + encodeURIComponent(username) + "&accountAge=" + accountAgeDays } // URL to your Web App with query parameters
+                web_app: { url: "https://sinasll.github.io/BETA-ALIEN/main.html?username=" + encodeURIComponent(username) + "&accountAge=" + accountAgeDays } // URL to your Web App with query parameters
             }
         ],
-
         [
             {
                 text: "Join Community 🌐", // Button text
@@ -42,4 +41,16 @@ But that’s not all—an exclusive airdrop is coming soon! 🌠`, {
             inline_keyboard: inlineKeyboard
         }
     });
+});
+
+// Function to calculate account age in days
+function calculateAccountAge(creationDate) {
+    const currentDate = new Date();
+    const timeDifference = currentDate - creationDate; // in milliseconds
+    return Math.floor(timeDifference / (1000 * 3600 * 24)); // convert to days
+}
+
+// Log errors if any
+bot.on("polling_error", (error) => {
+    console.error(error); // Log any polling errors
 });
