@@ -24,7 +24,6 @@ function inviteFriends() {
     // Open Telegram share dialog with the message
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(message)}`;
     window.open(telegramUrl, '_blank');
-
 }
 
 // Function to add invited friends and update their status
@@ -79,8 +78,22 @@ function updateFriendStatus(username) {
         storedFriends[friendIndex].pending = false; // Mark as not pending
         storedFriends[friendIndex].score = 100; // Assign score for launching the bot
         localStorage.setItem('invitedFriends', JSON.stringify(storedFriends));
+        
+        // Reward the inviter with 100 ALIENS
+        rewardInviter();
+
         loadInvitedFriends(); // Refresh the displayed list
     }
+}
+
+// Function to reward the inviter for a successful referral
+function rewardInviter() {
+    let currentScore = parseInt(localStorage.getItem('score')) || 0; // Get current score
+    currentScore += 100; // Increase by 100 ALIENS
+    localStorage.setItem('score', currentScore); // Save updated score to localStorage
+
+    // Update score display on the page
+    document.getElementById('score').textContent = currentScore;
 }
 
 // Function to load invited friends and display them
