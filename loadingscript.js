@@ -1,3 +1,9 @@
+// Initialize Telegram WebApp
+Telegram.WebApp.ready();
+
+// Request the app to expand to full size
+Telegram.WebApp.expand();
+
 // Optional: Add a timed delay to transition from the loading page
 setTimeout(() => {
     // Redirect to your game's main page or home screen after loading
