@@ -10,7 +10,7 @@ const user = Telegram.WebApp.initDataUnsafe?.user || null;
 if (user) {
     // Display the user's Telegram username in the HTML
     const usernameDisplay = document.getElementById('usernameDisplay');
-    usernameDisplay.textContent = `@${user.username || 'unkonwn alien'}!`; // Use username or fallback to 'User'
+    usernameDisplay.textContent = `${user.username || 'unkonwn alien'}`; // Use username or fallback to 'User'
     console.log('User Info:', user); // Debugging: log user info
 } else {
     console.error('User data not available.');
