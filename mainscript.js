@@ -4,7 +4,7 @@ Telegram.WebApp.ready();
 // Request the app to expand to full size
 Telegram.WebApp.expand();
 
-// Display user data if authenticated
+// Check if the user is authenticated via Telegram
 const user = Telegram.WebApp.initDataUnsafe?.user || null;
 
 if (user) {
@@ -13,7 +13,7 @@ if (user) {
     const username = user.username || 'User'; // Fallback if username is not available
     usernameDisplay.textContent = `${username}`;
 
-    // Save the username in localStorage
+    // Save the username in localStorage for future use
     localStorage.setItem('username', username);
     
     // Fetch and display score from localStorage
@@ -21,7 +21,7 @@ if (user) {
     
     console.log('User Info:', user); // Debugging: log user info
 } else {
-    console.error('User data not available.');
+    console.error('User data not available. Please ensure Telegram authentication.');
 }
 
 // Adjust the app height to the full available viewport height
@@ -35,17 +35,17 @@ function fetchUserScore() {
     scoreDisplay.textContent = userScore; // Display the score
 }
 
-// Example of future game logic (e.g., increase score on an action)
+// Function to increase and update the score
 function increaseScore(amount) {
     let currentScore = parseInt(document.getElementById('score').textContent, 10);
     currentScore += amount;
     document.getElementById('score').textContent = currentScore;
 
-    // Save this score to local storage
+    // Save the updated score in localStorage
     localStorage.setItem('score', currentScore);
 }
 
-// Call the function to initialize user score only if user is authenticated
+// Fetch user score only if authenticated
 if (user) {
     fetchUserScore();
 }
