@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ALIENS</title>
     <link rel="stylesheet" href="loadingstyle.css">
+    <script>
+        // Initialize Telegram WebApp
+        window.onload = function() {
+            Telegram.WebApp.ready();
+            Telegram.WebApp.expand();
+            document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
+
+            // Optional: Add a timed delay to transition from the loading page
+            setTimeout(() => {
+                // Redirect to your game's main page or home screen after loading
+                window.location.href = "main.html"; // Replace with the actual main game URL
+            }, 5000); // Delay before redirect, adjust as needed
+        };
+    </script>
 </head>
 <body>
     <div class="loading-container">
@@ -13,6 +27,5 @@
         </div>
         <img src="alien.png" alt="Alien Image" class="alien-img">
     </div>
-    <script src="loadingscript.js"></script>
 </body>
 </html>
