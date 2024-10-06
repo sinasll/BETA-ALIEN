@@ -11,14 +11,14 @@ if (user) {
     // Display the user's Telegram username in the HTML
     const usernameDisplay = document.getElementById('usernameDisplay');
     const username = user.username || 'unknown alien'; // Use username or fallback to 'unknown alien'
-    usernameDisplay.textContent = username;
+    usernameDisplay.textContent = `Username: ${username}`;
 
     // Save the username in localStorage
     localStorage.setItem('username', username);
 
-    console.log('User Info:', user); // Debugging: log user info
+    console.log('Authenticated User Info:', user); // Debugging: log user info
 } else {
-    console.error('User data not available.');
+    console.error('User data not available. Please ensure Telegram authentication.');
 }
 
 // Adjust the app height to the full available viewport height
