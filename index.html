@@ -5,24 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ALIENS</title>
     <link rel="stylesheet" href="loadingstyle.css">
-    <script>
-        window.onload = function() {
-            // Initialize Telegram WebApp
-            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
-                Telegram.WebApp.ready();
-                Telegram.WebApp.expand();
-                document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
-            } else {
-                console.error("Telegram WebApp not available.");
-            }
-
-            // Optional: Add a timed delay to transition from the loading page
-            setTimeout(() => {
-                // Redirect to your game's main page or home screen after loading
-                window.location.href = "main.html"; // Ensure this path is correct
-            }, 5000); // Delay before redirect
-        };
-    </script>
 </head>
 <body>
     <div class="loading-container">
