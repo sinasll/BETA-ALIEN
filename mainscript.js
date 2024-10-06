@@ -1,22 +1,36 @@
-// main.js
-document.addEventListener('DOMContentLoaded', () => {
-    const telegram = window.Telegram.WebApp;
+// Initialize Telegram WebApp
+Telegram.WebApp.ready();
 
-    // Fetch username from Telegram Web App
-    const username = telegram.initDataUnsafe.user?.username || '@username';
-    document.getElementById('username').textContent = username;
+// Display user data if authenticated
+const initData = Telegram.WebApp.initData || '';
+const user = Telegram.WebApp.initDataUnsafe?.user || null;
 
-    // Initialize score from localStorage or set to 0 if not found
-    let score = parseInt(localStorage.getItem('score')) || 0;
-    document.getElementById('score').textContent = score;
+if (user) {
+    // Display the user's Telegram first name in the HTML
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    usernameDisplay.textContent = `Welcome, ${user.first_name}!`;
+    console.log('User Info:', user); // Debugging: log user info
+} else {
+    console.error('User data not available.');
+}
 
-    // Save username to localStorage (optional)
-    localStorage.setItem('username', username);
+// Function to fetch user score (if stored in a backend or local storage)
+function fetchUserScore() {
+    // You could call your backend here to retrieve user data
+    // For now, it just sets a default score of 0
+    let userScore = 0; // Placeholder score logic
+    const scoreDisplay = document.getElementById('score');
+    scoreDisplay.textContent = userScore;
+}
 
-    // Function to update the score
-    window.updateScore = function(points) {
-        score += points;
-        localStorage.setItem('score', score);
-        document.getElementById('score').textContent = score;
-    };
-});
+// Example of future game logic (e.g., increase score on an action)
+function increaseScore(amount) {
+    let currentScore = parseInt(document.getElementById('score').textContent, 10);
+    currentScore += amount;
+    document.getElementById('score').textContent = currentScore;
+
+    // You could also save this score to a backend or local storage
+}
+
+// Call the function to initialize user score
+fetchUserScore();
