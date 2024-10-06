@@ -1,24 +1,28 @@
 // Initialize Telegram WebApp
 Telegram.WebApp.ready();
 
+// Request the app to expand to full size
+Telegram.WebApp.expand();
+
 // Display user data if authenticated
-const initData = Telegram.WebApp.initData || '';
 const user = Telegram.WebApp.initDataUnsafe?.user || null;
 
 if (user) {
-    // Display the user's Telegram first name in the HTML
+    // Display the user's Telegram username in the HTML
     const usernameDisplay = document.getElementById('usernameDisplay');
-    usernameDisplay.textContent = `${user.username || unknown alien}`;
+    usernameDisplay.textContent = `@${user.username || 'unkonwn alien'}!`; // Use username or fallback to 'User'
     console.log('User Info:', user); // Debugging: log user info
 } else {
     console.error('User data not available.');
 }
 
+// Adjust the app height to the full available viewport height
+document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
+
 // Function to fetch user score (if stored in a backend or local storage)
 function fetchUserScore() {
-    // You could call your backend here to retrieve user data
-    // For now, it just sets a default score of 0
-    let userScore = 0; // Placeholder score logic
+    // Placeholder for actual score retrieval logic
+    let userScore = 0; // Default score
     const scoreDisplay = document.getElementById('score');
     scoreDisplay.textContent = userScore;
 }
@@ -29,7 +33,7 @@ function increaseScore(amount) {
     currentScore += amount;
     document.getElementById('score').textContent = currentScore;
 
-    // You could also save this score to a backend or local storage
+    // Save this score to a backend or local storage in the future
 }
 
 // Call the function to initialize user score
