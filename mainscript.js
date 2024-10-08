@@ -4,48 +4,51 @@ Telegram.WebApp.ready();
 // Request the app to expand to full size
 Telegram.WebApp.expand();
 
-// Display user data if authenticated
-const user = Telegram.WebApp.initDataUnsafe?.user || null;
+// Function to retrieve Telegram username
+function getTelegramUserData() {
+    const telegram = window.Telegram.WebApp;
 
-if (user) {
-    // Display the user's Telegram username in the HTML
-    const usernameDisplay = document.getElementById('usernameDisplay');
-    const username = user.username || 'User'; // Fallback if username is not available
-    usernameDisplay.textContent = `${username}`;
+    // When Telegram WebApp is ready, fetch the user's info
+    telegram.ready();
+    const user = telegram.initDataUnsafe.user;
 
-    // Save the username in localStorage
-    localStorage.setItem('username', username);
+    // If the user exists, display their username
+    if (user) {
+        document.getElementById('usernameDisplay').textContent = `Welcome, ${user.first_name}!`;
+    } else {
+        document.getElementById('usernameDisplay').textContent = 'Welcome, Player!';
+    }
+}
+
+// Function to get the score from localStorage or initialize it to 0
+function getScore() {
+    let score = localStorage.getItem('alienScore');
     
-    // Fetch and display score from localStorage
-    fetchUserScore();
-    
-    console.log('User Info:', user); // Debugging: log user info
-} else {
-    console.error('User data not available.');
+    // If score is not found, initialize it to 0
+    if (!score) {
+        score = 0;
+        localStorage.setItem('alienScore', score);
+    }
+
+    document.getElementById('score').textContent = score;
 }
 
-// Adjust the app height to the full available viewport height
-document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
-
-// Function to fetch user score from local storage
-function fetchUserScore() {
-    // Retrieve the score from localStorage
-    let userScore = parseInt(localStorage.getItem('score')) || 0; // Default score if not found
-    const scoreDisplay = document.getElementById('score');
-    scoreDisplay.textContent = userScore; // Display the score
+// Function to update the score and save it in localStorage
+function updateScore(newScore) {
+    localStorage.setItem('alienScore', newScore);
+    document.getElementById('score').textContent = newScore;
 }
 
-// Example of future game logic (e.g., increase score on an action)
-function increaseScore(amount) {
-    let currentScore = parseInt(document.getElementById('score').textContent, 10);
-    currentScore += amount;
-    document.getElementById('score').textContent = currentScore;
+// Call the functions to load user data and score when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    getTelegramUserData();
+    getScore();
+});
 
-    // Save this score to local storage
-    localStorage.setItem('score', currentScore);
-}
-
-// Call the function to initialize user score only if user is authenticated
-if (user) {
-    fetchUserScore();
-}
+// Example: updating the score (for demonstration purposes)
+// You can modify this to update based on game mechanics
+document.querySelector('.get-button').addEventListener('click', function() {
+    let currentScore = parseInt(localStorage.getItem('alienScore'), 10);
+    const newScore = currentScore + 10; // Increment score by 10
+    updateScore(newScore);
+});
