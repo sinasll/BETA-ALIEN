@@ -4,32 +4,38 @@ Telegram.WebApp.ready();
 // Request the app to expand to full size
 Telegram.WebApp.expand();
 
-// Display user data if authenticated
-const user = Telegram.WebApp.initDataUnsafe?.user || null;
+// Get elements
+const usernameDisplay = document.getElementById('username');
+const scoreDisplay = document.getElementById('score');
+const inviteButton = document.getElementById('invite-button');
+const copyLinkButton = document.getElementById('copy-link-button');
+const friendsList = document.getElementById('friendsList');
 
+// Initialize variables
+let user = Telegram.WebApp.initDataUnsafe?.user || null;
+let score = parseInt(localStorage.getItem('score')) || 0;
+let referrals = JSON.parse(localStorage.getItem('referrals')) || [];
+const referralReward = 100;
+const inviteLink = `https://t.me/betaaliens_bot?start=${user?.id}`; // Use your bot's username
+
+// Display the username and score if authenticated
 if (user) {
-    // Display the user's Telegram username in the HTML
-    const usernameDisplay = document.getElementById('usernameDisplay');
-    const username = user.username || 'unknown alien'; // Use username or fallback to 'unknown alien'
-    usernameDisplay.textContent = `Username: ${username}`;
+    const username = user.username || 'User';
+    usernameDisplay.textContent = username;
+    localStorage.setItem('username', username); // Save username in localStorage
 
-    // Save the username in localStorage
-    localStorage.setItem('username', username);
+    // Display the score
+    scoreDisplay.textContent = score;
 
-    console.log('Authenticated User Info:', user); // Debugging: log user info
+    // Display the invited friends from localStorage
+    displayInvitedFriends();
+
+    console.log('User Info:', user); // Debugging: log user info
 } else {
-    console.error('User data not available. Please ensure Telegram authentication.');
+    console.error('User data not available.');
 }
 
-// Adjust the app height to the full available viewport height
-document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
-
-// Function to fetch user score from localStorage
-function fetchUserScore() {
-    // Retrieve the score from localStorage, or default to 0 if not set
-    let userScore = parseInt(localStorage.getItem('score'), 10) || 0; // Default score is 0
-    const scoreDisplay = document.getElementById('score');
-    scoreDisplay.textContent = userScore; // Display the score
+/. Please ensure Telegram authentication.');
 }
 
 // Function to increase the user's score and save it to localStorage
