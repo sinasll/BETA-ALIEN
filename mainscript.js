@@ -4,28 +4,48 @@ Telegram.WebApp.ready();
 // Request the app to expand to full size
 Telegram.WebApp.expand();
 
-// Get elements
-const usernameDisplay = document.getElementById('username');
-const scoreDisplay = document.getElementById('score');
-const inviteButton = document.getElementById('invite-button');
-const copyLinkButton = document.getElementById('copy-link-button');
-const friendsList = document.getElementById('friendsList');
+// Display user data if authenticated
+const user = Telegram.WebApp.initDataUnsafe?.user || null;
 
-// Initialize variables
-let user = Telegram.WebApp.initDataUnsafe?.user || null;
-let score = parseInt(localStorage.getItem('score')) || 0;
-let referrals = JSON.parse(localStorage.getItem('referrals')) || [];
-const referralReward = 100;
-const inviteLink = `https://t.me/betaaliens_bot?start=${user?.id}`; // Use your bot's username
-
-// Display the username and score if authenticated
 if (user) {
-    const username = user.username || 'User';
-    usernameDisplay.textContent = username;
-    localStorage.setItem('username', username); // Save username in localStorage
+    // Display the user's Telegram username in the HTML
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const username = user.username || 'User'; // Fallback if username is not available
+    usernameDisplay.textContent = `${username}`;
 
-    // Display the score
-    scoreDisplay.textContent = score;
+    // Save the username in localStorage
+    localStorage.setItem('username', username);
+    
+    // Fetch and display score from localStorage
+    fetchUserScore();
+    
+    console.log('User Info:', user); // Debugging: log user info
+} else {
+    console.error('User data not available.');
+}
 
-// Call the function to initialize user score
-fetchUserScore();
+// Adjust the app height to the full available viewport height
+document.documentElement.style.height = Telegram.WebApp.viewportHeight + 'px';
+
+// Function to fetch user score from local storage
+function fetchUserScore() {
+    // Retrieve the score from localStorage
+    let userScore = parseInt(localStorage.getItem('score')) || 0; // Default score if not found
+    const scoreDisplay = document.getElementById('score');
+    scoreDisplay.textContent = userScore; // Display the score
+}
+
+// Example of future game logic (e.g., increase score on an action)
+function increaseScore(amount) {
+    let currentScore = parseInt(document.getElementById('score').textContent, 10);
+    currentScore += amount;
+    document.getElementById('score').textContent = currentScore;
+
+    // Save this score to local storage
+    localStorage.setItem('score', currentScore);
+}
+
+// Call the function to initialize user score only if user is authenticated
+if (user) {
+    fetchUserScore();
+}
