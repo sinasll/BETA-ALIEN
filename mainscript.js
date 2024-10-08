@@ -27,26 +27,5 @@ if (user) {
     // Display the score
     scoreDisplay.textContent = score;
 
-    // Display the invited friends from localStorage
-    displayInvitedFriends();
-
-    console.log('User Info:', user); // Debugging: log user info
-} else {
-    console.error('User data not available.');
-}
-
-/. Please ensure Telegram authentication.');
-}
-
-// Function to increase the user's score and save it to localStorage
-function increaseScore(amount) {
-    let currentScore = parseInt(document.getElementById('score').textContent, 10);
-    currentScore += amount;
-    document.getElementById('score').textContent = currentScore;
-
-    // Save the updated score to localStorage
-    localStorage.setItem('score', currentScore); // Store the score in localStorage
-}
-
 // Call the function to initialize user score
 fetchUserScore();
